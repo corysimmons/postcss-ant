@@ -2,7 +2,7 @@
 
 :ant:
 
-A size getting function capable of grabbing auto lengths. Better than flexbox[*](*).
+A size getting function capable of grabbing auto lengths. Better than flexbox[*](#what-about-flexbox).
 
 ### Installation
 
@@ -22,7 +22,7 @@ ant isn't 0-indexed like most arrays. This is so it matches CSS's implementation
 
 So `ant(1px 2px 3px)[1]` returns `1px`.
 
-Space separate values, but you can pass anything in the damn world to `ant`... fixed numbers (`150px`, `3em`, `50ch`, `5%`, etc.), fractions or decimals (`1/4`, `.66`, etc.), and the insanely sexy `auto` (which is kind of like `flex: 1` -- only better[*](*)).
+Space separate values, but you can pass anything in the damn world to `ant`... fixed numbers (`150px`, `3em`, `50ch`, `5%`, etc.), fractions or decimals (`1/4`, `.66`, etc.), and the insanely sexy `auto` (which is kind of like `flex: 1` -- only better[*](#what-about-flexbox)).
 
 After a comma, you can specify a local gutter: `width: ant(1/2, 45px)[1]` would return half the size of a container sans the gutter (so 2 of these elements would fill a container perfectly with a `45px` gutter between them).
 
@@ -69,6 +69,6 @@ The returned `calc` functions can get insane so I suggest you run [`postcss-calc
 
 ---
 
-### *
+### What about flexbox?
 
 I'll explain the weak points of flexbox in an upcoming tutorial and link it here.
