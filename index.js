@@ -254,3 +254,4 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 });
 
 exports.default = ant;
+module.exports = exports['default'];
