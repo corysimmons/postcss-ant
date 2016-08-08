@@ -1,0 +1,56 @@
+{
+  "name": "postcss-ant",
+  "description": "A size getting function capable of grabbing auto lengths.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Cory Simmons"
+  },
+  "contributors": [
+    {
+      "name": "Neil Kistner",
+      "email": "neil.kistner@gmail.com",
+      "url": "https://neilkistner.com"
+    }
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "babel -w lib/index.js -o index.js",
+    "browser-sync": "browser-sync start --server --files='demo/index.html, demo/css/out.css' --index='demo/index.html' --no-open --no-notify",
+    "dev": "npm run start | babel -w demo/src/index.js -o demo/index.js | node demo/index | npm run browser-sync",
+    "test": "ava --verbose --no-cache"
+  },
+  "keywords": [
+    "postcss",
+    "ant",
+    "size",
+    "grid",
+    "layout",
+    "auto"
+  ],
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "dependencies": {
+    "postcss": "^5.1.1"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "browser-sync": "^2.14.0",
+    "chokidar": "^1.6.0",
+    "postcss-calc": "^5.3.0",
+    "postcss-scss": "^0.1.9",
+    "postcss-simple-vars": "^3.0.0",
+    "precss": "^1.4.0",
+    "standard": "^7.1.2"
+  }
+}

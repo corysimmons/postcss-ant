@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+}
+
+section {
+  overflow: hidden;
+  margin-bottom: 10px;
+  width: calc(100% * 1);
+
+  div {
+    $gutter: 30px;
+
+    &:nth-child(n) {
+      float: left;
+      margin: 0 $gutter $gutter 0;
+      height: 50px;
+      background: tomato;
+    }
+
+    @for $i from 1 to 6 {
+      &:nth-child(6n + $(i)) {
+        width: ant(12% 1/4 auto 60px auto 7%, $gutter)[$(i)];
+      }
+    }
+
+    &:nth-child(6n) {
+      margin-right: 0;
+    }
+  }
+}

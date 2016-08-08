@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+}
+
+section {
+  overflow: hidden;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+section div {}
+
+section div:nth-child(n) {
+  float: left;
+  margin: 0 30px 30px 0;
+  height: 50px;
+  background: tomato;
+}
+
+section div:nth-child(6n + 1) {
+  width: 12%;
+}
+
+section div:nth-child(6n + 2) {
+  width: calc((100% - ((12% + 60px + 7%) + 90px)) * 1/4 - 22.5px);
+}
+
+section div:nth-child(6n + 3) {
+  width: calc((100% - (((12% + 60px + 7%) + (30px * 3)) + ((100% - ((12% + 60px + 7%) + (30px * 3))) * 0.25 - 22.5px)) - 60px) / 2);
+}
+
+section div:nth-child(6n + 4) {
+  width: 60px;
+}
+
+section div:nth-child(6n + 5) {
+  width: calc((100% - (((12% + 60px + 7%) + (30px * 3)) + ((100% - ((12% + 60px + 7%) + (30px * 3))) * 0.25 - 22.5px)) - 60px) / 2);
+}
+
+section div:nth-child(6n + 6) {
+  width: 7%;
+}
+
+section div:nth-child(6n) {
+  margin-right: 0;
+}
