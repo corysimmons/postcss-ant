@@ -80,6 +80,8 @@
 
 /* Flexbox `order` is pretty sweet for source ordering.*/
 .order {
+  overflow: hidden;
+  margin-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -103,4 +105,69 @@
 }
 .order div:nth-child(4){
   order: 1;
+}
+
+/* Asymmetrical columns*/
+.asymmetrical {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.asymmetrical div {
+  float: left;
+  margin: 0 5px 5px 0;
+  background: olivedrab /* That preprocessor loop from above...*/ /* Irregular asymmetrical elements.*/ /* Remove right gutter.*/
+}
+.asymmetrical div:nth-child(7n + 1){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 1/28 - 4.821428571428571px);
+}
+.asymmetrical div:nth-child(7n + 2){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 2/28 - 4.642857142857143px);
+}
+.asymmetrical div:nth-child(7n + 3){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 3/28 - 4.464285714285714px);
+}
+.asymmetrical div:nth-child(7n + 4){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 4/28 - 4.285714285714286px);
+}
+.asymmetrical div:nth-child(7n + 5){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 5/28 - 4.107142857142857px);
+}
+.asymmetrical div:nth-child(7n + 6){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 6/28 - 3.928571428571429px);
+}
+.asymmetrical div:nth-child(7n + 7){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+  width: calc(100% * 7/28 - 3.75px);
+}
+.asymmetrical div:nth-child(11){ /* 4 + 5 + 6*/
+  width: calc(100% * 15/28 - 2.3214285714285716px);
+  background: thistle;
+}
+.asymmetrical div:nth-child(13){ /* 7 - 5*/
+  width: calc(100% * 2/28 - 4.642857142857143px);
+  background: peachpuff;
+}
+.asymmetrical div:nth-child(7), .asymmetrical div:nth-child(13){
+  margin-right: 0;
+}
+
+/* Heights. You need to set the container to a fixed height. Sidenote: 100vh counts as a fixed height.*/
+.heights {
+  height: 300px;
+  margin-bottom: 30px;
+}
+.heights div {
+  margin-bottom: 5px; /* Don't forget the global gutter.*/
+  background: hotpink /* We can stash the sizes array in a variable if you'd like.*/
+}
+.heights div:last-child{
+  margin-bottom: 0; /* Remove superfluous bottom gutter.*/
+}
+.heights div:nth-child(1){
+  height: 100px;
+}
+.heights div:nth-child(2){
+  height: calc((100% - (105px + ((100% - 105px) * 0.25 - 3.75px)) - 5px) / 1);
+}
+.heights div:nth-child(3){
+  height: calc((100% - 105px) * 1/4 - 3.75px);
 }

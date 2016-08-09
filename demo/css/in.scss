@@ -80,6 +80,8 @@
 
 // Flexbox `order` is pretty sweet for source ordering.
 .order {
+  overflow: hidden;
+  margin-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
 
@@ -106,6 +108,75 @@
     }
     &:nth-child(4) {
       order: 1;
+    }
+  }
+}
+
+// Asymmetrical columns
+.asymmetrical {
+  overflow: hidden;
+  margin-bottom: 30px;
+
+  div {
+    float: left;
+    margin: 0 5px 5px 0;
+    background: olivedrab;
+
+    // That preprocessor loop from above...
+    @for $i from 1 to 7 {
+      &:nth-child(7n + $(i)) {
+        // Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).
+        width: ant($(i)/28)[1];
+      }
+    }
+
+    // Irregular asymmetrical elements.
+    &:nth-child(11) {
+      // 4 + 5 + 6
+      width: ant(15/28)[1];
+      background: thistle;
+    }
+
+    &:nth-child(13) {
+      // 7 - 5
+      width: ant(2/28)[1];
+      background: peachpuff;
+    }
+
+    // Remove right gutter.
+    &:nth-child(7),
+    &:nth-child(13) {
+      margin-right: 0;
+    }
+  }
+}
+
+// Heights. You need to set the container to a fixed height. Sidenote: 100vh counts as a fixed height.
+.heights {
+  height: 300px;
+  margin-bottom: 30px;
+
+  div {
+    margin-bottom: 5px; // Don't forget the global gutter.
+    background: hotpink;
+
+    &:last-child {
+      margin-bottom: 0; // Remove superfluous bottom gutter.
+    }
+
+    // We can stash the sizes array in a variable if you'd like.
+    $local-array: 100px auto 1/4;
+
+    &:nth-child(1) {
+      height: ant($local-array)[1];
+    }
+
+    &:nth-child(2) {
+      height: ant($local-array)[2];
+    }
+
+    &:nth-child(3) {
+      height: ant($local-array)[3];
     }
   }
 }
