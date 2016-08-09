@@ -15,12 +15,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // ant
 var ant = _postcss2.default.plugin('postcss-ant', function () {
   return function (css, result) {
-    // Set root
-    var root = _postcss2.default.parse(css);
-
     // Stash atRule gutter (global gutter) for later.
     var globalGutter = '';
-    root.walkAtRules(function (rule) {
+    css.walkAtRules(function (rule) {
       if (rule.name === 'ant-gutter') {
         globalGutter = rule.params;
       }
