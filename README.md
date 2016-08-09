@@ -20,6 +20,11 @@ A size getting function capable of grabbing auto lengths. Better than flexbox[*]
 
 For other PostCSS plugin usages: https://github.com/postcss/postcss#usage
 
+### API
+
+- `ant(array of sizes, [gutter])[1-based index]`
+- Example: `ant(1/2 100px auto, 60px)[3]`
+
 ### Docs
 
 ant isn't 0-indexed like most arrays. This is so it matches CSS's implementation of nth selectors (where `:nth-child(1)` selects the first item). This was done on purpose so preprocessor looping is easier -- not to be a special snowflake.
