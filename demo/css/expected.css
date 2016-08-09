@@ -1,46 +1,63 @@
+@ant-gutter 5px; /* Set the global gutter. By default it's 30px.*/
+
+/* Badass CSS reset.*/
 * {
   margin: 0;
 }
 
-section {
-  overflow: hidden;
-  margin-bottom: 10px;
-  width: 100%;
+/* Using preprocessor loops to make rows of crazily-sized columns with minimal css output. Complete with custom local gutter.*/
+.loopy {
+  overflow: hidden; /* poor man's clearfix*/
+  margin-bottom: 30px;
 }
-
-section div {}
-
-section div:nth-child(n) {
+.loopy div {
   float: left;
-  margin: 0 5px 5px 0;
+  margin: 0 15px 15px 0; /* add a gutter to the right and bottom of every element.*/
   height: 50px;
-  background: tomato;
+  background: tomato /* Preprocessor loop. $i is the iterator. So the first time through it produces:*/ /* &:nth-child(6n + 1) {*/ /*   width: ant(12% 1/4 auto 60px auto 7%, 15px)[1]; // postcss-ant then goes over this and returns a valid CSS length.*/ /* }*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Remove the gutter from the end of every 6th element.*/
 }
-
-section div:nth-child(6n + 1) {
-  width: calc((100% - ((4em + 70px) + 10px)) * 1/3 - 3.333333333333333px);
+.loopy div:nth-child(6n + 1){
+  width: 12%;
 }
-
-section div:nth-child(6n + 2) {
-  width: calc((100% - (((4em + 70px) + (5px * 2)) + ((100% - ((4em + 70px) + (5px * 2))) * 0.5 - 2.5px)) - 10px) / 2);
+.loopy div:nth-child(6n + 2){
+  width: calc((100% - ((12% + 60px + 7%) + 45px)) * 1/4 - 11.25px);
 }
-
-section div:nth-child(6n + 3) {
-  width: 4em;
+.loopy div:nth-child(6n + 3){
+  width: calc((100% - (((12% + 60px + 7%) + (15px * 3)) + ((100% - ((12% + 60px + 7%) + (15px * 3))) * 0.25 - 11.25px)) - 30px) / 2);
 }
-
-section div:nth-child(6n + 4) {
-  width: calc((100% - ((4em + 70px) + 10px)) * 1/6 - 4.166666666666667px);
+.loopy div:nth-child(6n + 4){
+  width: 60px;
 }
-
-section div:nth-child(6n + 5) {
-  width: calc((100% - (((4em + 70px) + (5px * 2)) + ((100% - ((4em + 70px) + (5px * 2))) * 0.5 - 2.5px)) - 10px) / 2);
+.loopy div:nth-child(6n + 5){
+  width: calc((100% - (((12% + 60px + 7%) + (15px * 3)) + ((100% - ((12% + 60px + 7%) + (15px * 3))) * 0.25 - 11.25px)) - 30px) / 2);
 }
-
-section div:nth-child(6n + 6) {
-  width: 70px;
+.loopy div:nth-child(6n + 6){
+  width: 7%;
 }
-
-section div:nth-child(6n) {
+.loopy div:nth-child(6n){
   margin-right: 0;
+}
+
+/* Simple examples of how to grab particular values from an array of sizes.*/
+/* You can easily store the ant array in a variable, but we're not doing that here for explicitness.*/
+/* Note the array is NOT 0-based. This is on purpose to make it easier to do the preprocessor loops above.*/
+.simple {
+  overflow: hidden;
+}
+.simple div {
+  float: left;
+  margin-right: 5px; /* sync with global gutter*/
+  background: dodgerblue
+}
+.simple div:nth-child(1){
+  width: 50px; /* returns 50px*/
+}
+.simple div:nth-child(2){
+  width: calc((100% - 55px) * 1/3 - 3.333333333333333px); /* returns 1/3 of 100% (container width) minus the fixed sizes (50px from above)*/
+}
+.simple div:nth-child(3){
+  width: calc((100% - (55px + ((100% - 55px) * 0.3333333333333333 - 3.3333333333333335px)) - 5px) / 1); /* returns a % length of whatever is leftover*/
+}
+.simple div:last-child{
+  margin-right: 0; /* remove gutter from last element*/
 }
