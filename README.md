@@ -1,6 +1,4 @@
-# postcss-ant
-
-:ant:
+<img src="postcss-ant-logo.svg" width="200">
 
 A size getting function capable of grabbing auto lengths. Better than flexbox[*](#what-about-flexbox).
 
