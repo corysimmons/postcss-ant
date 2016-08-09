@@ -28,6 +28,22 @@ So `ant(1px 2px 3px)[1]` returns `1px`.
 
 Space separate values, but you can pass anything in the damn world to `ant`... fixed numbers (`150px`, `3em`, `50ch`, `5%`, etc.), fractions or decimals (`1/4`, `.66`, etc.), and the insanely sexy `auto` (which is kind of like `flex: 1` -- only better[*](#what-about-flexbox)).
 
+Some simple examples:
+
+```scss
+.foo {
+  width: ant(1/4 auto 100px)[1]; // returns a quarter of the container sans 100px and gutters
+}
+
+.bar {
+  width: ant(1/4 auto 100px)[2]; // returns the size (in percentage) left over after 100px and 1/4 is removed
+}
+
+.baz {
+  width: ant(1/4 auto 100px)[3]; // returns 100px (seems silly in this example, but it's handy in loops)
+}
+```
+
 After a comma, you can specify a local gutter: `width: ant(1/2, 45px)[1]` would return half the size of a container sans the gutter (so 2 of these elements would fill a container perfectly with a `45px` gutter between them).
 
 You can set a global gutter too as an atRule (top of your stylesheet): `@ant-gutter 70px;`. If nothing is specified, the default gutter size is `30px`. You can set the global or local gutter to `0` to get rid of gutters.
