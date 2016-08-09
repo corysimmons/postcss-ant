@@ -43,6 +43,7 @@
 /* Note the array is NOT 0-based. This is on purpose to make it easier to do the preprocessor loops above.*/
 .simple {
   overflow: hidden;
+  margin-bottom: 30px;
 }
 .simple div {
   float: left;
@@ -60,4 +61,46 @@
 }
 .simple div:last-child{
   margin-right: 0; /* remove gutter from last element*/
+}
+@media (max-width: 800px){
+  .simple div:nth-child(1){
+    width: 200px; /* returns 200px*/
+  }
+}
+@media (max-width: 800px){
+  .simple div:nth-child(2){
+    width: calc((100% - 205px) * 1/5 - 4px); /* returns 1/5 minus fixed sizes and stuff*/
+  }
+}
+@media (max-width: 800px){
+  .simple div:nth-child(3){
+    width: calc((100% - (205px + ((100% - 205px) * 0.2 - 4px)) - 5px) / 1); /* returns a % length of whatever is leftover*/
+  }
+}
+
+/* Flexbox `order` is pretty sweet for source ordering.*/
+.order {
+  display: flex;
+  flex-wrap: wrap;
+}
+.order div {
+  float: left;
+  width: calc(100% * 1/2 - 2.5px); /* If all your elements are the same size, no need to specify more than what you need.*/
+  margin: 0 5px 5px 0;
+  background: orange /* Remove gutter from end the elements on the right side.*/ /* Easy source ordering.*/
+}
+.order div:nth-child(odd){
+  margin-right: 0;
+}
+.order div:nth-child(1){
+  order: 4;
+}
+.order div:nth-child(2){
+  order: 3;
+}
+.order div:nth-child(3){
+  order: 2;
+}
+.order div:nth-child(4){
+  order: 1;
 }
