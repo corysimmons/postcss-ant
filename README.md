@@ -4,6 +4,12 @@
 
 A size getting function capable of grabbing auto lengths. Better than flexbox[*](#what-about-flexbox).
 
+### Tinker
+- `npm i`
+- `npm run dev`
+- Play around with `demo/index.html` and `demo/css/in.scss`. Navigate to http://localhost:3000 (or whatever BrowserSync says in your terminal) to see it.
+- `demo/css/out.css` is what your `in.scss` is transformed to.
+
 ### Installation
 
 - `mkdir ~/Desktop/playground/ant; cd ~/Desktop/playground/ant; echo '{}' > package.json; npm i -D postcss postcss-cli postcss-ant`
