@@ -1,6 +1,6 @@
 {
   "name": "postcss-ant",
-  "description": "A size getting function capable of grabbing auto lengths. Better than flexbox.",
+  "description": "A size getting function capable of grabbing auto lengths.",
   "version": "0.0.7",
   "author": {
     "name": "Cory Simmons"
@@ -14,10 +14,12 @@
   ],
   "main": "index.js",
   "scripts": {
-    "start": "babel -w lib/index.js -o index.js",
-    "browser-sync": "browser-sync start --server --files='demo/index.html, demo/css/out.css' --index='demo/index.html' --no-open --no-notify",
-    "dev": "npm run start | babel -w demo/src/index.js -o demo/index.js | node demo/index | npm run browser-sync",
-    "test": "ava --verbose --no-cache"
+    "start": "npm-run-all -p chokidar:* browser-sync",
+    "chokidar:ant": "chokidar './lib/index.js' -c 'npm run babel'",
+    "chokidar:demo": "chokidar './demo/css/in.scss' -c 'npm run postcss'",
+    "babel": "babel './lib/index.js' -o './index.js'",
+    "postcss": "postcss -u precss -p postcss-scss --local-plugins -u './index.js' -o './demo/css/out.css' './demo/css/in.scss'",
+    "browser-sync": "browser-sync start --startPath='./demo' --server --files='./demo/index.html, ./demo/css/out.css, ./index.js' --no-notify --no-open"
   },
   "keywords": [
     "postcss",
@@ -50,10 +52,11 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "browser-sync": "^2.14.0",
-    "chokidar": "^1.6.0",
+    "chokidar-cli": "^1.2.0",
+    "npm-run-all": "^2.3.0",
+    "postcss": "^5.1.2",
     "postcss-calc": "^5.3.0",
     "postcss-scss": "^0.1.9",
-    "postcss-simple-vars": "^3.0.0",
     "precss": "^1.4.0",
     "standard": "^7.1.2"
   }

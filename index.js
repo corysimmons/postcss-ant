@@ -14,7 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // ant
 var ant = _postcss2.default.plugin('postcss-ant', function () {
-  return function (css, result) {
+  return function (css) {
     // Stash atRule gutter (global gutter) for later.
     var globalGutter = '';
     css.walkAtRules(function (rule) {
@@ -24,11 +24,12 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
     });
 
     css.walkDecls(function (decl) {
+      console.log(decl.value.split(/,/));
+
       // If declaration's value begins with `ant(`.
       if (decl.value.match(/^ant\(/)) {
         var _ret = function () {
-          // Section: Define gutter by specificity.
-          // Set default gutter size.
+          // Section: Define sizes and gutter.
           var gutter = '30px';
 
           // Set as local gutter if it exists. No need to set global gutter if local is set.
@@ -40,7 +41,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             gutter = globalGutter;
           }
 
-          // Set gutter to false if it doesn't exist, this lets us do things like `if (gut) ...`.
+          // Set gutter to false if it doesn't exist, this lets us do things like `if (gutter) ...`.
           if (parseInt(gutter, 10) === 0) {
             gutter = false;
           }
@@ -69,7 +70,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           // Section: Grab the index.
           var index = parseInt(decl.value.match(/\[(.*)\]/)[1].trim(), 10) - 1;
 
-          // Sort sizes
+          // Sort sizes into arrays.
           var units = /em|ex|%|px|cm|mm|in|pt|pc|ch|rem|vh|vw|vmin|vmax/;
           var fixedArr = [];
           var fracArr = [];

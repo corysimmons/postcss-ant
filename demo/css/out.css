@@ -1,191 +1,207 @@
 @ant-gutter 5px; /* Set the global gutter. By default it's 30px.*/
 
-/* Badass CSS reset.*/
+/* CSS reset.*/
 * {
   margin: 0;
 }
 
 /* Test section to squash bugs.*/
-.test {
-  width: 100%;
-  overflow: hidden;
-  margin: 0 auto 30px;
+section {
 }
+section:not(.test){
+  display: none;
+}
+
+.test {
+  background: tomato;
+}
+
 .test div {
   float: left;
-  margin: 0 30px 30px 0;
+  margin: 0 15px 30px;
   height: 50px;
   background: springgreen;
-  width: calc(100% * 1/2 - 15px)
-}
-.test div:nth-child(2n){
-  margin-right: 0;
-  background: peru;
+  width: calc(100% * 1/4 - (markup - markup * 1/4));
 }
 
-/* Using preprocessor loops to make rows of crazily-sized columns with minimal css output. Complete with custom local gutter.*/
-.loopy {
-  overflow: hidden; /* poor man's clearfix*/
-  margin-bottom: 30px;
-}
-.loopy div {
-  float: left;
-  margin: 0 15px 15px 0; /* add a gutter to the right and bottom of every element.*/
-  height: 50px;
-  background: tomato /* Preprocessor loop. $i is the iterator. So the first time through it produces:*/ /* &:nth-child(6n + 1) {*/ /*   width: ant(12% 1/4 auto 60px auto 7%, 15px)[1]; // postcss-ant then goes over this and returns a valid CSS length.*/ /* }*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Doing `6n + $i` because http://stackoverflow.com/a/37396881*/ /* Remove the gutter from the end of every 6th element.*/
-}
-.loopy div:nth-child(6n + 1){
-  width: 12%;
-}
-.loopy div:nth-child(6n + 2){
-  width: calc((100% - ((12% + 60px + 7%) + 45px)) * 1/4 - 11.25px);
-}
-.loopy div:nth-child(6n + 3){
-  width: calc((100% - (((12% + 60px + 7%) + (15px * 3)) + ((100% - ((12% + 60px + 7%) + (15px * 3))) * 0.25 - 11.25px)) - 30px) / 2);
-}
-.loopy div:nth-child(6n + 4){
-  width: 60px;
-}
-.loopy div:nth-child(6n + 5){
-  width: calc((100% - (((12% + 60px + 7%) + (15px * 3)) + ((100% - ((12% + 60px + 7%) + (15px * 3))) * 0.25 - 11.25px)) - 30px) / 2);
-}
-.loopy div:nth-child(6n + 6){
-  width: 7%;
-}
-.loopy div:nth-child(6n){
-  margin-right: 0;
+.test::after{
+  content: '';
+  display: table;
+  clear: both;
 }
 
-/* Simple examples of how to grab particular values from an array of sizes.*/
-/* You can easily store the ant array in a variable, but we're not doing that here for explicitness.*/
-/* Note the array is NOT 0-based. This is on purpose to make it easier to do the preprocessor loops above.*/
-.simple {
-  overflow: hidden;
-  margin-bottom: 30px;
-}
-.simple div {
-  float: left;
-  margin-right: 5px; /* sync with global gutter*/
-  background: dodgerblue
-}
-.simple div:nth-child(1){
-  width: 50px; /* returns 50px*/
-}
-.simple div:nth-child(2){
-  width: calc((100% - 55px) * 1/3 - 3.333333333333333px); /* returns 1/3 of 100% (container width) minus the fixed sizes (50px from above)*/
-}
-.simple div:nth-child(3){
-  width: calc((100% - (55px + ((100% - 55px) * 0.3333333333333333 - 3.3333333333333335px)) - 5px) / 1); /* returns a % length of whatever is leftover*/
-}
-.simple div:last-child{
-  margin-right: 0; /* remove gutter from last element*/
-}
-@media (max-width: 800px){
-  .simple div:nth-child(1){
-    width: 200px; /* returns 200px*/
-  }
-}
-@media (max-width: 800px){
-  .simple div:nth-child(2){
-    width: calc((100% - 205px) * 1/5 - 4px); /* returns 1/5 minus fixed sizes and stuff*/
-  }
-}
-@media (max-width: 800px){
-  .simple div:nth-child(3){
-    width: calc((100% - (205px + ((100% - 205px) * 0.2 - 4px)) - 5px) / 1); /* returns a % length of whatever is leftover*/
-  }
-}
-
-/* Flexbox `order` is pretty sweet for source ordering.*/
-.order {
-  overflow: hidden;
-  margin-bottom: 30px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.order div {
-  float: left;
-  width: calc(100% * 1/2 - 2.5px); /* If all your elements are the same size, no need to specify more than what you need.*/
-  margin: 0 5px 5px 0;
-  background: orange /* Remove gutter from end the elements on the right side.*/ /* Easy source ordering.*/
-}
-.order div:nth-child(odd){
-  margin-right: 0;
-}
-.order div:nth-child(1){
-  order: 4;
-}
-.order div:nth-child(2){
-  order: 3;
-}
-.order div:nth-child(3){
-  order: 2;
-}
-.order div:nth-child(4){
-  order: 1;
-}
-
-/* Asymmetrical columns*/
-.asymmetrical {
-  overflow: hidden;
-  margin-bottom: 30px;
-}
-.asymmetrical div {
-  float: left;
-  margin: 0 5px 5px 0;
-  background: olivedrab /* That preprocessor loop from above...*/ /* Irregular asymmetrical elements.*/ /* Remove right gutter.*/
-}
-.asymmetrical div:nth-child(7n + 1){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 1/28 - 4.821428571428571px);
-}
-.asymmetrical div:nth-child(7n + 2){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 2/28 - 4.642857142857143px);
-}
-.asymmetrical div:nth-child(7n + 3){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 3/28 - 4.464285714285714px);
-}
-.asymmetrical div:nth-child(7n + 4){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 4/28 - 4.285714285714286px);
-}
-.asymmetrical div:nth-child(7n + 5){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 5/28 - 4.107142857142857px);
-}
-.asymmetrical div:nth-child(7n + 6){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 6/28 - 3.928571428571429px);
-}
-.asymmetrical div:nth-child(7n + 7){ /* Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
-  width: calc(100% * 7/28 - 3.75px);
-}
-.asymmetrical div:nth-child(11){ /* 4 + 5 + 6*/
-  width: calc(100% * 15/28 - 2.3214285714285716px);
-  background: thistle;
-}
-.asymmetrical div:nth-child(13){ /* 7 - 5*/
-  width: calc(100% * 2/28 - 4.642857142857143px);
-  background: peachpuff;
-}
-.asymmetrical div:nth-child(7), .asymmetrical div:nth-child(13){
-  margin-right: 0;
-}
-
-/* Heights. You need to set the container to a fixed height. Sidenote: 100vh counts as a fixed height.*/
-.heights {
-  height: 300px;
-  margin-bottom: 30px;
-}
-.heights div {
-  margin-bottom: 5px; /* Don't forget the global gutter.*/
-  background: hotpink /* We can stash the sizes array in a variable if you'd like.*/
-}
-.heights div:last-child{
-  margin-bottom: 0; /* Remove superfluous bottom gutter.*/
-}
-.heights div:nth-child(1){
-  height: 100px;
-}
-.heights div:nth-child(2){
-  height: calc((100% - (105px + ((100% - 105px) * 0.25 - 3.75px)) - 5px) / 1);
-}
-.heights div:nth-child(3){
-  height: calc((100% - 105px) * 1/4 - 3.75px);
-}
+/* // Using preprocessor loops to make rows of crazily-sized columns with minimal css output. Complete with custom local gutter.*/
+/* .loopy {*/
+/*   overflow: hidden; // poor man's clearfix*/
+/*   margin-bottom: 30px;*/
+/**/
+/*   div {*/
+/*     $gutter: 15px;*/
+/**/
+/*     float: left;*/
+/*     margin: 0 $gutter $gutter 0; // add a gutter to the right and bottom of every element.*/
+/*     height: 50px;*/
+/*     background: tomato;*/
+/**/
+/*     // Preprocessor loop. $i is the iterator. So the first time through it produces:*/
+/*     // &:nth-child(6n + 1) {*/
+/*     //   width: ant(12% 1/4 auto 60px auto 7%, 15px)[1]; // postcss-ant then goes over this and returns a valid CSS length.*/
+/*     // }*/
+/*     @for $i from 1 to 6 {*/
+/*       // Doing `6n + $i` because http://stackoverflow.com/a/37396881*/
+/*       &:nth-child(6n + $(i)) {*/
+/*         width: ant(12% 1/4 auto 60px auto 7%, $gutter)[$(i)];*/
+/*       }*/
+/*     }*/
+/**/
+/*     // Remove the gutter from the end of every 6th element.*/
+/*     &:nth-child(6n) {*/
+/*       margin-right: 0;*/
+/*     }*/
+/*   }*/
+/* }*/
+/**/
+/* // Simple examples of how to grab particular values from an array of sizes.*/
+/* // You can easily store the ant array in a variable, but we're not doing that here for explicitness.*/
+/* // Note the array is NOT 0-based. This is on purpose to make it easier to do the preprocessor loops above.*/
+/* .simple {*/
+/*   overflow: hidden;*/
+/*   margin-bottom: 30px;*/
+/**/
+/*   div {*/
+/*     float: left;*/
+/*     margin-right: 5px; // sync with global gutter*/
+/*     background: dodgerblue;*/
+/**/
+/*     &:nth-child(1) {*/
+/*       width: ant(50px 1/3 auto)[1]; // returns 50px*/
+/**/
+/*       @media (max-width: 800px) {*/
+/*         width: ant(200px 1/5 auto)[1]; // returns 200px*/
+/*       }*/
+/*     }*/
+/**/
+/*     &:nth-child(2) {*/
+/*       width: ant(50px 1/3 auto)[2]; // returns 1/3 of 100% (container width) minus the fixed sizes (50px from above)*/
+/**/
+/*       @media (max-width: 800px) {*/
+/*         width: ant(200px 1/5 auto)[2]; // returns 1/5 minus fixed sizes and stuff*/
+/*       }*/
+/*     }*/
+/**/
+/*     &:nth-child(3) {*/
+/*       width: ant(50px 1/3 auto)[3]; // returns a % length of whatever is leftover*/
+/**/
+/*       @media (max-width: 800px) {*/
+/*         width: ant(200px 1/5 auto)[3]; // returns a % length of whatever is leftover*/
+/*       }*/
+/*     }*/
+/**/
+/*     &:last-child {*/
+/*       margin-right: 0; // remove gutter from last element*/
+/*     }*/
+/*   }*/
+/* }*/
+/**/
+/* // Flexbox `order` is pretty sweet for source ordering.*/
+/* .order {*/
+/*   overflow: hidden;*/
+/*   margin-bottom: 30px;*/
+/*   display: flex;*/
+/*   flex-wrap: wrap;*/
+/**/
+/*   div {*/
+/*     float: left;*/
+/*     width: ant(1/2)[1]; // If all your elements are the same size, no need to specify more than what you need.*/
+/*     margin: 0 5px 5px 0;*/
+/*     background: orange;*/
+/**/
+/*     // Remove gutter from end the elements on the right side.*/
+/*     &:nth-child(odd) {*/
+/*       margin-right: 0;*/
+/*     }*/
+/**/
+/*     // Easy source ordering.*/
+/*     &:nth-child(1) {*/
+/*       order: 4;*/
+/*     }*/
+/*     &:nth-child(2) {*/
+/*       order: 3;*/
+/*     }*/
+/*     &:nth-child(3) {*/
+/*       order: 2;*/
+/*     }*/
+/*     &:nth-child(4) {*/
+/*       order: 1;*/
+/*     }*/
+/*   }*/
+/* }*/
+/**/
+/* // Asymmetrical columns*/
+/* .asymmetrical {*/
+/*   overflow: hidden;*/
+/*   margin-bottom: 30px;*/
+/**/
+/*   div {*/
+/*     float: left;*/
+/*     margin: 0 5px 5px 0;*/
+/*     background: olivedrab;*/
+/**/
+/*     // That preprocessor loop from above...*/
+/*     @for $i from 1 to 7 {*/
+/*       &:nth-child(7n + $(i)) {*/
+/*         // Iterator as numerators. Then add all those (1 + 2 + 3 + 4 + 5 + 6 + 7) to get the denominator (28).*/
+/*         width: ant($(i)/28)[1];*/
+/*       }*/
+/*     }*/
+/**/
+/*     // Irregular asymmetrical elements.*/
+/*     &:nth-child(11) {*/
+/*       // 4 + 5 + 6*/
+/*       width: ant(15/28)[1];*/
+/*       background: thistle;*/
+/*     }*/
+/**/
+/*     &:nth-child(13) {*/
+/*       // 7 - 5*/
+/*       width: ant(2/28)[1];*/
+/*       background: peachpuff;*/
+/*     }*/
+/**/
+/*     // Remove right gutter.*/
+/*     &:nth-child(7),*/
+/*     &:nth-child(13) {*/
+/*       margin-right: 0;*/
+/*     }*/
+/*   }*/
+/* }*/
+/**/
+/* // Heights. You need to set the container to a fixed height. Sidenote: 100vh counts as a fixed height.*/
+/* .heights {*/
+/*   height: 300px;*/
+/*   margin-bottom: 30px;*/
+/**/
+/*   div {*/
+/*     margin-bottom: 5px; // Don't forget the global gutter.*/
+/*     background: hotpink;*/
+/**/
+/*     &:last-child {*/
+/*       margin-bottom: 0; // Remove superfluous bottom gutter.*/
+/*     }*/
+/**/
+/*     // We can stash the sizes array in a variable if you'd like.*/
+/*     $local-array: 100px auto 1/4;*/
+/**/
+/*     &:nth-child(1) {*/
+/*       height: ant($local-array)[1];*/
+/*     }*/
+/**/
+/*     &:nth-child(2) {*/
+/*       height: ant($local-array)[2];*/
+/*     }*/
+/**/
+/*     &:nth-child(3) {*/
+/*       height: ant($local-array)[3];*/
+/*     }*/
+/*   }*/
+/* }*/
