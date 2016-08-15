@@ -1,10 +1,10 @@
 <img src="https://corysimmons.github.io/postcss-ant/postcss-ant-logo.svg" width="200">
 
-A size getting function capable of grabbing auto lengths. Better than flexbox[*](#what-about-flexbox).
+A size-getting function that accepts fractions, decimals, fixed numbers, and everything in-between.
 
 ### Tinker
 - `npm i`
-- `npm run dev`
+- `npm start`
 - Play around with `demo/index.html` and `demo/css/in.scss`. Navigate to http://localhost:3000 (or whatever BrowserSync says in your terminal) to see it.
 - `demo/css/out.css` is what your `in.scss` is transformed to.
 
@@ -97,3 +97,20 @@ The returned `calc` functions can get insane so I suggest you run [`postcss-calc
 ### What about flexbox?
 
 I'll explain the weak points of flexbox in an upcoming tutorial and link it here.
+
+
+### Todo
+
+- Add huge visual test for every type of grid and every combination (singular and multiple matches) of size types. This will make testing/dev much easier.
+- Make markup-based param.
+- Make `@ant-type` for `markup` and `nth`. ✔
+- `1` should be an `auto`.
+- Convert to 99.9999% crap for subpixel issues (especially revolving around IE).
+- Add ability to pass PostCSS plugin options (needed for the global settings).
+
+### Wishlist
+
+Too lazy to do these, but it'd be really nice if someone contributed these things:
+
+- Refactor everything with the latest/fanciest JS + Flow.
+- Really thorough test suite with 1 huge visual test as well.

@@ -1,6 +1,6 @@
 {
   "name": "postcss-ant",
-  "description": "A size getting function capable of grabbing auto lengths.",
+  "description": "A size-getting function that accepts fractions, decimals, fixed numbers, and everything in-between.",
   "version": "0.0.7",
   "author": {
     "name": "Cory Simmons"
@@ -14,9 +14,14 @@
   ],
   "main": "index.js",
   "scripts": {
+    "raw": "npm-run-all -p raw:chokidar:*",
+    "raw:chokidar:babel": "chokidar './raw/lib/raw.js' -c 'npm run raw:babel'",
+    "raw:chokidar:postcss": "chokidar './raw.js' './raw/test/in.scss' -c 'npm run raw:postcss'",
+    "raw:babel": "babel -w './raw/lib/raw.js' -o './raw.js'",
+    "raw:postcss": "postcss -w -u precss -p postcss-scss --local-plugins -u './raw.js' -o './raw/test/out.css' './raw/test/in.scss'",
     "start": "npm-run-all -p chokidar:* browser-sync",
     "chokidar:ant": "chokidar './lib/index.js' -c 'npm run babel'",
-    "chokidar:demo": "chokidar './demo/css/in.scss' -c 'npm run postcss'",
+    "chokidar:dev": "chokidar './index.js' './demo/css/in.scss' -c 'npm run postcss'",
     "babel": "babel './lib/index.js' -o './index.js'",
     "postcss": "postcss -u precss -p postcss-scss --local-plugins -u './index.js' -o './demo/css/out.css' './demo/css/in.scss'",
     "browser-sync": "browser-sync start --startPath='./demo' --server --files='./demo/index.html, ./demo/css/out.css, ./index.js' --no-notify --no-open"
@@ -46,6 +51,7 @@
     "postcss": "^5.1.1"
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.0",
     "ava": "^0.16.0",
     "babel-cli": "^6.11.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -57,7 +63,9 @@
     "postcss": "^5.1.2",
     "postcss-calc": "^5.3.0",
     "postcss-scss": "^0.1.9",
+    "poststylus": "^0.2.3",
     "precss": "^1.4.0",
-    "standard": "^7.1.2"
+    "standard": "^7.1.2",
+    "stylus": "^0.54.5"
   }
 }
