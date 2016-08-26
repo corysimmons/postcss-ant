@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: sans-serif;
+  font-size: 10px;
+  padding: 30px;
+}
+h1 {
+  font-size: 18px;
+  text-align: center;
+  margin: 30px auto 45px;
+  text-transform: uppercase;
+  font-family: monospace, monospace;
+}
+h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 15px;
+  padding-top: 25px;
+  text-align: center;
+  color: #d9d9d9;
+}
+section .overflow-clipper {
+  overflow: hidden;
+}
+section .nth,
+section .negative-margin,
+section .gutterless {
+  text-align: center;
+  line-height: 50px;
+  color: rgba(30,144,255,0.5);
+  background: rgba(30,144,255,0.1);
+}
+section .nth::after,
+section .negative-margin::after,
+section .gutterless::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+section .nth > figure,
+section .negative-margin > figure,
+section .gutterless > figure {
+  overflow: hidden;
+  float: left;
+  height: 50px;
+}
+section .nth > figure:nth-child(odd),
+section .negative-margin > figure:nth-child(odd),
+section .gutterless > figure:nth-child(odd) {
+  background: rgba(30,144,255,0.15);
+}
+section .nth > figure:nth-child(even),
+section .negative-margin > figure:nth-child(even),
+section .gutterless > figure:nth-child(even) {
+  background: rgba(30,144,255,0.3);
+}
+section .nth figure {
+  margin-right: 30px;
+}
+section .nth figure:last-child {
+  margin-right: 0;
+}
+section .negative-margin {
+  margin: 0 -15px;
+}
+section .negative-margin > figure {
+  margin: 0 15px;
+}
+section > * {
+  margin-bottom: 15px;
+}
+section:first-of-type h2 {
+  padding-top: 0;
+  border-top: 0;
+}
+.fractions-only .nth figure:nth-child(1) {
+  width: ant(1/6 2/6 3/6)[1];
+}
+.fractions-only .nth figure:nth-child(2) {
+  width: ant(1/6 2/6 3/6)[2];
+}
+.fractions-only .nth figure:nth-child(3) {
+  width: ant(1/6 2/6 3/6)[3];
+}
+.fractions-only .negative-margin > figure:nth-child(1) {
+  width: ant(1/6 2/6 3/6, negative-margin)[1];
+}
+.fractions-only .negative-margin > figure:nth-child(2) {
+  width: ant(1/6 2/6 3/6, negative-margin)[2];
+}
+.fractions-only .negative-margin > figure:nth-child(3) {
+  width: ant(1/6 2/6 3/6, negative-margin)[3];
+}
+.fractions-only .gutterless figure:nth-child(1) {
+  width: ant(1/6 2/6 3/6, 0)[1];
+}
+.fractions-only .gutterless figure:nth-child(2) {
+  width: ant(1/6 2/6 3/6, 0)[2];
+}
+.fractions-only .gutterless figure:nth-child(3) {
+  width: ant(1/6 2/6 3/6, 0)[3];
+}
+.fractions-and-fixed-numbers-only .nth figure:nth-child(1) {
+  width: ant(1/2 1/2 600px 200px)[1];
+}
+.fractions-and-fixed-numbers-only .nth figure:nth-child(2) {
+  width: ant(1/2 1/2 600px 200px)[2];
+}
+.fractions-and-fixed-numbers-only .nth figure:nth-child(3) {
+  width: ant(1/2 1/2 600px 200px)[3];
+}
+.fractions-and-fixed-numbers-only .nth figure:nth-child(4) {
+  width: ant(1/2 1/2 600px 200px)[4];
+}
+.fractions-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(1) {
+  width: ant(1/2 1/2 600px 200px, negative-margin)[1];
+}
+.fractions-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(2) {
+  width: ant(1/2 1/2 600px 200px, negative-margin)[2];
+}
+.fractions-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(3) {
+  width: ant(1/2 1/2 600px 200px, negative-margin)[3];
+}
+.fractions-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(4) {
+  width: ant(1/2 1/2 600px 200px, negative-margin)[4];
+}
+.fractions-and-fixed-numbers-only .gutterless figure:nth-child(1) {
+  width: ant(1/2 1/2 600px 200px, 0)[1];
+}
+.fractions-and-fixed-numbers-only .gutterless figure:nth-child(2) {
+  width: ant(1/2 1/2 600px 200px, 0)[2];
+}
+.fractions-and-fixed-numbers-only .gutterless figure:nth-child(3) {
+  width: ant(1/2 1/2 600px 200px, 0)[3];
+}
+.fractions-and-fixed-numbers-only .gutterless figure:nth-child(4) {
+  width: ant(1/2 1/2 600px 200px, 0)[4];
+}
+.fractions-and-autos-only .nth figure:nth-child(1) {
+  width: ant(1/6 1/3 auto auto)[1];
+}
+.fractions-and-autos-only .nth figure:nth-child(2) {
+  width: ant(1/6 1/3 auto auto)[2];
+}
+.fractions-and-autos-only .nth figure:nth-child(3) {
+  width: ant(1/6 1/3 auto auto)[3];
+}
+.fractions-and-autos-only .nth figure:nth-child(4) {
+  width: ant(1/6 1/3 auto auto)[4];
+}
+.fractions-and-autos-only .overflow-clipper .negative-margin > figure:nth-child(1) {
+  width: ant(1/6 1/3 auto auto, negative-margin)[1];
+}
+.fractions-and-autos-only .overflow-clipper .negative-margin > figure:nth-child(2) {
+  width: ant(1/6 1/3 auto auto, negative-margin)[2];
+}
+.fractions-and-autos-only .overflow-clipper .negative-margin > figure:nth-child(3) {
+  width: ant(1/6 1/3 auto auto, negative-margin)[3];
+}
+.fractions-and-autos-only .overflow-clipper .negative-margin > figure:nth-child(4) {
+  width: ant(1/6 1/3 auto auto, negative-margin)[4];
+}
+.fractions-and-autos-only .gutterless figure:nth-child(1) {
+  width: ant(1/6 1/3 auto auto, 0)[1];
+}
+.fractions-and-autos-only .gutterless figure:nth-child(2) {
+  width: ant(1/6 1/3 auto auto, 0)[2];
+}
+.fractions-and-autos-only .gutterless figure:nth-child(3) {
+  width: ant(1/6 1/3 auto auto, 0)[3];
+}
+.fractions-and-autos-only .gutterless figure:nth-child(4) {
+  width: ant(1/6 1/3 auto auto, 0)[4];
+}
+.fractions-fixed-numbers-and-autos .nth figure:nth-child(1) {
+  width: ant(1/6 1/3 200px 100px auto auto)[1];
+}
+.fractions-fixed-numbers-and-autos .nth figure:nth-child(2) {
+  width: ant(1/6 1/3 200px 100px auto auto)[2];
+}
+.fractions-fixed-numbers-and-autos .nth figure:nth-child(3) {
+  width: ant(1/6 1/3 200px 100px auto auto)[3];
+}
+.fractions-fixed-numbers-and-autos .nth figure:nth-child(4) {
+  width: ant(1/6 1/3 200px 100px auto auto)[4];
+}
+.fractions-fixed-numbers-and-autos .nth figure:nth-child(5) {
+  width: ant(1/6 1/3 200px 100px auto auto)[5];
+}
+.fractions-fixed-numbers-and-autos .nth figure:nth-child(6) {
+  width: ant(1/6 1/3 200px 100px auto auto)[6];
+}
+.fractions-fixed-numbers-and-autos .overflow-clipper .negative-margin > figure:nth-child(1) {
+  width: ant(1/6 1/3 200px 100px auto auto, negative-margin)[1];
+}
+.fractions-fixed-numbers-and-autos .overflow-clipper .negative-margin > figure:nth-child(2) {
+  width: ant(1/6 1/3 200px 100px auto auto, negative-margin)[2];
+}
+.fractions-fixed-numbers-and-autos .overflow-clipper .negative-margin > figure:nth-child(3) {
+  width: ant(1/6 1/3 200px 100px auto auto, negative-margin)[3];
+}
+.fractions-fixed-numbers-and-autos .overflow-clipper .negative-margin > figure:nth-child(4) {
+  width: ant(1/6 1/3 200px 100px auto auto, negative-margin)[4];
+}
+.fractions-fixed-numbers-and-autos .overflow-clipper .negative-margin > figure:nth-child(5) {
+  width: ant(1/6 1/3 200px 100px auto auto, negative-margin)[5];
+}
+.fractions-fixed-numbers-and-autos .overflow-clipper .negative-margin > figure:nth-child(6) {
+  width: ant(1/6 1/3 200px 100px auto auto, negative-margin)[6];
+}
+.fractions-fixed-numbers-and-autos .gutterless figure:nth-child(1) {
+  width: ant(1/6 1/3 200px 100px auto auto, 0)[1];
+}
+.fractions-fixed-numbers-and-autos .gutterless figure:nth-child(2) {
+  width: ant(1/6 1/3 200px 100px auto auto, 0)[2];
+}
+.fractions-fixed-numbers-and-autos .gutterless figure:nth-child(3) {
+  width: ant(1/6 1/3 200px 100px auto auto, 0)[3];
+}
+.fractions-fixed-numbers-and-autos .gutterless figure:nth-child(4) {
+  width: ant(1/6 1/3 200px 100px auto auto, 0)[4];
+}
+.fractions-fixed-numbers-and-autos .gutterless figure:nth-child(5) {
+  width: ant(1/6 1/3 200px 100px auto auto, 0)[5];
+}
+.fractions-fixed-numbers-and-autos .gutterless figure:nth-child(6) {
+  width: ant(1/6 1/3 200px 100px auto auto, 0)[6];
+}
+.autos-only .nth figure:nth-child(1) {
+  width: ant(auto auto auto)[1];
+}
+.autos-only .nth figure:nth-child(2) {
+  width: ant(auto auto auto)[2];
+}
+.autos-only .nth figure:nth-child(3) {
+  width: ant(auto auto auto)[3];
+}
+.autos-only .overflow-clipper .negative-margin > figure:nth-child(1) {
+  width: ant(auto auto auto, negative-margin)[1];
+}
+.autos-only .overflow-clipper .negative-margin > figure:nth-child(2) {
+  width: ant(auto auto auto, negative-margin)[2];
+}
+.autos-only .overflow-clipper .negative-margin > figure:nth-child(3) {
+  width: ant(auto auto auto, negative-margin)[3];
+}
+.autos-only .gutterless figure:nth-child(1) {
+  width: ant(auto auto auto, 0)[1];
+}
+.autos-only .gutterless figure:nth-child(2) {
+  width: ant(auto auto auto, 0)[2];
+}
+.autos-only .gutterless figure:nth-child(3) {
+  width: ant(auto auto auto, 0)[3];
+}
+.autos-and-fixed-numbers-only .nth figure:nth-child(1) {
+  width: ant(auto auto 200px 80px)[1];
+}
+.autos-and-fixed-numbers-only .nth figure:nth-child(2) {
+  width: ant(auto auto 200px 80px)[2];
+}
+.autos-and-fixed-numbers-only .nth figure:nth-child(3) {
+  width: ant(auto auto 200px 80px)[3];
+}
+.autos-and-fixed-numbers-only .nth figure:nth-child(4) {
+  width: ant(auto auto 200px 80px)[4];
+}
+.autos-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(1) {
+  width: ant(auto auto 200px 80px, negative-margin)[1];
+}
+.autos-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(2) {
+  width: ant(auto auto 200px 80px, negative-margin)[2];
+}
+.autos-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(3) {
+  width: ant(auto auto 200px 80px, negative-margin)[3];
+}
+.autos-and-fixed-numbers-only .overflow-clipper .negative-margin > figure:nth-child(4) {
+  width: ant(auto auto 200px 80px, negative-margin)[4];
+}
+.autos-and-fixed-numbers-only .gutterless figure:nth-child(1) {
+  width: ant(auto auto 200px 80px, 0)[1];
+}
+.autos-and-fixed-numbers-only .gutterless figure:nth-child(2) {
+  width: ant(auto auto 200px 80px, 0)[2];
+}
+.autos-and-fixed-numbers-only .gutterless figure:nth-child(3) {
+  width: ant(auto auto 200px 80px, 0)[3];
+}
+.autos-and-fixed-numbers-only .gutterless figure:nth-child(4) {
+  width: ant(auto auto 200px 80px, 0)[4];
+}

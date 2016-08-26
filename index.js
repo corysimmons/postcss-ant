@@ -10,120 +10,85 @@ var _postcss = require('postcss');
 
 var _postcss2 = _interopRequireDefault(_postcss);
 
+var _chalk = require('chalk');
+
+var _chalk2 = _interopRequireDefault(_chalk);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// ant
 var ant = _postcss2.default.plugin('postcss-ant', function () {
   return function (css) {
-    // Define global settings.
-    var globalGutter = '';
-    var globalType = '';
+    // Assign global setting defaults.
+    var globalGutter = '30px';
+    var globalGridType = 'nth';
 
+    // Did the user specify global settings?
     css.walkAtRules(function (rule) {
       if (rule.name === 'ant-gutter') {
         globalGutter = rule.params;
       }
+
       if (rule.name === 'ant-type') {
-        globalType = rule.params;
+        globalGridType = rule.params;
       }
     });
 
+    // Check every declaration for ant(...)[x].
+    // Syntax: ant(sizes, [gutter], [grid type])[1-based index]
     css.walkDecls(function (decl) {
-      // If declaration's value begins with `ant(`.
-      if (decl.value.match(/^ant\(/)) {
+      if (decl.value.match(/^ant\(.*\)\[.*\]$/)) {
         var _ret = function () {
-          // Section: Define sizes, gutter, and grid type.
+          var gutter = globalGutter;
+          var gridType = globalGridType;
 
-          // Define grid type. nth by default. Can be `nth`, `negative`, `padding`
-          var type = 'nth';
+          // Catch/assign args.
+          var matches = decl.value.match(/^ant\((.*)\)\[(.*)\]$/);
+          var parenArgs = _postcss2.default.list.comma(matches[1]);
+          var sizes = parenArgs[0].split(' ');
+          var antIndex = Number(matches[2].trim()) - 1;
 
-          if (globalType) {
-            type = globalType;
-          } else if (decl.value.match(/negative-margin/)) {
-            type = 'negative-margin';
+          if (!sizes[antIndex]) {
+            console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ': [' + _chalk2.default.red(matches[2]) + '] isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry ant(' + matches[1] + ')[' + _chalk2.default.green(matches[2] - 1) + '] instead.\n\n---------------------------------------------------------------------------\n\n          ');
           }
 
-          // Set as local gutter if it exists. No need to set global gutter if local is set.
-          var gutter = '30px';
+          // Overwrite global settings if local settings are defined. If 2nd arg is a grid type, use default gutter.
+          var gridTypes = /nth|negative-margin/;
 
-          if (decl.value.match(/,/)) {
-            // If user has set `padding` inside of `ant()` set gutter to 0.
-            if (decl.value.match(/padding/)) {
-              gutter = 0;
-              // If user has set `nth` or `negative-margin` inside of `ant()`...
-            } else if (decl.value.match(/nth|negative-margin/)) {
-              // If local gutter is set...
-              if (decl.value.split(/,/)[2]) {
-                // ...then isolate the local gutter.
-                gutter = decl.value.split(/,/)[2];
-                // If no local gutter and `@ant-gutter` is set, set gutter to that global gutter size.
-              } else if (globalGutter.length) {
-                gutter = globalGutter;
-              }
+          if (parenArgs[1]) {
+            if (!parenArgs[1].match(gridTypes)) {
+              gutter = parenArgs[1];
             } else {
-              // Set gutter to local or global gutter.
-              if (decl.value.split(/,/)[1]) {
-                gutter = decl.value.split(/,/)[1];
-                gutter = gutter.split(/\)\[/)[0];
-              } else if (globalGutter.length) {
-                gutter = globalGutter;
-              }
-            }
-            // If no local gutter set and global gutter is set, set gutter to global gutter size.
-          } else if (globalGutter.length) {
-            if (type === 'padding') {
-              gutter = 0;
-            } else {
-              gutter = globalGutter;
+              gridType = parenArgs[1];
             }
           }
 
-          gutter = gutter.trim();
+          if (parenArgs[2]) {
+            if (parenArgs[2].match(gridTypes)) {
+              gridType = parenArgs[2];
+            } else {
+              gutter = parenArgs[2];
+            }
+          }
 
-          // Set gutter to false if it doesn't exist, this lets us do things like `if (gutter) ...`.
+          // Set gutter to false if it is 0. This lets us do things like `if (gutter) ...`.
           if (parseInt(gutter, 10) === 0) {
             gutter = false;
           }
 
-          // Section: Get the sizes and put them in an array.
-          // If no local gutter, just grab the string between `ant(` and `)[`.
-          var sizes = '';
-
-          // If there is no local gutter, grab sizes string and convert to array.
-          if (!decl.value.match(/,/)) {
-            // Grab everything after `ant(`.
-            sizes = decl.value.split(/^ant\(/)[1];
-            // Grab everything before `)[`. This should leave a string of space separated sizes.
-            sizes = sizes.split(/\)\[/)[0].trim();
-            // If local gutter, grab the string between `ant(` and the comma, then convert to array.
-          } else {
-            // Grab everything after `ant(`.
-            sizes = decl.value.split(/^ant\(/)[1];
-            // Drop the local gutter.
-            sizes = sizes.split(/,/)[0].trim();
-          }
-
-          // Convert sizes string to an array.
-          sizes = sizes.split(' ');
-
-          // Section: Grab the index.
-          var index = parseInt(decl.value.match(/\[(.*)\]/)[1].trim(), 10) - 1;
-
+          // Create CSS length units regex so we can gather all the "fixed" numbers for later use.
           var units = /em|ex|%|px|cm|mm|in|pt|pc|ch|rem|vh|vw|vmin|vmax/;
 
-          // Sort sizes into arrays and count number of auto lengths.
+          // Sort sizes into fixed and fraction arrays, and count number of autos.
           var fixedArr = [];
           var fracArr = [];
           var numAuto = 0;
           sizes.forEach(function (size) {
-            if (size) {
-              if (size.match(units)) {
-                fixedArr.push(size);
-              } else if (size.match(/\/|\./)) {
-                fracArr.push(size);
-              } else if (size.match(/auto/)) {
-                numAuto += 1;
-              }
+            if (size.match(units)) {
+              fixedArr.push(size);
+            } else if (size.match(/\/|\./)) {
+              fracArr.push(size);
+            } else if (size.match(/auto/)) {
+              numAuto += 1;
             }
           });
 
@@ -148,11 +113,11 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           }
 
           // Alias sizes[index] to val because it's shorter.
-          var val = sizes[index];
+          var val = sizes[antIndex];
 
           // If val is a fixed number, we don't need to go any further.
           if (val.match(units)) {
-            decl.value = sizes[index];
+            decl.value = sizes[antIndex];
             return {
               v: void 0
             };
@@ -165,13 +130,13 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // fraction(s) only
             if (numFrac > 0 && numFixed === 0 && numAuto === 0) {
               if (gutter) {
-                if (type === 'nth') {
+                if (gridType === 'nth') {
                   decl.value = 'calc(100% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
-                if (type === 'negative-margin') {
+                if (gridType === 'negative-margin') {
                   decl.value = 'calc(100% * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
@@ -188,13 +153,13 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // fraction(s) and fixed number(s) only
             if (numFrac > 0 && numFixed > 0 && numAuto === 0) {
               if (gutter) {
-                if (type === 'nth') {
+                if (gridType === 'nth') {
                   decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
-                if (type === 'negative-margin') {
+                if (gridType === 'negative-margin') {
                   decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
@@ -211,13 +176,13 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // fraction(s) and auto(s) only
             if (numFrac > 0 && numAuto > 0 && numFixed === 0) {
               if (gutter) {
-                if (type === 'nth') {
+                if (gridType === 'nth') {
                   decl.value = 'calc(100% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
-                if (type === 'negative-margin') {
+                if (gridType === 'negative-margin') {
                   decl.value = 'calc(100% * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
@@ -231,17 +196,17 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
               }
             }
 
-            // fractions(s), fixed number(s), and auto(s)
+            // fraction(s), fixed number(s), and auto(s)
             if (numFrac > 0 && numFixed > 0 && numAuto > 0) {
               if (gutter) {
-                if (type === 'nth') {
+                if (gridType === 'nth') {
                   decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
-                if (type === 'negative-margin') {
-                  decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ')';
+                if (gridType === 'negative-margin') {
+                  decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };
@@ -260,10 +225,18 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // auto(s) only
             if (numAuto > 0 && numFrac === 0 && numFixed === 0) {
               if (gutter) {
-                decl.value = 'calc((100% - ((' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
-                return {
-                  v: void 0
-                };
+                if (gridType === 'nth') {
+                  decl.value = 'calc((100% - ((' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
+                  return {
+                    v: void 0
+                  };
+                }
+                if (gridType === 'negative-margin') {
+                  decl.value = 'calc((100% - ((' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ')';
+                  return {
+                    v: void 0
+                  };
+                }
               } else {
                 decl.value = 'calc(100% / ' + numAuto + ')';
                 return {
@@ -275,10 +248,18 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // auto(s) and fixed number(s) only
             if (numAuto > 0 && numFixed > 0 && numFrac === 0) {
               if (gutter) {
-                decl.value = 'calc((100% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
-                return {
-                  v: void 0
-                };
+                if (gridType === 'nth') {
+                  decl.value = 'calc((100% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
+                  return {
+                    v: void 0
+                  };
+                }
+                if (gridType === 'negative-margin') {
+                  decl.value = 'calc((100% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ')';
+                  return {
+                    v: void 0
+                  };
+                }
               } else {
                 decl.value = 'calc((100% - ' + sumFixed + ') / ' + numAuto + ')';
                 return {
@@ -290,13 +271,13 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // auto(s) and fraction(s) only
             if (numAuto > 0 && numFrac > 0 && numFixed === 0) {
               if (gutter) {
-                if (type === 'nth') {
+                if (gridType === 'nth') {
                   decl.value = 'calc(((100% - (100% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
-                if (type === 'negative-margin') {
+                if (gridType === 'negative-margin') {
                   decl.value = 'calc(((100% - (100% * ' + sumFrac + ')) / ' + numAuto + ') - ' + gutter + ')';
                   return {
                     v: void 0
@@ -313,14 +294,14 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // auto(s), fraction(s), and fixed number(s)
             if (numAuto > 0 && numFrac > 0 && numFixed > 0) {
               if (gutter) {
-                if (type === 'nth') {
+                if (gridType === 'nth') {
                   decl.value = 'calc((100% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ')';
                   return {
                     v: void 0
                   };
                 }
-                if (type === 'negative-margin') {
-                  // decl.value = `calc((100% - ((${sumFixed} + (${gutter} * ${numFixed})) + ((100% - (${sumFixed} + (${gutter} * ${numFixed}))) * ${sumFrac} - (${gutter} * ${numFrac}))) - (${gutter} * ${numAuto})) / ${numAuto})`
+                if (gridType === 'negative-margin') {
+                  decl.value = 'calc((100% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' * ' + numFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };

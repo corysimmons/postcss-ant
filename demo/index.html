@@ -1,113 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ant</title>
-  <link rel="stylesheet" href="css/out.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>ant</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
 
-  <section class="fractions-only">
-    <h2>fraction(s) only</h2>
+    <h1>ant's Order of Operations: Fixed Number(s) &raquo; Fraction(s) &raquo; Auto(s)</h1>
 
-    <div class="nth">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
+    <section class="fractions-only">
+      <h2>fraction(s) only</h2>
 
-    <div class="negative-margin">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
+      <div class="nth">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
 
-    <div class="padding">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
-  </section>
+      <div class="overflow-clipper">
+        <div class="negative-margin">
+          <figure>1</figure>
+          <figure>2</figure>
+          <figure>3</figure>
+        </div>
+      </div>
 
-  <section class="fractions-and-fixed-numbers-only">
-    <h2>fraction(s) and fixed number(s) only</h2>
 
-    <div class="nth">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
+      <div class="gutterless">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
 
-    <div class="negative-margin">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
 
-    <div class="padding">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
-  </section>
+    <section class="fractions-and-fixed-numbers-only">
+      <h2>fraction(s) and fixed number(s) only</h2>
 
-  <section class="fractions-and-autos-only">
-    <h2>fraction(s) and auto(s) only</h2>
+      <div class="nth">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
 
-    <div class="nth">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
+      <div class="overflow-clipper">
+        <div class="negative-margin">
+          <figure>1</figure>
+          <figure>2</figure>
+          <figure>3</figure>
+          <figure>4</figure>
+        </div>
+      </div>
 
-    <div class="negative-margin">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
+      <div class="gutterless">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
 
-    <div class="padding">
-      <figure>1</figure>
-      <figure>2</figure>
-      <figure>3</figure>
-      <figure>4</figure>
-      <figure>5</figure>
-      <figure>6</figure>
-      <figure>7</figure>
-    </div>
-  </section>
 
-</body>
+    <section class="fractions-and-autos-only"> <!-- This also tests for "auto(s) and fraction(s) only" -->
+      <h2>fraction(s) and auto(s) only</h2>
+
+      <div class="nth">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+
+      <div class="overflow-clipper">
+        <div class="negative-margin">
+          <figure>1</figure>
+          <figure>2</figure>
+          <figure>3</figure>
+          <figure>4</figure>
+        </div>
+      </div>
+
+      <div class="gutterless">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+
+    <section class="fractions-fixed-numbers-and-autos"> <!-- This also tests for "auto(s), fraction(s), and fixed number(s)" -->
+      <h2>fraction(s), fixed number(s), and auto(s)</h2>
+
+      <div class="nth">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+        <figure>5</figure>
+        <figure>6</figure>
+      </div>
+
+      <div class="overflow-clipper">
+        <div class="negative-margin">
+          <figure>1</figure>
+          <figure>2</figure>
+          <figure>3</figure>
+          <figure>4</figure>
+          <figure>5</figure>
+          <figure>6</figure>
+        </div>
+      </div>
+
+      <div class="gutterless">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+        <figure>5</figure>
+        <figure>6</figure>
+      </div>
+    </section>
+
+
+    <section class="autos-only">
+      <h2>auto(s) only</h2>
+
+      <div class="nth">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+
+      <div class="overflow-clipper">
+        <div class="negative-margin">
+          <figure>1</figure>
+          <figure>2</figure>
+          <figure>3</figure>
+        </div>
+      </div>
+
+      <div class="gutterless">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+
+    <section class="autos-and-fixed-numbers-only">
+      <h2>auto(s) and fixed number(s) only</h2>
+
+      <div class="nth">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+
+      <div class="overflow-clipper">
+        <div class="negative-margin">
+          <figure>1</figure>
+          <figure>2</figure>
+          <figure>3</figure>
+          <figure>4</figure>
+        </div>
+      </div>
+
+      <div class="gutterless">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+
+  </body>
 </html>
