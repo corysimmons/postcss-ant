@@ -101,17 +101,5 @@ I'll explain the weak points of flexbox in an upcoming tutorial and link it here
 
 ### Todo
 
-- Add huge visual test for every type of grid and every combination (singular and multiple matches) of size types. This will make testing/dev much easier.
-- Make markup-based param.
-- `1` should be an `auto`.
-- Convert to 99.9999% crap for subpixel issues (especially revolving around IE). Get ievms to test this.
 - Add ability to pass PostCSS plugin options (needed for the global settings).
-- Package/`npm i -D literally` instead of relying on local file, then get rid of extra devDepends. Keep working on Literally to make the watcher better n' shit.
-- Fix AVA tests.
-
-### Wishlist
-
-Too lazy to do these, but it'd be really nice if someone contributed these things:
-
-- Refactor everything with the latest/fanciest JS + Flow.
-- Really thorough test suite with 1 huge visual test as well.
+- Consider adding AVA tests.

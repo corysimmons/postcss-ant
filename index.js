@@ -131,19 +131,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numFrac > 0 && numFixed === 0 && numAuto === 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc(100% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
+                  decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc(100% * ' + val + ' - ' + gutter + ')';
+                  decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc(100% * ' + val + ')';
+                decl.value = 'calc(99.999999% * ' + val + ')';
                 return {
                   v: void 0
                 };
@@ -154,19 +154,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numFrac > 0 && numFixed > 0 && numAuto === 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
+                  decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
+                  decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc((100% - ' + sumFixed + ') * ' + val + ')';
+                decl.value = 'calc((99.999999% - ' + sumFixed + ') * ' + val + ')';
                 return {
                   v: void 0
                 };
@@ -177,19 +177,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numFrac > 0 && numAuto > 0 && numFixed === 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc(100% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
+                  decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc(100% * ' + val + ' - ' + gutter + ')';
+                  decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc(100% * ' + val + ')';
+                decl.value = 'calc(99.999999% * ' + val + ')';
                 return {
                   v: void 0
                 };
@@ -200,19 +200,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numFrac > 0 && numFixed > 0 && numAuto > 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
+                  decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
+                  decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc((100% - ' + sumFixed + ') * ' + val + ')';
+                decl.value = 'calc((99.999999% - ' + sumFixed + ') * ' + val + ')';
                 return {
                   v: void 0
                 };
@@ -226,19 +226,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numAuto > 0 && numFrac === 0 && numFixed === 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc((100% - ((' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
+                  decl.value = 'calc((99.99% - ((' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc((100% - ((' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ')';
+                  decl.value = 'calc((99.99% - ((' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc(100% / ' + numAuto + ')';
+                decl.value = 'calc(99.999999% / ' + numAuto + ')';
                 return {
                   v: void 0
                 };
@@ -249,19 +249,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numAuto > 0 && numFixed > 0 && numFrac === 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc((100% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
+                  decl.value = 'calc((99.99% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ')';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc((100% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ')';
+                  decl.value = 'calc((99.99% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc((100% - ' + sumFixed + ') / ' + numAuto + ')';
+                decl.value = 'calc((99.999999% - ' + sumFixed + ') / ' + numAuto + ')';
                 return {
                   v: void 0
                 };
@@ -272,19 +272,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numAuto > 0 && numFrac > 0 && numFixed === 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc(((100% - (100% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') - ' + gutter + ')';
+                  decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc(((100% - (100% * ' + sumFrac + ')) / ' + numAuto + ') - ' + gutter + ')';
+                  decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + ') - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc((100% - (100% * ' + sumFrac + ')) / ' + numAuto + ')';
+                decl.value = 'calc((99.999999% - (99.999999% * ' + sumFrac + ')) / ' + numAuto + ')';
                 return {
                   v: void 0
                 };
@@ -295,19 +295,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             if (numAuto > 0 && numFrac > 0 && numFixed > 0) {
               if (gutter) {
                 if (gridType === 'nth') {
-                  decl.value = 'calc((100% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ')';
+                  decl.value = 'calc((99.99% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ')';
                   return {
                     v: void 0
                   };
                 }
                 if (gridType === 'negative-margin') {
-                  decl.value = 'calc((100% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((100% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' * ' + numFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ' - ' + gutter + ')';
+                  decl.value = 'calc((99.99% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' * ' + numFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ' - ' + gutter + ')';
                   return {
                     v: void 0
                   };
                 }
               } else {
-                decl.value = 'calc((100% - (' + sumFixed + ' + ((100% - ' + sumFixed + ') * ' + sumFrac + '))) / ' + numAuto + ')';
+                decl.value = 'calc((99.999999% - (' + sumFixed + ' + ((99.999999% - ' + sumFixed + ') * ' + sumFrac + '))) / ' + numAuto + ')';
                 return {
                   v: void 0
                 };
