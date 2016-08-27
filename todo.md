@@ -1,4 +1,5 @@
-- make readme better
+- thoroughly test all the unquote stuff between preprocessors and make a page in docs on it
+- test out js match as a bool. seems to work sometimes and others it wants -1 specified...
 - link to docs site
 - add sourcemap support
 - walk through plugin guidelines
