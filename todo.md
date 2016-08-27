@@ -4,3 +4,5 @@
 - add sourcemap support
 - walk through plugin guidelines
 - add AVA tests.
+- test a combination of fixed units, % seems to make some fracs crap the bed (probably accurate).
+- have octocat slide in from somewhere when you hover logo
