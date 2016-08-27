@@ -1,4 +1,4 @@
-<img src="https://corysimmons.github.io/postcss-ant/postcss-ant-logo.svg" width="200">
+<img src="https://corysimmons.github.io/postcss-ant/img/postcss-ant-logo.svg" width="200">
 
 A size-getting function that accepts fractions, decimals, fixed numbers, and everything in-between.
 
