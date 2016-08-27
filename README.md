@@ -97,9 +97,3 @@ The returned `calc` functions can get insane so I suggest you run [`postcss-calc
 ### What about flexbox?
 
 I'll explain the weak points of flexbox in an upcoming tutorial and link it here.
-
-
-### Todo
-
-- Add ability to pass PostCSS plugin options (needed for the global settings).
-- Consider adding AVA tests.

@@ -1,0 +1,5 @@
+- make readme better
+- link to docs site
+- add sourcemap support
+- walk through plugin guidelines
+- add AVA tests.

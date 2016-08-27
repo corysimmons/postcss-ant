@@ -17,10 +17,12 @@ var _chalk2 = _interopRequireDefault(_chalk);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ant = _postcss2.default.plugin('postcss-ant', function () {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
   return function (css) {
     // Assign global setting defaults.
-    var globalGutter = '30px';
-    var globalGridType = 'nth';
+    var globalGutter = options.gutter || '30px';
+    var globalGridType = options.type || 'nth';
 
     // Did the user specify global settings?
     css.walkAtRules(function (rule) {
