@@ -6,6 +6,8 @@ By the guy who made Jeet and Lost.
 
 ### Docs with Examples
 
+[![Join the chat at https://gitter.im/postcss-ant/Lobby](https://badges.gitter.im/postcss-ant/Lobby.svg)](https://gitter.im/postcss-ant/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 https://corysimmons.github.io/postcss-ant
 
 ### Installation
