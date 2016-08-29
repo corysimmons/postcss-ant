@@ -24,12 +24,14 @@
     "browser-sync": "browser-sync start --startPath='./demo' --server --files='./demo/index.html, ./demo/css/style.css, ./index.js' --no-notify --no-open"
   },
   "keywords": [
+    "postcss-plugin",
     "postcss",
     "ant",
     "size",
     "grid",
     "layout",
-    "auto"
+    "auto",
+    "flexbox"
   ],
   "main": "index.js",
   "babel": {
