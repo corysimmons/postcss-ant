@@ -1,8 +1,3 @@
-- test out js match as a bool. seems to work sometimes and others it wants -1 specified...
-- add sourcemap support
-- walk through plugin guidelines
 - add AVA tests
 - test a combination of fixed units, % seems to make some fracs break (probably accurate).
-- have octocat slide in from somewhere when you hover logo
 - document how to offset/move
-- put some basic input/output at top of README
