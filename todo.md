@@ -1,8 +1,6 @@
-- thoroughly test all the unquote stuff between preprocessors and make a page in docs on it
 - test out js match as a bool. seems to work sometimes and others it wants -1 specified...
-- link to docs site
 - add sourcemap support
 - walk through plugin guidelines
-- add AVA tests.
-- test a combination of fixed units, % seems to make some fracs crap the bed (probably accurate).
+- add AVA tests
+- test a combination of fixed units, % seems to make some fracs break (probably accurate).
 - have octocat slide in from somewhere when you hover logo
