@@ -5,3 +5,4 @@
 - test a combination of fixed units, % seems to make some fracs break (probably accurate).
 - have octocat slide in from somewhere when you hover logo
 - document how to offset/move
+- put some basic input/output at top of README
