@@ -1,3 +1,0 @@
-- add AVA tests
-- test a combination of fixed units, % seems to make some fracs break (probably accurate).
-- document how to offset/move
