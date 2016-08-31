@@ -1,6 +1,6 @@
 {
   "name": "postcss-ant",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A size-getting function that accepts fractions, decimals, fixed numbers, and everything in-between.",
   "license": "MIT",
   "author": {
