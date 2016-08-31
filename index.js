@@ -38,15 +38,15 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
     // Check every declaration for ant(...)[x].
     // Syntax: ant(sizes, [gutter], [grid type])[1-based index]
     css.walkDecls(function (decl) {
-      if (decl.value.match(/^ant\(.*\)\[.*\]$/)) {
+      if (decl.value.match(/^ant\((.*)\)\s*\[(.*)\]$/)) {
         var _ret = function () {
           var gutter = globalGutter;
           var gridType = globalGridType;
 
           // Catch/assign args.
-          var matches = decl.value.match(/^ant\((.*)\)\[(.*)\]$/);
+          var matches = decl.value.match(/^ant\((.*)\)\s*\[(.*)\]$/);
           var parenArgs = _postcss2.default.list.comma(matches[1]);
-          var sizes = parenArgs[0].split(' ');
+          var sizes = parenArgs[0].split(/\s+/);
           var antIndex = Number(matches[2].trim()) - 1;
 
           if (!sizes[antIndex]) {
