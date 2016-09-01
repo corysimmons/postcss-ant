@@ -104,3 +104,7 @@ The default
 - Test a combination of fixed units, % seems to make some fracs break (probably accurate).
 - Document how to offset/move.
 - Create hard-widths args, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers).
+- Add `offset` and `move` args.
+- Simplify conditional hell.
+- .editorconfig
+- More error handling for when users try to use incorrect arg combinations. For instance, `negative-margin, offset-big` shouldn't work -- it should only accept `offset`.

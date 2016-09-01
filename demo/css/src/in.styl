@@ -28,22 +28,23 @@ h2
   margin-bottom: 15px
   padding-top: 25px
   text-align: center
-  color: darken(white, 15%)
+  color: rgba(dodgerblue, 50%)
+
+h3
+  font-size: 10px
+  margin-bottom: 5px
+  color: darken(white, 20%)
 
 section
-  .overflow-clipper
-    overflow: hidden
-
-  .nth,
-  .negative-margin,
-  .gutterless
+  > div
     clearfix()
+    margin-bottom: 15px
     text-align: center
     line-height: 50px
     color: rgba(dodgerblue, 50%)
     background: rgba(dodgerblue, 10%)
 
-    > figure
+    figure
       overflow: hidden
       float: left
       height: 50px
@@ -52,148 +53,412 @@ section
       &:nth-child(even)
         background: rgba(dodgerblue, 30%)
 
-  .nth
-    figure
-      margin-right: 30px
+  [class^="nth"]
+    &:not([class*="gutless"])
+      figure
+        margin-right: 30px
 
-      &:last-child
-        margin-right: 0
+        &:last-child
+          margin-right: 0
 
-  .negative-margin
-    margin: 0 -15px
+  [class^="negative-margin"]
+    &:not([class*="negative-margin-gutless"])
+      margin-left: -15px
+      margin-right: -15px
 
-    > figure
-      margin: 0 15px
-
-  > *
-    margin-bottom: 15px
+      figure
+        margin: 0 15px
 
   &:first-of-type
     h2
       padding-top: 0
       border-top: 0
 
+  .actor
+    border: 3px solid rgba(dodgerblue, 20%)
+    line-height: calc(50px - 6px)
+
 // fraction(s) only
 .fractions-only
+  $sizes = unquote('1/12 2/12 3/12 3/12 2/12 1/12')
+
   .nth
     figure
-      for $i in 1..3
+      for $i in 1..6
         &:nth-child({$i})
-          width: 'ant(1/6 2/6 3/6)[%s]' % $i
+          width: 'ant(%s)[%s]' % ($sizes $i)
+
+  .nth-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+
+  .nth-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, move)[%s]' % ($sizes 6)
 
   .negative-margin
-    > figure
-      for $i in 1..3
-        &:nth-child({$i})
-          width: 'ant(1/6 2/6 3/6, negative-margin)[%s]' % $i
-
-  .gutterless
     figure
-      for $i in 1..3
+      for $i in 1..6
         &:nth-child({$i})
-          width: 'ant(1/6 2/6 3/6, 0)[%s]' % $i
+          width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+
+  .negative-margin-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+
+  .negative-margin-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+
+  .nth-gutless
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, 0)[%s]' % ($sizes $i)
+
+  .nth-gutless-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, 0)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+
+  .nth-gutless-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, 0)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+
+  .negative-margin-gutless-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+
+  .negative-margin-gutless-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+
 
 // fraction(s) and fixed number(s) only
 .fractions-and-fixed-numbers-only
-  .nth
-    figure
-      for $i in 1..4
-        &:nth-child({$i})
-          width: 'ant(1/2 1/2 600px 200px)[%s]' % $i
+  $sizes = unquote('1/4 300px 1/4 1/4 300px 1/4')
 
-  .overflow-clipper
-    .negative-margin
-      > figure
-        for $i in 1..4
-          &:nth-child({$i})
-            width: 'ant(1/2 1/2 600px 200px, negative-margin)[%s]' % $i
-
-  .gutterless
-    figure
-      for $i in 1..4
-        &:nth-child({$i})
-          width: 'ant(1/2 1/2 600px 200px, 0)[%s]' % $i
-
-// fraction(s) and auto(s) only
-.fractions-and-autos-only
-  .nth
-    figure
-      for $i in 1..4
-        &:nth-child({$i})
-          width: 'ant(1/6 1/3 auto auto)[%s]' % $i
-
-  .overflow-clipper
-    .negative-margin
-      > figure
-        for $i in 1..4
-          &:nth-child({$i})
-            width: 'ant(1/6 1/3 auto auto, negative-margin)[%s]' % $i
-
-  .gutterless
-    figure
-      for $i in 1..4
-        &:nth-child({$i})
-          width: 'ant(1/6 1/3 auto auto, 0)[%s]' % $i
-
-// fraction(s), fixed number(s), and auto(s)
-.fractions-fixed-numbers-and-autos
   .nth
     figure
       for $i in 1..6
         &:nth-child({$i})
-          width: 'ant(1/6 1/3 200px 100px auto auto)[%s]' % $i
+          width: 'ant(%s)[%s]' % ($sizes $i)
 
-  .overflow-clipper
-    .negative-margin
-      > figure
-        for $i in 1..6
-          &:nth-child({$i})
-            width: 'ant(1/6 1/3 200px 100px auto auto, negative-margin)[%s]' % $i
-
-  .gutterless
+  .nth-offset
     figure
       for $i in 1..6
         &:nth-child({$i})
-          width: 'ant(1/6 1/3 200px 100px auto auto, 0)[%s]' % $i
+          width: 'ant(%s)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
 
-// auto(s) only
-.autos-only
-  .nth
+  .nth-offset-alt
     figure
-      for $i in 1..3
+      for $i in 1..6
         &:nth-child({$i})
-          width: 'ant(auto auto auto)[%s]' % $i
+          width: 'ant(%s)[%s]' % ($sizes $i)
+        &:nth-child(1),
+        &:nth-child(6)
+          display: none
+      &.actor
+        &:nth-child(2)
+          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+        &:nth-child(5)
+          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-right: 0
 
-  .overflow-clipper
-    .negative-margin
-      > figure
-        for $i in 1..3
-          &:nth-child({$i})
-            width: 'ant(auto auto auto, negative-margin)[%s]' % $i
-
-  .gutterless
+  .nth-move
     figure
-      for $i in 1..3
+      for $i in 1..6
         &:nth-child({$i})
-          width: 'ant(auto auto auto, 0)[%s]' % $i
+          width: 'ant(%s)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, move)[%s]' % ($sizes 6)
 
-// auto(s) and fixed number(s) only
-.autos-and-fixed-numbers-only
-  .nth
-    figure
-      for $i in 1..4
-        &:nth-child({$i})
-          width: 'ant(auto auto 200px 80px)[%s]' % $i
+  // .negative-margin
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+  //
+  // .negative-margin-offset
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+  //       &:nth-child(2),
+  //       &:nth-child(5)
+  //         display: none
+  //     &.actor
+  //       &:nth-child(1)
+  //         margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+  //       &:nth-child(6)
+  //         margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+  //
+  // .negative-margin-move
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+  //     &.actor
+  //       position: relative;
+  //       &:nth-child(1)
+  //         left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+  //       &:nth-child(2)
+  //         right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+  //       &:nth-child(6)
+  //         right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+  //       &:nth-child(5)
+  //         left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+  //
+  // .nth-gutless
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, 0)[%s]' % ($sizes $i)
+  //
+  // .nth-gutless-offset
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, 0)[%s]' % ($sizes $i)
+  //       &:nth-child(2),
+  //       &:nth-child(5)
+  //         display: none
+  //     &.actor
+  //       &:nth-child(1)
+  //         margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+  //       &:nth-child(6)
+  //         margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+  //
+  // .nth-gutless-move
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, 0)[%s]' % ($sizes $i)
+  //     &.actor
+  //       position: relative;
+  //       &:nth-child(1)
+  //         left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+  //       &:nth-child(2)
+  //         right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+  //       &:nth-child(6)
+  //         right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+  //       &:nth-child(5)
+  //         left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+  //
+  // .negative-margin-gutless-offset
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
+  //       &:nth-child(2),
+  //       &:nth-child(5)
+  //         display: none
+  //     &.actor
+  //       &:nth-child(1)
+  //         margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+  //       &:nth-child(6)
+  //         margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+  //
+  // .negative-margin-gutless-move
+  //   figure
+  //     for $i in 1..5
+  //       &:nth-child({$i})
+  //         width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
+  //     &.actor
+  //       position: relative;
+  //       &:nth-child(1)
+  //         left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+  //       &:nth-child(2)
+  //         right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+  //       &:nth-child(6)
+  //         right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+  //       &:nth-child(5)
+  //         left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
 
-  .overflow-clipper
-    .negative-margin
-      > figure
-        for $i in 1..4
-          &:nth-child({$i})
-            width: 'ant(auto auto 200px 80px, negative-margin)[%s]' % $i
 
-  .gutterless
-    figure
-      for $i in 1..4
-        &:nth-child({$i})
-          width: 'ant(auto auto 200px 80px, 0)[%s]' % $i
+// // // fraction(s) and auto(s) only
+// // .fractions-and-autos-only
+// //   .nth
+// //     figure
+// //       for $i in 1..4
+// //         &:nth-child({$i})
+// //           width: 'ant(1/6 1/3 auto auto)[%s]' % $i
+// //
+// //   .overflow-clipper
+// //     .negative-margin
+// //       figure
+// //         for $i in 1..4
+// //           &:nth-child({$i})
+// //             width: 'ant(1/6 1/3 auto auto, negative-margin)[%s]' % $i
+// //
+// //   .gutless
+// //     figure
+// //       for $i in 1..4
+// //         &:nth-child({$i})
+// //           width: 'ant(1/6 1/3 auto auto, 0)[%s]' % $i
+// //
+// // // fraction(s), fixed number(s), and auto(s)
+// // .fractions-fixed-numbers-and-autos
+// //   .nth
+// //     figure
+// //       for $i in 1..6
+// //         &:nth-child({$i})
+// //           width: 'ant(1/6 1/3 200px 100px auto auto)[%s]' % $i
+// //
+// //   .overflow-clipper
+// //     .negative-margin
+// //       figure
+// //         for $i in 1..6
+// //           &:nth-child({$i})
+// //             width: 'ant(1/6 1/3 200px 100px auto auto, negative-margin)[%s]' % $i
+// //
+// //   .gutless
+// //     figure
+// //       for $i in 1..6
+// //         &:nth-child({$i})
+// //           width: 'ant(1/6 1/3 200px 100px auto auto, 0)[%s]' % $i
+// //
+// // // auto(s) only
+// // .autos-only
+// //   .nth
+// //     figure
+// //       for $i in 1..3
+// //         &:nth-child({$i})
+// //           width: 'ant(auto auto auto)[%s]' % $i
+// //
+// //   .overflow-clipper
+// //     .negative-margin
+// //       figure
+// //         for $i in 1..3
+// //           &:nth-child({$i})
+// //             width: 'ant(auto auto auto, negative-margin)[%s]' % $i
+// //
+// //   .gutless
+// //     figure
+// //       for $i in 1..3
+// //         &:nth-child({$i})
+// //           width: 'ant(auto auto auto, 0)[%s]' % $i
+// //
+// // // auto(s) and fixed number(s) only
+// // .autos-and-fixed-numbers-only
+// //   .nth
+// //     figure
+// //       for $i in 1..4
+// //         &:nth-child({$i})
+// //           width: 'ant(auto auto 200px 80px)[%s]' % $i
+// //
+// //   .overflow-clipper
+// //     .negative-margin
+// //       figure
+// //         for $i in 1..4
+// //           &:nth-child({$i})
+// //             width: 'ant(auto auto 200px 80px, negative-margin)[%s]' % $i
+// //
+// //   .gutless
+// //     figure
+// //       for $i in 1..4
+// //         &:nth-child({$i})
+// //           width: 'ant(auto auto 200px 80px, 0)[%s]' % $i

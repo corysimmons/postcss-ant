@@ -20,7 +20,7 @@
     "chokidar:postcss": "chokidar './demo/css/src/out.css' './index.js' -c 'npm run postcss'",
     "babel": "babel './lib/index.babel.js' -o './index.js'",
     "stylus": "stylus './demo/css/src/in.styl' -o './demo/css/src/out.css'",
-    "postcss": "postcss --local-plugins -u './index.js' -u postcss-calc -o './demo/css/style.css' './demo/css/src/out.css'",
+    "postcss": "postcss --local-plugins -u './index.js' -o './demo/css/style.css' './demo/css/src/out.css'",
     "browser-sync": "browser-sync start --startPath='./demo' --server --files='./demo/index.html, ./demo/css/style.css, ./index.js' --no-notify --no-open"
   },
   "keywords": [
@@ -58,7 +58,6 @@
     "browser-sync": "^2.14.0",
     "chokidar-cli": "^1.2.0",
     "npm-run-all": "^2.3.0",
-    "postcss-calc": "^5.3.0",
     "standard": "^7.1.2",
     "stylus": "^0.54.5"
   }
