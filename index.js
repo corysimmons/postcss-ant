@@ -50,7 +50,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           var antIndex = Number(matches[2].trim()) - 1;
 
           if (!sizes[antIndex]) {
-            console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ': [' + _chalk2.default.red(matches[2]) + '] isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry ant(' + matches[1] + ')[' + _chalk2.default.green(matches[2] - 1) + '] instead.\n\n---------------------------------------------------------------------------\n\n          ');
+            console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ': [' + _chalk2.default.red(matches[2]) + '] isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry ant(' + matches[1] + ')[' + _chalk2.default.green(matches[2] - 1) + '] instead.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n---------------------------------------------------------------------------\n\n          ');
           }
 
           // Assign regex for mapping.
@@ -115,25 +115,55 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           // Alias sizes[index] to val because it's shorter.
           var val = sizes[antIndex];
 
-          // If val is a fixed number. Test/alter for offset/move. Then we don't need to go any further.
-          if (val.match(units)) {
-            switch (resultType) {
-              case 'offset-big':
-                decl.value = 'calc(' + val + ' + (' + gutter + ' * 2))';
-                break;
-              case 'offset-small':
-              case 'move':
-                decl.value = 'calc(' + val + ' + ' + gutter + ')';
-                break;
-              default:
-                decl.value = val;
-            }
-            return {
-              v: void 0
-            };
-          }
-
           // Section: Conditional Math Hell -- Abandon all hope, ye who enter here...
+
+          // val is a fixed number
+          if (val.match(units)) {
+            if (gutter) {
+              switch (gridType) {
+                // nth grids
+                case 'nth':
+                  switch (resultType) {
+                    case 'offset-big':
+                      decl.value = 'calc(' + val + ' + (' + gutter + ' * 2))';
+                      break;
+                    case 'offset-small':
+                    case 'move':
+                      decl.value = 'calc(' + val + ' + ' + gutter + ')';
+                      break;
+                    default:
+                      decl.value = val;
+                  }
+                  break;
+
+                // negative-margin grids
+                case 'negative-margin':
+                  switch (resultType) {
+                    case 'offset':
+                      decl.value = 'calc(' + val + ' + (' + gutter + ' * 1.5))';
+                      break;
+                    case 'move':
+                      decl.value = 'calc(' + val + ' + ' + gutter + ')';
+                      break;
+                    default:
+                      decl.value = val;
+                  }
+                  break;
+
+                default:
+                  console.log('\n  ---------------------------------------------------------------------------\n\n  ' + _chalk2.default.red.underline('ant error') + ' 1\n\n  Please file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n  ---------------------------------------------------------------------------\n\n                ');
+              }
+              return {
+                v: void 0
+              };
+            } else {
+              // gutless
+              decl.value = '' + val;
+              return {
+                v: void 0
+              };
+            }
+          }
 
           // val is a fraction
           if (val.match(/\/|\./)) {
@@ -171,7 +201,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 1\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 2\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n---------------------------------------------------------------------------\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -196,10 +226,8 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
                         break;
                       case 'offset-small':
-                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
-                        break;
                       case 'move':
-                        decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
+                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
                         break;
                       default:
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
@@ -213,7 +241,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                         decl.value = 'calc(99.99% * ' + val + ' + (' + gutter + ' / 2))';
                         break;
                       case 'move':
-                        decl.value = 'calc(99.99% * ' + val + ')';
+                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ')';
                         break;
                       default:
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
@@ -221,7 +249,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 2\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 3\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -238,25 +266,67 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // fraction(s) and auto(s) only
             if (numFrac > 0 && numAuto > 0 && numFixed === 0) {
               if (gutter) {
-                if (gridType === 'nth') {
-                  decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
-                  return {
-                    v: void 0
-                  };
+                switch (gridType) {
+                  // nth grids
+                  case 'nth':
+                    switch (resultType) {
+                      case 'offset-big':
+                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
+                        break;
+                      case 'offset-small':
+                      case 'move':
+                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
+                        break;
+                      default:
+                        decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
+                    }
+                    break;
+
+                  // negative-margin grids
+                  case 'negative-margin':
+                    switch (resultType) {
+                      case 'offset':
+                        decl.value = 'calc(99.99% * ' + val + ' + (' + gutter + ' / 2))';
+                        break;
+                      case 'move':
+                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ')';
+                        break;
+                      default:
+                        decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
+                    }
+                    break;
+
+                  default:
+                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 4\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
                 }
-                if (gridType === 'negative-margin') {
-                  decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
-                  return {
-                    v: void 0
-                  };
-                }
+                return {
+                  v: void 0
+                };
               } else {
+                // gutless
                 decl.value = 'calc(99.999999% * ' + val + ')';
                 return {
                   v: void 0
                 };
               }
             }
+
+            // // fraction(s) and auto(s) only
+            // if (numFrac > 0 && numAuto > 0 && numFixed === 0) {
+            //   if (gutter) {
+            //     if (gridType === 'nth') {
+            //       decl.value = `calc(99.99% * ${val} - (${gutter} - ${gutter} * ${val}))`
+            //       return
+            //     }
+            //     if (gridType === 'negative-margin') {
+            //       decl.value = `calc(99.99% * ${val} - ${gutter})`
+            //       return
+            //     }
+            //   } else {
+            //     decl.value = `calc(99.999999% * ${val})`
+            //     return
+            //   }
+            // }
 
             // fraction(s), fixed number(s), and auto(s)
             if (numFrac > 0 && numFixed > 0 && numAuto > 0) {

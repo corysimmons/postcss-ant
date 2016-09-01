@@ -590,11 +590,356 @@ section .actor {
   left: calc(300px + 30px);
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(2) {
-  right: calc(99.99% * 1/4 - (30px - 30px * 1/4) + 30px);
+  right: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - (30px - 30px * 1/4) + 30px);
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(6) {
   right: calc(300px + 30px);
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(5) {
-  left: calc(99.99% * 1/4 - (30px - 30px * 1/4) + 30px);
+  left: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - (30px - 30px * 1/4) + 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin figure:nth-child(1) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin figure:nth-child(3) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin figure:nth-child(4) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin figure:nth-child(6) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(1) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(3) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(4) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(6) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure.actor:nth-child(1) {
+  margin-right: calc(300px + (30px * 1.5));
+}
+.fractions-and-fixed-numbers-only .negative-margin-offset figure.actor:nth-child(6) {
+  margin-left: calc(300px + (30px * 1.5));
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(1) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(3) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(4) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(6) {
+  width: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4 - 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure.actor {
+  position: relative;
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(1) {
+  left: calc(300px + 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(2) {
+  right: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(6) {
+  right: calc(300px + 30px);
+}
+.fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(5) {
+  left: calc((99.99% - ((300px + 300px) + (30px * 2))) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(1) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(3) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(4) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(6) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(1) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(3) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(4) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(6) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure.actor:nth-child(1) {
+  margin-right: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-offset figure.actor:nth-child(6) {
+  margin-left: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(1) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(3) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(4) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(6) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure.actor {
+  position: relative;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(1) {
+  left: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(2) {
+  right: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(6) {
+  right: 300px;
+}
+.fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(5) {
+  left: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(1) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(3) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(4) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(6) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
+  margin-right: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
+  margin-left: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(1) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(2) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(3) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(4) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(5) {
+  width: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(6) {
+  width: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor {
+  position: relative;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(1) {
+  left: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(2) {
+  right: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(6) {
+  right: 300px;
+}
+.fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(5) {
+  left: calc((99.999999% - (300px + 300px)) * 1/4);
+}
+.fractions-and-autos-only .nth figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset figure.actor:nth-child(1) {
+  margin-right: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-offset figure.actor:nth-child(6) {
+  margin-left: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
 }
