@@ -35,6 +35,9 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       }
     });
 
+    // Line for console.log()
+    var line = '--------------------------------------------------------------------------';
+
     // Check every declaration for ant(...)[x].
     // Syntax: ant(sizes, [gutter], [grid type])[1-based index]
     css.walkDecls(function (decl) {
@@ -50,7 +53,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           var antIndex = Number(matches[2].trim()) - 1;
 
           if (!sizes[antIndex]) {
-            console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ': [' + _chalk2.default.red(matches[2]) + '] isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry ant(' + matches[1] + ')[' + _chalk2.default.green(matches[2] - 1) + '] instead.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n---------------------------------------------------------------------------\n\n          ');
+            console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': [' + _chalk2.default.red(matches[2]) + '] isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry ant(' + matches[1] + ')[' + _chalk2.default.green(matches[2] - 1) + '] instead.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n          ');
           }
 
           // Assign regex for mapping.
@@ -150,7 +153,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   break;
 
                 default:
-                  console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 1\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n---------------------------------------------------------------------------\n\n                ');
+                  console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 1\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                ');
               }
               return {
                 v: void 0
@@ -202,7 +205,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n---------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 2\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n---------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 2\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -249,7 +252,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 3\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 3\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -296,7 +299,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 4\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 4\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -343,7 +346,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 5\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 5\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -393,7 +396,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 6\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 6\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -440,7 +443,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 7\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 7\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -487,7 +490,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 8\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 8\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
@@ -534,7 +537,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     break;
 
                   default:
-                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 9\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ' 9\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                  ');
                 }
                 return {
                   v: void 0
