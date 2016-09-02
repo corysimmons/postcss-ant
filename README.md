@@ -103,9 +103,14 @@ The default
 - Add `offset` and `move` args.
 - .editorconfig
 - Rewrite docs.
-  - Focus on the strengths of ant (preprocessor looping makes defining a grid really nice)
+  - Focus on the strengths of ant (preprocessor looping makes defining a grid really nice).
+  - Provide example of a vs. flexbox alone methodology to prove speed of development.
   - Don't fight with flexbox. Mention it's `flex-grow` looping weakness and the flexbugs, but don't focus on it. Use flexbox in most examples, but be sure to mention IE8 support.
-- Refactor. All those switches and such could be wrapped up in a function.
+  - Make some videos!
+- Refactor.
+  - All those switches and such could be wrapped up in a function.
+  - Could probably consolidate a lot of the calc formulas into their own consts since a lot of them are repeated and just have a gutter or two tacked on the end.
+  - It'd be nice to use posthtml or something to generate the markup from a list of sizes. Low priority.
 - More error handling for when users try to use incorrect arg combinations. For instance, `negative-margin, offset-big` shouldn't work -- it should only accept `offset`.
 - Create hard widths arg, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers). Slightly low priority as this might take forever.
 - Add more visual tests for a plethora of sizes/params combinations. ant should be bulletproof.
