@@ -133,10 +133,10 @@ section .actor {
   display: none;
 }
 .fractions-only .nth-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, offset-big)[2];
+  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, big-bump)[2];
 }
 .fractions-only .nth-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, offset-small)[5];
+  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, little-bump)[5];
 }
 .fractions-only .nth-move figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12)[1];
@@ -160,16 +160,16 @@ section .actor {
   position: relative;
 }
 .fractions-only .nth-move figure.actor:nth-child(1) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, move)[2];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, little-bump)[2];
 }
 .fractions-only .nth-move figure.actor:nth-child(2) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, move)[1];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, little-bump)[1];
 }
 .fractions-only .nth-move figure.actor:nth-child(6) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, move)[5];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, little-bump)[5];
 }
 .fractions-only .nth-move figure.actor:nth-child(5) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, move)[6];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, little-bump)[6];
 }
 .fractions-only .negative-margin figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin)[1];
@@ -232,10 +232,10 @@ section .actor {
   display: none;
 }
 .fractions-only .negative-margin-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, offset)[2];
+  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, big-bump)[2];
 }
 .fractions-only .negative-margin-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, offset)[5];
+  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, big-bump)[5];
 }
 .fractions-only .negative-margin-move figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin)[1];
@@ -259,16 +259,16 @@ section .actor {
   position: relative;
 }
 .fractions-only .negative-margin-move figure.actor:nth-child(1) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, move)[2];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, little-bump)[2];
 }
 .fractions-only .negative-margin-move figure.actor:nth-child(2) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, move)[1];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, little-bump)[1];
 }
 .fractions-only .negative-margin-move figure.actor:nth-child(6) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, move)[5];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, little-bump)[5];
 }
 .fractions-only .negative-margin-move figure.actor:nth-child(5) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, move)[6];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, little-bump)[6];
 }
 .fractions-only .nth-gutless figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0)[1];
@@ -331,10 +331,10 @@ section .actor {
   display: none;
 }
 .fractions-only .nth-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, offset-big)[2];
+  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, big-bump)[2];
 }
 .fractions-only .nth-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, offset-small)[5];
+  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, little-bump)[5];
 }
 .fractions-only .nth-gutless-move figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0)[1];
@@ -358,16 +358,16 @@ section .actor {
   position: relative;
 }
 .fractions-only .nth-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, move)[2];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, little-bump)[2];
 }
 .fractions-only .nth-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, move)[1];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, little-bump)[1];
 }
 .fractions-only .nth-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, move)[5];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, little-bump)[5];
 }
 .fractions-only .nth-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, move)[6];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, 0, little-bump)[6];
 }
 .fractions-only .negative-margin-gutless-offset figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0)[1];
@@ -412,10 +412,10 @@ section .actor {
   display: none;
 }
 .fractions-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, offset)[2];
+  margin-right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, big-bump)[2];
 }
 .fractions-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, offset)[5];
+  margin-left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, big-bump)[5];
 }
 .fractions-only .negative-margin-gutless-move figure:nth-child(1) {
   width: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0)[1];
@@ -439,16 +439,16 @@ section .actor {
   position: relative;
 }
 .fractions-only .negative-margin-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, move)[2];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, little-bump)[2];
 }
 .fractions-only .negative-margin-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, move)[1];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, little-bump)[1];
 }
 .fractions-only .negative-margin-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, move)[5];
+  right: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, little-bump)[5];
 }
 .fractions-only .negative-margin-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, move)[6];
+  left: ant(1/12 2/12 3/12 3/12 2/12 1/12, negative-margin, 0, little-bump)[6];
 }
 .fractions-and-fixed-numbers-only .nth figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4)[1];
@@ -511,10 +511,10 @@ section .actor {
   display: none;
 }
 .fractions-and-fixed-numbers-only .nth-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, offset-big)[2];
+  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, big-bump)[2];
 }
 .fractions-and-fixed-numbers-only .nth-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, offset-small)[5];
+  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, little-bump)[5];
 }
 .fractions-and-fixed-numbers-only .nth-offset-alt figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4)[1];
@@ -559,10 +559,10 @@ section .actor {
   display: none;
 }
 .fractions-and-fixed-numbers-only .nth-offset-alt figure.actor:nth-child(2) {
-  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, offset-big)[1];
+  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, big-bump)[1];
 }
 .fractions-and-fixed-numbers-only .nth-offset-alt figure.actor:nth-child(5) {
-  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, offset-small)[6];
+  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, little-bump)[6];
   margin-right: 0;
 }
 .fractions-and-fixed-numbers-only .nth-move figure:nth-child(1) {
@@ -587,16 +587,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(1) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, move)[2];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, little-bump)[2];
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(2) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, move)[1];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, little-bump)[1];
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(6) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, move)[5];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, little-bump)[5];
 }
 .fractions-and-fixed-numbers-only .nth-move figure.actor:nth-child(5) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, move)[6];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, little-bump)[6];
 }
 .fractions-and-fixed-numbers-only .negative-margin figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin)[1];
@@ -659,10 +659,10 @@ section .actor {
   display: none;
 }
 .fractions-and-fixed-numbers-only .negative-margin-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, offset)[2];
+  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, big-bump)[2];
 }
 .fractions-and-fixed-numbers-only .negative-margin-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, offset)[5];
+  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, big-bump)[5];
 }
 .fractions-and-fixed-numbers-only .negative-margin-move figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin)[1];
@@ -686,16 +686,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(1) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, move)[2];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, little-bump)[2];
 }
 .fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(2) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, move)[1];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, little-bump)[1];
 }
 .fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(6) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, move)[5];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, little-bump)[5];
 }
 .fractions-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(5) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, move)[6];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, little-bump)[6];
 }
 .fractions-and-fixed-numbers-only .nth-gutless figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4, 0)[1];
@@ -758,10 +758,10 @@ section .actor {
   display: none;
 }
 .fractions-and-fixed-numbers-only .nth-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, 0, offset-big)[2];
+  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, 0, big-bump)[2];
 }
 .fractions-and-fixed-numbers-only .nth-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, 0, offset-small)[5];
+  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, 0, little-bump)[5];
 }
 .fractions-and-fixed-numbers-only .nth-gutless-move figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4, 0)[1];
@@ -785,16 +785,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, 0, move)[2];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, 0, little-bump)[2];
 }
 .fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, 0, move)[1];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, 0, little-bump)[1];
 }
 .fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, 0, move)[5];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, 0, little-bump)[5];
 }
 .fractions-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, 0, move)[6];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, 0, little-bump)[6];
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0)[1];
@@ -839,10 +839,10 @@ section .actor {
   display: none;
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, offset)[2];
+  margin-right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, big-bump)[2];
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, offset)[5];
+  margin-left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, big-bump)[5];
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(1) {
   width: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0)[1];
@@ -866,16 +866,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, move)[2];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, little-bump)[2];
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, move)[1];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, little-bump)[1];
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, move)[5];
+  right: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, little-bump)[5];
 }
 .fractions-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, move)[6];
+  left: ant(1/4 300px 1/4 1/4 300px 1/4, negative-margin, 0, little-bump)[6];
 }
 .fractions-and-autos-only .nth figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8)[1];
@@ -938,10 +938,10 @@ section .actor {
   display: none;
 }
 .fractions-and-autos-only .nth-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, offset-big)[2];
+  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, big-bump)[2];
 }
 .fractions-and-autos-only .nth-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, offset-small)[5];
+  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, little-bump)[5];
 }
 .fractions-and-autos-only .nth-offset-alt figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8)[1];
@@ -986,10 +986,10 @@ section .actor {
   display: none;
 }
 .fractions-and-autos-only .nth-offset-alt figure.actor:nth-child(2) {
-  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, offset-big)[1];
+  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, big-bump)[1];
 }
 .fractions-and-autos-only .nth-offset-alt figure.actor:nth-child(5) {
-  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, offset-small)[6];
+  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, little-bump)[6];
   margin-right: 0;
 }
 .fractions-and-autos-only .nth-move figure:nth-child(1) {
@@ -1014,16 +1014,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-autos-only .nth-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, move)[2];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, little-bump)[2];
 }
 .fractions-and-autos-only .nth-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, move)[1];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, little-bump)[1];
 }
 .fractions-and-autos-only .nth-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, move)[5];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, little-bump)[5];
 }
 .fractions-and-autos-only .nth-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, move)[6];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, little-bump)[6];
 }
 .fractions-and-autos-only .negative-margin figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin)[1];
@@ -1086,10 +1086,10 @@ section .actor {
   display: none;
 }
 .fractions-and-autos-only .negative-margin-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, offset)[2];
+  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, big-bump)[2];
 }
 .fractions-and-autos-only .negative-margin-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, offset)[5];
+  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, big-bump)[5];
 }
 .fractions-and-autos-only .negative-margin-move figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin)[1];
@@ -1113,16 +1113,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-autos-only .negative-margin-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, move)[2];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, little-bump)[2];
 }
 .fractions-and-autos-only .negative-margin-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, move)[1];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, little-bump)[1];
 }
 .fractions-and-autos-only .negative-margin-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, move)[5];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, little-bump)[5];
 }
 .fractions-and-autos-only .negative-margin-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, move)[6];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, little-bump)[6];
 }
 .fractions-and-autos-only .nth-gutless figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8, 0)[1];
@@ -1185,10 +1185,10 @@ section .actor {
   display: none;
 }
 .fractions-and-autos-only .nth-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, 0, offset-big)[2];
+  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, 0, big-bump)[2];
 }
 .fractions-and-autos-only .nth-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, 0, offset-small)[5];
+  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, 0, little-bump)[5];
 }
 .fractions-and-autos-only .nth-gutless-move figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8, 0)[1];
@@ -1212,16 +1212,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, 0, move)[2];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, 0, little-bump)[2];
 }
 .fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, 0, move)[1];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, 0, little-bump)[1];
 }
 .fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, 0, move)[5];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, 0, little-bump)[5];
 }
 .fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, 0, move)[6];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, 0, little-bump)[6];
 }
 .fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0)[1];
@@ -1266,10 +1266,10 @@ section .actor {
   display: none;
 }
 .fractions-and-autos-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, offset)[2];
+  margin-right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, big-bump)[2];
 }
 .fractions-and-autos-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, offset)[5];
+  margin-left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, big-bump)[5];
 }
 .fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(1) {
   width: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0)[1];
@@ -1293,16 +1293,16 @@ section .actor {
   position: relative;
 }
 .fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, move)[2];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, little-bump)[2];
 }
 .fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, move)[1];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, little-bump)[1];
 }
 .fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, move)[5];
+  right: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, little-bump)[5];
 }
 .fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, move)[6];
+  left: ant(1/8 auto 1/8 1/8 auto 1/8, negative-margin, 0, little-bump)[6];
 }
 .fractions-fixed-numbers-and-autos .nth figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8)[1];
@@ -1365,10 +1365,10 @@ section .actor {
   display: none;
 }
 .fractions-fixed-numbers-and-autos .nth-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 350px 350px auto 1/8, offset-big)[2];
+  margin-right: ant(1/8 auto 350px 350px auto 1/8, big-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .nth-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 350px 350px auto 1/8, offset-small)[5];
+  margin-left: ant(1/8 auto 350px 350px auto 1/8, little-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .nth-offset-alt figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8)[1];
@@ -1413,10 +1413,10 @@ section .actor {
   display: none;
 }
 .fractions-fixed-numbers-and-autos .nth-offset-alt figure.actor:nth-child(2) {
-  margin-right: ant(1/8 auto 350px 350px auto 1/8, offset-big)[1];
+  margin-right: ant(1/8 auto 350px 350px auto 1/8, big-bump)[1];
 }
 .fractions-fixed-numbers-and-autos .nth-offset-alt figure.actor:nth-child(5) {
-  margin-left: ant(1/8 auto 350px 350px auto 1/8, offset-small)[6];
+  margin-left: ant(1/8 auto 350px 350px auto 1/8, little-bump)[6];
   margin-right: 0;
 }
 .fractions-fixed-numbers-and-autos .nth-move figure:nth-child(1) {
@@ -1441,16 +1441,16 @@ section .actor {
   position: relative;
 }
 .fractions-fixed-numbers-and-autos .nth-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 350px 350px auto 1/8, move)[2];
+  left: ant(1/8 auto 350px 350px auto 1/8, little-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .nth-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 350px 350px auto 1/8, move)[1];
+  right: ant(1/8 auto 350px 350px auto 1/8, little-bump)[1];
 }
 .fractions-fixed-numbers-and-autos .nth-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 350px 350px auto 1/8, move)[5];
+  right: ant(1/8 auto 350px 350px auto 1/8, little-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .nth-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 350px 350px auto 1/8, move)[6];
+  left: ant(1/8 auto 350px 350px auto 1/8, little-bump)[6];
 }
 .fractions-fixed-numbers-and-autos .negative-margin figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8, negative-margin)[1];
@@ -1513,10 +1513,10 @@ section .actor {
   display: none;
 }
 .fractions-fixed-numbers-and-autos .negative-margin-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, offset)[2];
+  margin-right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, big-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, offset)[5];
+  margin-left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, big-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-move figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8, negative-margin)[1];
@@ -1540,16 +1540,16 @@ section .actor {
   position: relative;
 }
 .fractions-fixed-numbers-and-autos .negative-margin-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, move)[2];
+  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, little-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, move)[1];
+  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, little-bump)[1];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, move)[5];
+  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, little-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, move)[6];
+  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, little-bump)[6];
 }
 .fractions-fixed-numbers-and-autos .nth-gutless figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8, 0)[1];
@@ -1612,10 +1612,10 @@ section .actor {
   display: none;
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 350px 350px auto 1/8, 0, offset-big)[2];
+  margin-right: ant(1/8 auto 350px 350px auto 1/8, 0, big-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 350px 350px auto 1/8, 0, offset-small)[5];
+  margin-left: ant(1/8 auto 350px 350px auto 1/8, 0, little-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-move figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8, 0)[1];
@@ -1639,16 +1639,16 @@ section .actor {
   position: relative;
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 350px 350px auto 1/8, 0, move)[2];
+  left: ant(1/8 auto 350px 350px auto 1/8, 0, little-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 350px 350px auto 1/8, 0, move)[1];
+  right: ant(1/8 auto 350px 350px auto 1/8, 0, little-bump)[1];
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 350px 350px auto 1/8, 0, move)[5];
+  right: ant(1/8 auto 350px 350px auto 1/8, 0, little-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .nth-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 350px 350px auto 1/8, 0, move)[6];
+  left: ant(1/8 auto 350px 350px auto 1/8, 0, little-bump)[6];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-offset figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0)[1];
@@ -1693,10 +1693,10 @@ section .actor {
   display: none;
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, offset)[2];
+  margin-right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, big-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, offset)[5];
+  margin-left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, big-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-move figure:nth-child(1) {
   width: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0)[1];
@@ -1720,16 +1720,16 @@ section .actor {
   position: relative;
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-move figure.actor:nth-child(1) {
-  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, move)[2];
+  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, little-bump)[2];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-move figure.actor:nth-child(2) {
-  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, move)[1];
+  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, little-bump)[1];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-move figure.actor:nth-child(6) {
-  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, move)[5];
+  right: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, little-bump)[5];
 }
 .fractions-fixed-numbers-and-autos .negative-margin-gutless-move figure.actor:nth-child(5) {
-  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, move)[6];
+  left: ant(1/8 auto 350px 350px auto 1/8, negative-margin, 0, little-bump)[6];
 }
 .autos-only .nth figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto)[1];
@@ -1792,10 +1792,10 @@ section .actor {
   display: none;
 }
 .autos-only .nth-offset figure.actor:nth-child(1) {
-  margin-right: ant(auto auto auto auto auto auto, offset-big)[2];
+  margin-right: ant(auto auto auto auto auto auto, big-bump)[2];
 }
 .autos-only .nth-offset figure.actor:nth-child(6) {
-  margin-left: ant(auto auto auto auto auto auto, offset-small)[5];
+  margin-left: ant(auto auto auto auto auto auto, little-bump)[5];
 }
 .autos-only .nth-offset-alt figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto)[1];
@@ -1840,10 +1840,10 @@ section .actor {
   display: none;
 }
 .autos-only .nth-offset-alt figure.actor:nth-child(2) {
-  margin-right: ant(auto auto auto auto auto auto, offset-big)[1];
+  margin-right: ant(auto auto auto auto auto auto, big-bump)[1];
 }
 .autos-only .nth-offset-alt figure.actor:nth-child(5) {
-  margin-left: ant(auto auto auto auto auto auto, offset-small)[6];
+  margin-left: ant(auto auto auto auto auto auto, little-bump)[6];
   margin-right: 0;
 }
 .autos-only .nth-move figure:nth-child(1) {
@@ -1868,16 +1868,16 @@ section .actor {
   position: relative;
 }
 .autos-only .nth-move figure.actor:nth-child(1) {
-  left: ant(auto auto auto auto auto auto, move)[2];
+  left: ant(auto auto auto auto auto auto, little-bump)[2];
 }
 .autos-only .nth-move figure.actor:nth-child(2) {
-  right: ant(auto auto auto auto auto auto, move)[1];
+  right: ant(auto auto auto auto auto auto, little-bump)[1];
 }
 .autos-only .nth-move figure.actor:nth-child(6) {
-  right: ant(auto auto auto auto auto auto, move)[5];
+  right: ant(auto auto auto auto auto auto, little-bump)[5];
 }
 .autos-only .nth-move figure.actor:nth-child(5) {
-  left: ant(auto auto auto auto auto auto, move)[6];
+  left: ant(auto auto auto auto auto auto, little-bump)[6];
 }
 .autos-only .negative-margin figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto, negative-margin)[1];
@@ -1940,10 +1940,10 @@ section .actor {
   display: none;
 }
 .autos-only .negative-margin-offset figure.actor:nth-child(1) {
-  margin-right: ant(auto auto auto auto auto auto, negative-margin, offset)[2];
+  margin-right: ant(auto auto auto auto auto auto, negative-margin, big-bump)[2];
 }
 .autos-only .negative-margin-offset figure.actor:nth-child(6) {
-  margin-left: ant(auto auto auto auto auto auto, negative-margin, offset)[5];
+  margin-left: ant(auto auto auto auto auto auto, negative-margin, big-bump)[5];
 }
 .autos-only .negative-margin-move figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto, negative-margin)[1];
@@ -1967,16 +1967,16 @@ section .actor {
   position: relative;
 }
 .autos-only .negative-margin-move figure.actor:nth-child(1) {
-  left: ant(auto auto auto auto auto auto, negative-margin, move)[2];
+  left: ant(auto auto auto auto auto auto, negative-margin, little-bump)[2];
 }
 .autos-only .negative-margin-move figure.actor:nth-child(2) {
-  right: ant(auto auto auto auto auto auto, negative-margin, move)[1];
+  right: ant(auto auto auto auto auto auto, negative-margin, little-bump)[1];
 }
 .autos-only .negative-margin-move figure.actor:nth-child(6) {
-  right: ant(auto auto auto auto auto auto, negative-margin, move)[5];
+  right: ant(auto auto auto auto auto auto, negative-margin, little-bump)[5];
 }
 .autos-only .negative-margin-move figure.actor:nth-child(5) {
-  left: ant(auto auto auto auto auto auto, negative-margin, move)[6];
+  left: ant(auto auto auto auto auto auto, negative-margin, little-bump)[6];
 }
 .autos-only .nth-gutless figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto, 0)[1];
@@ -2039,10 +2039,10 @@ section .actor {
   display: none;
 }
 .autos-only .nth-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(auto auto auto auto auto auto, 0, offset-big)[2];
+  margin-right: ant(auto auto auto auto auto auto, 0, big-bump)[2];
 }
 .autos-only .nth-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(auto auto auto auto auto auto, 0, offset-small)[5];
+  margin-left: ant(auto auto auto auto auto auto, 0, little-bump)[5];
 }
 .autos-only .nth-gutless-move figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto, 0)[1];
@@ -2066,16 +2066,16 @@ section .actor {
   position: relative;
 }
 .autos-only .nth-gutless-move figure.actor:nth-child(1) {
-  left: ant(auto auto auto auto auto auto, 0, move)[2];
+  left: ant(auto auto auto auto auto auto, 0, little-bump)[2];
 }
 .autos-only .nth-gutless-move figure.actor:nth-child(2) {
-  right: ant(auto auto auto auto auto auto, 0, move)[1];
+  right: ant(auto auto auto auto auto auto, 0, little-bump)[1];
 }
 .autos-only .nth-gutless-move figure.actor:nth-child(6) {
-  right: ant(auto auto auto auto auto auto, 0, move)[5];
+  right: ant(auto auto auto auto auto auto, 0, little-bump)[5];
 }
 .autos-only .nth-gutless-move figure.actor:nth-child(5) {
-  left: ant(auto auto auto auto auto auto, 0, move)[6];
+  left: ant(auto auto auto auto auto auto, 0, little-bump)[6];
 }
 .autos-only .negative-margin-gutless-offset figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto, negative-margin, 0)[1];
@@ -2120,10 +2120,10 @@ section .actor {
   display: none;
 }
 .autos-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(auto auto auto auto auto auto, negative-margin, 0, offset)[2];
+  margin-right: ant(auto auto auto auto auto auto, negative-margin, 0, big-bump)[2];
 }
 .autos-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(auto auto auto auto auto auto, negative-margin, 0, offset)[5];
+  margin-left: ant(auto auto auto auto auto auto, negative-margin, 0, big-bump)[5];
 }
 .autos-only .negative-margin-gutless-move figure:nth-child(1) {
   width: ant(auto auto auto auto auto auto, negative-margin, 0)[1];
@@ -2147,16 +2147,16 @@ section .actor {
   position: relative;
 }
 .autos-only .negative-margin-gutless-move figure.actor:nth-child(1) {
-  left: ant(auto auto auto auto auto auto, negative-margin, 0, move)[2];
+  left: ant(auto auto auto auto auto auto, negative-margin, 0, little-bump)[2];
 }
 .autos-only .negative-margin-gutless-move figure.actor:nth-child(2) {
-  right: ant(auto auto auto auto auto auto, negative-margin, 0, move)[1];
+  right: ant(auto auto auto auto auto auto, negative-margin, 0, little-bump)[1];
 }
 .autos-only .negative-margin-gutless-move figure.actor:nth-child(6) {
-  right: ant(auto auto auto auto auto auto, negative-margin, 0, move)[5];
+  right: ant(auto auto auto auto auto auto, negative-margin, 0, little-bump)[5];
 }
 .autos-only .negative-margin-gutless-move figure.actor:nth-child(5) {
-  left: ant(auto auto auto auto auto auto, negative-margin, 0, move)[6];
+  left: ant(auto auto auto auto auto auto, negative-margin, 0, little-bump)[6];
 }
 .autos-and-fixed-numbers-only .nth figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px)[1];
@@ -2219,10 +2219,10 @@ section .actor {
   display: none;
 }
 .autos-and-fixed-numbers-only .nth-offset figure.actor:nth-child(1) {
-  margin-right: ant(200px auto 100px 100px auto 200px, offset-big)[2];
+  margin-right: ant(200px auto 100px 100px auto 200px, big-bump)[2];
 }
 .autos-and-fixed-numbers-only .nth-offset figure.actor:nth-child(6) {
-  margin-left: ant(200px auto 100px 100px auto 200px, offset-small)[5];
+  margin-left: ant(200px auto 100px 100px auto 200px, little-bump)[5];
 }
 .autos-and-fixed-numbers-only .nth-offset-alt figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px)[1];
@@ -2267,10 +2267,10 @@ section .actor {
   display: none;
 }
 .autos-and-fixed-numbers-only .nth-offset-alt figure.actor:nth-child(2) {
-  margin-right: ant(200px auto 100px 100px auto 200px, offset-big)[1];
+  margin-right: ant(200px auto 100px 100px auto 200px, big-bump)[1];
 }
 .autos-and-fixed-numbers-only .nth-offset-alt figure.actor:nth-child(5) {
-  margin-left: ant(200px auto 100px 100px auto 200px, offset-small)[6];
+  margin-left: ant(200px auto 100px 100px auto 200px, little-bump)[6];
   margin-right: 0;
 }
 .autos-and-fixed-numbers-only .nth-move figure:nth-child(1) {
@@ -2295,16 +2295,16 @@ section .actor {
   position: relative;
 }
 .autos-and-fixed-numbers-only .nth-move figure.actor:nth-child(1) {
-  left: ant(200px auto 100px 100px auto 200px, move)[2];
+  left: ant(200px auto 100px 100px auto 200px, little-bump)[2];
 }
 .autos-and-fixed-numbers-only .nth-move figure.actor:nth-child(2) {
-  right: ant(200px auto 100px 100px auto 200px, move)[1];
+  right: ant(200px auto 100px 100px auto 200px, little-bump)[1];
 }
 .autos-and-fixed-numbers-only .nth-move figure.actor:nth-child(6) {
-  right: ant(200px auto 100px 100px auto 200px, move)[5];
+  right: ant(200px auto 100px 100px auto 200px, little-bump)[5];
 }
 .autos-and-fixed-numbers-only .nth-move figure.actor:nth-child(5) {
-  left: ant(200px auto 100px 100px auto 200px, move)[6];
+  left: ant(200px auto 100px 100px auto 200px, little-bump)[6];
 }
 .autos-and-fixed-numbers-only .negative-margin figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px, negative-margin)[1];
@@ -2367,10 +2367,10 @@ section .actor {
   display: none;
 }
 .autos-and-fixed-numbers-only .negative-margin-offset figure.actor:nth-child(1) {
-  margin-right: ant(200px auto 100px 100px auto 200px, negative-margin, offset)[2];
+  margin-right: ant(200px auto 100px 100px auto 200px, negative-margin, big-bump)[2];
 }
 .autos-and-fixed-numbers-only .negative-margin-offset figure.actor:nth-child(6) {
-  margin-left: ant(200px auto 100px 100px auto 200px, negative-margin, offset)[5];
+  margin-left: ant(200px auto 100px 100px auto 200px, negative-margin, big-bump)[5];
 }
 .autos-and-fixed-numbers-only .negative-margin-move figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px, negative-margin)[1];
@@ -2394,16 +2394,16 @@ section .actor {
   position: relative;
 }
 .autos-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(1) {
-  left: ant(200px auto 100px 100px auto 200px, negative-margin, move)[2];
+  left: ant(200px auto 100px 100px auto 200px, negative-margin, little-bump)[2];
 }
 .autos-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(2) {
-  right: ant(200px auto 100px 100px auto 200px, negative-margin, move)[1];
+  right: ant(200px auto 100px 100px auto 200px, negative-margin, little-bump)[1];
 }
 .autos-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(6) {
-  right: ant(200px auto 100px 100px auto 200px, negative-margin, move)[5];
+  right: ant(200px auto 100px 100px auto 200px, negative-margin, little-bump)[5];
 }
 .autos-and-fixed-numbers-only .negative-margin-move figure.actor:nth-child(5) {
-  left: ant(200px auto 100px 100px auto 200px, negative-margin, move)[6];
+  left: ant(200px auto 100px 100px auto 200px, negative-margin, little-bump)[6];
 }
 .autos-and-fixed-numbers-only .nth-gutless figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px, 0)[1];
@@ -2466,10 +2466,10 @@ section .actor {
   display: none;
 }
 .autos-and-fixed-numbers-only .nth-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(200px auto 100px 100px auto 200px, 0, offset-big)[2];
+  margin-right: ant(200px auto 100px 100px auto 200px, 0, big-bump)[2];
 }
 .autos-and-fixed-numbers-only .nth-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(200px auto 100px 100px auto 200px, 0, offset-small)[5];
+  margin-left: ant(200px auto 100px 100px auto 200px, 0, little-bump)[5];
 }
 .autos-and-fixed-numbers-only .nth-gutless-move figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px, 0)[1];
@@ -2493,16 +2493,16 @@ section .actor {
   position: relative;
 }
 .autos-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(1) {
-  left: ant(200px auto 100px 100px auto 200px, 0, move)[2];
+  left: ant(200px auto 100px 100px auto 200px, 0, little-bump)[2];
 }
 .autos-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(2) {
-  right: ant(200px auto 100px 100px auto 200px, 0, move)[1];
+  right: ant(200px auto 100px 100px auto 200px, 0, little-bump)[1];
 }
 .autos-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(6) {
-  right: ant(200px auto 100px 100px auto 200px, 0, move)[5];
+  right: ant(200px auto 100px 100px auto 200px, 0, little-bump)[5];
 }
 .autos-and-fixed-numbers-only .nth-gutless-move figure.actor:nth-child(5) {
-  left: ant(200px auto 100px 100px auto 200px, 0, move)[6];
+  left: ant(200px auto 100px 100px auto 200px, 0, little-bump)[6];
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-offset figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px, negative-margin, 0)[1];
@@ -2547,10 +2547,10 @@ section .actor {
   display: none;
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
-  margin-right: ant(200px auto 100px 100px auto 200px, negative-margin, 0, offset)[2];
+  margin-right: ant(200px auto 100px 100px auto 200px, negative-margin, 0, big-bump)[2];
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
-  margin-left: ant(200px auto 100px 100px auto 200px, negative-margin, 0, offset)[5];
+  margin-left: ant(200px auto 100px 100px auto 200px, negative-margin, 0, big-bump)[5];
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-move figure:nth-child(1) {
   width: ant(200px auto 100px 100px auto 200px, negative-margin, 0)[1];
@@ -2574,14 +2574,14 @@ section .actor {
   position: relative;
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(1) {
-  left: ant(200px auto 100px 100px auto 200px, negative-margin, 0, move)[2];
+  left: ant(200px auto 100px 100px auto 200px, negative-margin, 0, little-bump)[2];
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(2) {
-  right: ant(200px auto 100px 100px auto 200px, negative-margin, 0, move)[1];
+  right: ant(200px auto 100px 100px auto 200px, negative-margin, 0, little-bump)[1];
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(6) {
-  right: ant(200px auto 100px 100px auto 200px, negative-margin, 0, move)[5];
+  right: ant(200px auto 100px 100px auto 200px, negative-margin, 0, little-bump)[5];
 }
 .autos-and-fixed-numbers-only .negative-margin-gutless-move figure.actor:nth-child(5) {
-  left: ant(200px auto 100px 100px auto 200px, negative-margin, 0, move)[6];
+  left: ant(200px auto 100px 100px auto 200px, negative-margin, 0, little-bump)[6];
 }

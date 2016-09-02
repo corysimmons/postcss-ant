@@ -98,9 +98,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 5)
 
   .nth-move
     figure
@@ -110,13 +110,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin
     figure
@@ -134,9 +134,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-move
     figure
@@ -146,13 +146,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 6)
 
   .nth-gutless
     figure
@@ -170,9 +170,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
 
   .nth-gutless-move
     figure
@@ -182,13 +182,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin-gutless-offset
     figure
@@ -200,9 +200,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-gutless-move
     figure
@@ -212,13 +212,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 6)
 
 
 // fraction(s) and fixed number(s) only
@@ -241,9 +241,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 5)
 
   .nth-offset-alt
     figure
@@ -255,9 +255,9 @@ section
           display: none
       &.actor
         &:nth-child(2)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 1)
         &:nth-child(5)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
           margin-right: 0
 
   .nth-move
@@ -268,13 +268,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin
     figure
@@ -292,9 +292,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-move
     figure
@@ -304,13 +304,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 6)
 
   .nth-gutless
     figure
@@ -328,9 +328,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
 
   .nth-gutless-move
     figure
@@ -340,13 +340,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin-gutless-offset
     figure
@@ -358,9 +358,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-gutless-move
     figure
@@ -370,13 +370,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 6)
 
 
 // fraction(s) and auto(s) only
@@ -399,9 +399,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 5)
 
   .nth-offset-alt
     figure
@@ -413,9 +413,9 @@ section
           display: none
       &.actor
         &:nth-child(2)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 1)
         &:nth-child(5)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
           margin-right: 0
 
   .nth-move
@@ -426,13 +426,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin
     figure
@@ -450,9 +450,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-move
     figure
@@ -462,13 +462,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 6)
 
   .nth-gutless
     figure
@@ -486,9 +486,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
 
   .nth-gutless-move
     figure
@@ -498,13 +498,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin-gutless-offset
     figure
@@ -516,9 +516,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-gutless-move
     figure
@@ -528,13 +528,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 6)
 
 
 // fraction(s), fixed number(s), and auto(s)
@@ -557,9 +557,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 5)
 
   .nth-offset-alt
     figure
@@ -571,9 +571,9 @@ section
           display: none
       &.actor
         &:nth-child(2)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 1)
         &:nth-child(5)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
           margin-right: 0
 
   .nth-move
@@ -584,13 +584,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin
     figure
@@ -608,9 +608,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-move
     figure
@@ -620,13 +620,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 6)
 
   .nth-gutless
     figure
@@ -644,9 +644,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
 
   .nth-gutless-move
     figure
@@ -656,13 +656,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin-gutless-offset
     figure
@@ -674,9 +674,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-gutless-move
     figure
@@ -686,13 +686,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 6)
 
 
 // auto(s) only
@@ -715,9 +715,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 5)
 
   .nth-offset-alt
     figure
@@ -729,9 +729,9 @@ section
           display: none
       &.actor
         &:nth-child(2)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 1)
         &:nth-child(5)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
           margin-right: 0
 
   .nth-move
@@ -742,13 +742,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin
     figure
@@ -766,9 +766,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-move
     figure
@@ -778,13 +778,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 6)
 
   .nth-gutless
     figure
@@ -802,9 +802,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
 
   .nth-gutless-move
     figure
@@ -814,13 +814,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin-gutless-offset
     figure
@@ -832,9 +832,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-gutless-move
     figure
@@ -844,13 +844,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 6)
 
 
 // auto(s) and fixed number(s) only
@@ -873,9 +873,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 5)
 
   .nth-offset-alt
     figure
@@ -887,9 +887,9 @@ section
           display: none
       &.actor
         &:nth-child(2)
-          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+          margin-right: 'ant(%s, big-bump)[%s]' % ($sizes 1)
         &:nth-child(5)
-          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
           margin-right: 0
 
   .nth-move
@@ -900,13 +900,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin
     figure
@@ -924,9 +924,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-move
     figure
@@ -936,13 +936,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, little-bump)[%s]' % ($sizes 6)
 
   .nth-gutless
     figure
@@ -960,9 +960,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
 
   .nth-gutless-move
     figure
@@ -972,13 +972,13 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, 0, little-bump)[%s]' % ($sizes 6)
 
   .negative-margin-gutless-offset
     figure
@@ -990,9 +990,9 @@ section
           display: none
       &.actor
         &:nth-child(1)
-          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+          margin-right: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 2)
         &:nth-child(6)
-          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+          margin-left: 'ant(%s, negative-margin, 0, big-bump)[%s]' % ($sizes 5)
 
   .negative-margin-gutless-move
     figure
@@ -1002,10 +1002,10 @@ section
       &.actor
         position: relative;
         &:nth-child(1)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 2)
         &:nth-child(2)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 1)
         &:nth-child(6)
-          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+          right: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 5)
         &:nth-child(5)
-          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+          left: 'ant(%s, negative-margin, 0, little-bump)[%s]' % ($sizes 6)

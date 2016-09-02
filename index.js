@@ -56,7 +56,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           // Assign regex for mapping.
           var units = /em$|ex$|%$|px$|cm$|mm$|in$|pt$|pc$|ch$|rem$|vh$|vw$|vmin$|vmax$/;
           var gridTypes = /^nth$|^negative-margin$/;
-          var resultTypes = /^offset$|^offset-big$|^offset-small$|^move$/;
+          var resultTypes = /^little-bump$|^big-bump$/;
 
           var resultType = null;
 
@@ -124,11 +124,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                 // nth grids
                 case 'nth':
                   switch (resultType) {
-                    case 'offset-big':
+                    case 'big-bump':
                       decl.value = 'calc(' + val + ' + (' + gutter + ' * 2))';
                       break;
-                    case 'offset-small':
-                    case 'move':
+                    case 'little-bump':
                       decl.value = 'calc(' + val + ' + ' + gutter + ')';
                       break;
                     default:
@@ -139,10 +138,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                 // negative-margin grids
                 case 'negative-margin':
                   switch (resultType) {
-                    case 'offset':
+                    case 'big-bump':
                       decl.value = 'calc(' + val + ' + (' + gutter + ' * 1.5))';
                       break;
-                    case 'move':
+                    case 'little-bump':
                       decl.value = 'calc(' + val + ' + ' + gutter + ')';
                       break;
                     default:
@@ -174,11 +173,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
                         break;
                       default:
@@ -189,10 +187,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc(99.99% * ' + val + ' + (' + gutter + ' / 2))';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc(99.99% * ' + val + ')';
                         break;
                       default:
@@ -222,11 +220,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
                         break;
                       default:
@@ -237,10 +234,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc(99.99% * ' + val + ' + (' + gutter + ' / 2))';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ')';
                         break;
                       default:
@@ -270,11 +267,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
                         break;
                       default:
@@ -285,10 +281,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc(99.99% * ' + val + ')';
                         break;
                       default:
@@ -318,11 +314,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
                         break;
                       default:
@@ -333,10 +328,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ')';
                         break;
                       default:
@@ -369,11 +364,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc(((99.99% - ((' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ') + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - ((' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ' + ' + gutter + ')';
                         break;
                       default:
@@ -384,10 +378,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - ((' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ' + (' + gutter + ' * 1.5))';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - ((' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ' + ' + gutter + ')';
                         break;
                       default:
@@ -417,11 +411,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ' + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gutter + ')) / ' + numAuto + ' + ' + gutter + ')';
                         break;
                       default:
@@ -432,10 +425,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ' + (' + gutter + ' * 1.5))';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - ' + sumFixed + ' - ((' + numFixed + ' + ' + numAuto + ') * ' + gutter + ')) / ' + numAuto + ' + ' + gutter + ')';
                         break;
                       default:
@@ -465,11 +458,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') + ' + gutter + ')';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + '))';
                         break;
                       default:
@@ -480,10 +472,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + ') + (' + gutter + ' / 2))';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + '))';
                         break;
                       default:
@@ -513,11 +505,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // nth grids
                   case 'nth':
                     switch (resultType) {
-                      case 'offset-big':
+                      case 'big-bump':
                         decl.value = 'calc(((99.99% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ') + (' + gutter + ' * 2))';
                         break;
-                      case 'offset-small':
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ' + ' + gutter + ')';
                         break;
                       default:
@@ -528,10 +519,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   // negative-margin grids
                   case 'negative-margin':
                     switch (resultType) {
-                      case 'offset':
+                      case 'big-bump':
                         decl.value = 'calc((99.99% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' * ' + numFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ' + (' + gutter + ' / 2))';
                         break;
-                      case 'move':
+                      case 'little-bump':
                         decl.value = 'calc((99.99% - ((' + sumFixed + ' + (' + gutter + ' * ' + numFixed + ')) + ((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gutter + ' * ' + numFrac + '))) - (' + gutter + ' * ' + numAuto + ')) / ' + numAuto + ')';
                         break;
                       default:
