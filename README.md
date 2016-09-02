@@ -100,12 +100,12 @@ The default
 
 ## Todo
 
-- .editorconfig
 - Rewrite docs.
   - Focus on the strengths of ant (preprocessor looping makes defining a grid really nice, and bespoking grid systems a breeze).
   - Provide example of a vs. flexbox alone methodology to prove speed of development.
   - Don't fight with flexbox. Mention it's `flex-grow` looping weakness and the flexbugs, but don't focus on it. Use flexbox in most examples, but be sure to mention IE8 support.
   - Make README a bit beefier.
+  - Make it so users can generate ant-grid.css with custom number of columns and checkboxes for whatever bits they need.
   - Make some videos!
 - Refactor.
   - All those switches and such could be wrapped up in a function.
