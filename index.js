@@ -271,11 +271,11 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   case 'nth':
                     switch (resultType) {
                       case 'offset-big':
-                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
+                        decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + (' + gutter + ' * 2))';
                         break;
                       case 'offset-small':
                       case 'move':
-                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
+                        decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + ') + ' + gutter + ')';
                         break;
                       default:
                         decl.value = 'calc(99.99% * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
@@ -286,10 +286,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   case 'negative-margin':
                     switch (resultType) {
                       case 'offset':
-                        decl.value = 'calc(99.99% * ' + val + ' + (' + gutter + ' / 2))';
+                        decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
                         break;
                       case 'move':
-                        decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ')';
+                        decl.value = 'calc(99.99% * ' + val + ')';
                         break;
                       default:
                         decl.value = 'calc(99.99% * ' + val + ' - ' + gutter + ')';
@@ -328,28 +328,22 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             //   }
             // }
 
-            // fraction(s), fixed number(s), and auto(s)
-            if (numFrac > 0 && numFixed > 0 && numAuto > 0) {
-              if (gutter) {
-                if (gridType === 'nth') {
-                  decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - (' + gutter + ' - ' + gutter + ' * ' + val + '))';
-                  return {
-                    v: void 0
-                  };
-                }
-                if (gridType === 'negative-margin') {
-                  decl.value = 'calc((99.99% - (' + sumFixed + ' + (' + gutter + ' * ' + numFixed + '))) * ' + val + ' - ' + gutter + ')';
-                  return {
-                    v: void 0
-                  };
-                }
-              } else {
-                decl.value = 'calc((99.999999% - ' + sumFixed + ') * ' + val + ')';
-                return {
-                  v: void 0
-                };
-              }
-            }
+            // // fraction(s), fixed number(s), and auto(s)
+            // if (numFrac > 0 && numFixed > 0 && numAuto > 0) {
+            //   if (gutter) {
+            //     if (gridType === 'nth') {
+            //       decl.value = `calc((99.99% - (${sumFixed} + (${gutter} * ${numFixed}))) * ${val} - (${gutter} - ${gutter} * ${val}))`
+            //       return
+            //     }
+            //     if (gridType === 'negative-margin') {
+            //       decl.value = `calc((99.99% - (${sumFixed} + (${gutter} * ${numFixed}))) * ${val} - ${gutter})`
+            //       return
+            //     }
+            //   } else {
+            //     decl.value = `calc((99.999999% - ${sumFixed}) * ${val})`
+            //     return
+            //   }
+            // }
           }
 
           // val is auto
@@ -403,25 +397,67 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
             // auto(s) and fraction(s) only
             if (numAuto > 0 && numFrac > 0 && numFixed === 0) {
               if (gutter) {
-                if (gridType === 'nth') {
-                  decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') - ' + gutter + ')';
-                  return {
-                    v: void 0
-                  };
+                switch (gridType) {
+                  // nth grids
+                  case 'nth':
+                    switch (resultType) {
+                      case 'offset-big':
+                        decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') + ' + gutter + ')';
+                        break;
+                      case 'offset-small':
+                      case 'move':
+                        decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + '))';
+                        break;
+                      default:
+                        decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ' - (' + gutter + ' - ' + gutter + ' * ' + sumFrac + '))) / ' + numAuto + ') - ' + gutter + ')';
+                    }
+                    break;
+
+                  // negative-margin grids
+                  case 'negative-margin':
+                    switch (resultType) {
+                      case 'offset':
+                        decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + ') + (' + gutter + ' / 2))';
+                        break;
+                      case 'move':
+                        decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + '))';
+                        break;
+                      default:
+                        decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + ') - ' + gutter + ')';
+                    }
+                    break;
+
+                  default:
+                    console.log('\n--------------------------------------------------------------------------\n\n' + _chalk2.default.red.underline('ant error') + ' 5\n\nPlease file a bug at https://github.com/corysimmons/postcss-ant/issues/new\n\n--------------------------------------------------------------------------\n\n                  ');
                 }
-                if (gridType === 'negative-margin') {
-                  decl.value = 'calc(((99.99% - (99.99% * ' + sumFrac + ')) / ' + numAuto + ') - ' + gutter + ')';
-                  return {
-                    v: void 0
-                  };
-                }
+                return {
+                  v: void 0
+                };
               } else {
+                // gutless
                 decl.value = 'calc((99.999999% - (99.999999% * ' + sumFrac + ')) / ' + numAuto + ')';
                 return {
                   v: void 0
                 };
               }
             }
+
+            // // auto(s) and fraction(s) only
+            // if (numAuto > 0 && numFrac > 0 && numFixed === 0) {
+            //   if (gutter) {
+            //     if (gridType === 'nth') {
+            //       decl.value = `calc(((99.99% - (99.99% * ${sumFrac} - (${gutter} - ${gutter} * ${sumFrac}))) / ${numAuto}) - ${gutter})`
+            //       return
+            //     }
+            //     if (gridType === 'negative-margin') {
+            //       decl.value = `calc(((99.99% - (99.99% * ${sumFrac})) / ${numAuto}) - ${gutter})`
+            //       return
+            //     }
+            //   } else {
+            //     decl.value = `calc((99.999999% - (99.999999% * ${sumFrac})) / ${numAuto})`
+            //     return
+            //   }
+            // }
 
             // auto(s), fraction(s), and fixed number(s)
             if (numAuto > 0 && numFrac > 0 && numFixed > 0) {

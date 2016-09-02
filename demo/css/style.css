@@ -938,8 +938,369 @@ section .actor {
   display: none;
 }
 .fractions-and-autos-only .nth-offset figure.actor:nth-child(1) {
-  margin-right: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+  margin-right: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) + 30px);
 }
 .fractions-and-autos-only .nth-offset figure.actor:nth-child(6) {
-  margin-left: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+  margin-left: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2));
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1),
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1),
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1),
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1),
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1),
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(1),
+.fractions-and-autos-only .nth-offset-alt figure:nth-child(6) {
+  display: none;
+}
+.fractions-and-autos-only .nth-offset-alt figure.actor:nth-child(2) {
+  margin-right: calc(99.99% * 1/8 - (30px - 30px * 1/8) + (30px * 2));
+}
+.fractions-and-autos-only .nth-offset-alt figure.actor:nth-child(5) {
+  margin-left: calc(99.99% * 1/8 - (30px - 30px * 1/8) + 30px);
+  margin-right: 0;
+}
+.fractions-and-autos-only .nth-move figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-move figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-move figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-move figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-move figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2) - 30px);
+}
+.fractions-and-autos-only .nth-move figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - (30px - 30px * 1/8));
+}
+.fractions-and-autos-only .nth-move figure.actor {
+  position: relative;
+}
+.fractions-and-autos-only .nth-move figure.actor:nth-child(1) {
+  left: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2));
+}
+.fractions-and-autos-only .nth-move figure.actor:nth-child(2) {
+  right: calc(99.99% * 1/8 - (30px - 30px * 1/8) + 30px);
+}
+.fractions-and-autos-only .nth-move figure.actor:nth-child(6) {
+  right: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8) - (30px - 30px * (1/8 + 1/8 + 1/8 + 1/8)))) / 2));
+}
+.fractions-and-autos-only .nth-move figure.actor:nth-child(5) {
+  left: calc(99.99% * 1/8 - (30px - 30px * 1/8) + 30px);
+}
+.fractions-and-autos-only .negative-margin figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) - 30px);
+}
+.fractions-and-autos-only .negative-margin figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) - 30px);
+}
+.fractions-and-autos-only .negative-margin figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-offset figure.actor:nth-child(1) {
+  margin-right: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) + (30px / 2));
+}
+.fractions-and-autos-only .negative-margin-offset figure.actor:nth-child(6) {
+  margin-left: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) + (30px / 2));
+}
+.fractions-and-autos-only .negative-margin-move figure:nth-child(1) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-move figure:nth-child(2) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) - 30px);
+}
+.fractions-and-autos-only .negative-margin-move figure:nth-child(3) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-move figure:nth-child(4) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-move figure:nth-child(5) {
+  width: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2) - 30px);
+}
+.fractions-and-autos-only .negative-margin-move figure:nth-child(6) {
+  width: calc(99.99% * 1/8 - 30px);
+}
+.fractions-and-autos-only .negative-margin-move figure.actor {
+  position: relative;
+}
+.fractions-and-autos-only .negative-margin-move figure.actor:nth-child(1) {
+  left: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2));
+}
+.fractions-and-autos-only .negative-margin-move figure.actor:nth-child(2) {
+  right: calc(99.99% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-move figure.actor:nth-child(6) {
+  right: calc(((99.99% - (99.99% * (1/8 + 1/8 + 1/8 + 1/8))) / 2));
+}
+.fractions-and-autos-only .negative-margin-move figure.actor:nth-child(5) {
+  left: calc(99.99% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless figure:nth-child(1) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless figure:nth-child(2) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless figure:nth-child(3) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless figure:nth-child(4) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless figure:nth-child(5) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless figure:nth-child(6) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(1) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(3) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(4) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(6) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .nth-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .nth-gutless-offset figure.actor:nth-child(1) {
+  margin-right: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-offset figure.actor:nth-child(6) {
+  margin-left: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-move figure:nth-child(1) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-move figure:nth-child(2) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-move figure:nth-child(3) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-move figure:nth-child(4) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-move figure:nth-child(5) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-move figure:nth-child(6) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-move figure.actor {
+  position: relative;
+}
+.fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(1) {
+  left: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(2) {
+  right: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(6) {
+  right: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .nth-gutless-move figure.actor:nth-child(5) {
+  left: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(1) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(3) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(4) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(6) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(2),
+.fractions-and-autos-only .negative-margin-gutless-offset figure:nth-child(5) {
+  display: none;
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure.actor:nth-child(1) {
+  margin-right: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-offset figure.actor:nth-child(6) {
+  margin-left: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(1) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(2) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(3) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(4) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(5) {
+  width: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure:nth-child(6) {
+  width: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure.actor {
+  position: relative;
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(1) {
+  left: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(2) {
+  right: calc(99.999999% * 1/8);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(6) {
+  right: calc((99.999999% - (99.999999% * (1/8 + 1/8 + 1/8 + 1/8))) / 2);
+}
+.fractions-and-autos-only .negative-margin-gutless-move figure.actor:nth-child(5) {
+  left: calc(99.999999% * 1/8);
 }

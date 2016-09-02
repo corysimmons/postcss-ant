@@ -403,138 +403,138 @@ section
         &:nth-child(6)
           margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 5)
 
-  // .nth-offset-alt
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s)[%s]' % ($sizes $i)
-  //       &:nth-child(1),
-  //       &:nth-child(6)
-  //         display: none
-  //     &.actor
-  //       &:nth-child(2)
-  //         margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
-  //       &:nth-child(5)
-  //         margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
-  //         margin-right: 0
-  //
-  // .nth-move
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s)[%s]' % ($sizes $i)
-  //     &.actor
-  //       position: relative;
-  //       &:nth-child(1)
-  //         left: 'ant(%s, move)[%s]' % ($sizes 2)
-  //       &:nth-child(2)
-  //         right: 'ant(%s, move)[%s]' % ($sizes 1)
-  //       &:nth-child(6)
-  //         right: 'ant(%s, move)[%s]' % ($sizes 5)
-  //       &:nth-child(5)
-  //         left: 'ant(%s, move)[%s]' % ($sizes 6)
-  //
-  // .negative-margin
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
-  //
-  // .negative-margin-offset
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
-  //       &:nth-child(2),
-  //       &:nth-child(5)
-  //         display: none
-  //     &.actor
-  //       &:nth-child(1)
-  //         margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
-  //       &:nth-child(6)
-  //         margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
-  //
-  // .negative-margin-move
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
-  //     &.actor
-  //       position: relative;
-  //       &:nth-child(1)
-  //         left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
-  //       &:nth-child(2)
-  //         right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
-  //       &:nth-child(6)
-  //         right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
-  //       &:nth-child(5)
-  //         left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
-  //
-  // .nth-gutless
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, 0)[%s]' % ($sizes $i)
-  //
-  // .nth-gutless-offset
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, 0)[%s]' % ($sizes $i)
-  //       &:nth-child(2),
-  //       &:nth-child(5)
-  //         display: none
-  //     &.actor
-  //       &:nth-child(1)
-  //         margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
-  //       &:nth-child(6)
-  //         margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
-  //
-  // .nth-gutless-move
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, 0)[%s]' % ($sizes $i)
-  //     &.actor
-  //       position: relative;
-  //       &:nth-child(1)
-  //         left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
-  //       &:nth-child(2)
-  //         right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
-  //       &:nth-child(6)
-  //         right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
-  //       &:nth-child(5)
-  //         left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
-  //
-  // .negative-margin-gutless-offset
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
-  //       &:nth-child(2),
-  //       &:nth-child(5)
-  //         display: none
-  //     &.actor
-  //       &:nth-child(1)
-  //         margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
-  //       &:nth-child(6)
-  //         margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
-  //
-  // .negative-margin-gutless-move
-  //   figure
-  //     for $i in 1..6
-  //       &:nth-child({$i})
-  //         width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
-  //     &.actor
-  //       position: relative;
-  //       &:nth-child(1)
-  //         left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
-  //       &:nth-child(2)
-  //         right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
-  //       &:nth-child(6)
-  //         right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
-  //       &:nth-child(5)
-  //         left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
+  .nth-offset-alt
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s)[%s]' % ($sizes $i)
+        &:nth-child(1),
+        &:nth-child(6)
+          display: none
+      &.actor
+        &:nth-child(2)
+          margin-right: 'ant(%s, offset-big)[%s]' % ($sizes 1)
+        &:nth-child(5)
+          margin-left: 'ant(%s, offset-small)[%s]' % ($sizes 6)
+          margin-right: 0
+
+  .nth-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, move)[%s]' % ($sizes 6)
+
+  .negative-margin
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+
+  .negative-margin-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, negative-margin, offset)[%s]' % ($sizes 5)
+
+  .negative-margin-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, negative-margin, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, negative-margin, move)[%s]' % ($sizes 6)
+
+  .nth-gutless
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, 0)[%s]' % ($sizes $i)
+
+  .nth-gutless-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, 0)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, 0, offset-big)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, 0, offset-small)[%s]' % ($sizes 5)
+
+  .nth-gutless-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, 0)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, 0, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, 0, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, 0, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, 0, move)[%s]' % ($sizes 6)
+
+  .negative-margin-gutless-offset
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
+        &:nth-child(2),
+        &:nth-child(5)
+          display: none
+      &.actor
+        &:nth-child(1)
+          margin-right: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 2)
+        &:nth-child(6)
+          margin-left: 'ant(%s, negative-margin, 0, offset)[%s]' % ($sizes 5)
+
+  .negative-margin-gutless-move
+    figure
+      for $i in 1..6
+        &:nth-child({$i})
+          width: 'ant(%s, negative-margin, 0)[%s]' % ($sizes $i)
+      &.actor
+        position: relative;
+        &:nth-child(1)
+          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 2)
+        &:nth-child(2)
+          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 1)
+        &:nth-child(6)
+          right: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 5)
+        &:nth-child(5)
+          left: 'ant(%s, negative-margin, 0, move)[%s]' % ($sizes 6)
 
 
 
