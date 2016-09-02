@@ -56,7 +56,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           // Assign regex for mapping.
           var units = /em$|ex$|%$|px$|cm$|mm$|in$|pt$|pc$|ch$|rem$|vh$|vw$|vmin$|vmax$/;
           var gridTypes = /^nth$|^negative-margin$/;
-          var resultTypes = /^little-bump$|^big-bump$/;
+          var resultTypes = /^little-bump$|^big-bump$|^big-unbump$/;
 
           var resultType = null;
 
@@ -189,6 +189,9 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                     switch (resultType) {
                       case 'big-bump':
                         decl.value = 'calc(99.99% * ' + val + ' + (' + gutter + ' / 2))';
+                        break;
+                      case 'big-unbump':
+                        decl.value = 'calc((99.99% * ' + val + ' - (' + gutter + ' / 2)) * -1)';
                         break;
                       case 'little-bump':
                         decl.value = 'calc(99.99% * ' + val + ')';
