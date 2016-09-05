@@ -1,0 +1,6 @@
+@import url(common.css);
+@ant-grid negative-margin;
+section {
+  ant: sizes(100px auto 300px); }
+  section > *:nth-child(2) {
+    margin-right: sizes(100px auto 300px) get(3) bump(45px); }

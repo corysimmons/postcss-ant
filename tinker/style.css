@@ -1,0 +1,30 @@
+@import 'common.css';
+section {
+  display: flex;
+  flex-wrap: wrap;
+}
+div {
+  margin: 0 45px 45px 0;
+}
+div:nth-child(3n + 1) {
+  width: sizes('1/4 1/2 1/4') get(1) gutter(45px);
+}
+div:nth-child(3n + 2) {
+  width: sizes('1/4 1/2 1/4') get(2) gutter(45px);
+}
+div:nth-child(3n + 3) {
+  width: sizes('1/4 1/2 1/4') get(3) gutter(45px);
+}
+div:nth-child(3n) {
+  margin-right: 0;
+}
+header {
+  display: flex;
+}
+figure {
+  width: sizes(0.333333333333333) get(1);
+  margin: 0 30px 30px 0;
+}
+figure:last-child {
+  margin-right: 0;
+}

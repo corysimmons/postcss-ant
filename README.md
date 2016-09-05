@@ -27,90 +27,34 @@ Using Gulp or something? Read about some other integrations on the [docs website
 
 Generic PostCSS plugin usage can be found [here](https://github.com/postcss/postcss#usage).
 
-### API
-
-`ant(list of sizes, [gutter], [grid type])[1-based index]`
-
-### Global Settings
-
-Globals are defined as atRules (e.g. `@import` is an atRule) and should go at the top of the stylesheet.
-
-Global settings can also be overridden within `ant()` functions (refer to the API above).
-
-- `@ant-gutter [valid CSS length];`
-  - Defaults to `30px`.
-  - Example to get rid of gutters: `@ant-gutter 0;`
-- `@ant-type [nth | negative-margin]`
-  - Defaults to `nth`.
-
-### Examples
-
-Check out the docs website for a more thorough explanation of each of these techniques.
-
-##### Basic Usage
-
-This contrived example simply demonstrates how to pass sizes and fetch them with the 1-based index.
-
-```scss
-div {
-  width: ant(100px 200px 300px)[2]; // returns 200px
-}
-```
-
-##### Creating a simple grid by fraction
-
-The default
-
-```scss
-.third {
-  float: left;
-  width: ant(1/3)[1]; // returns calc(100% * 1/3 - (30px - 30px * 1/3))
-  margin-right: 30px; // gutter
-
-  &:nth-child(3n) {
-    margin-right: 0; // remove gutter on last element of each row
-  }
-}
-```
-
-##### Asymmetrical grid with flexbox and preprocessor looping
-
-```scss
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.column {
-  $sizes: 1/10 2/10 3/10 4/10;
-
-  @for $i in 1 through 4 {
-    &:nth-child(4n + $i) {
-      width: ant($sizes)[$i];
-    }
-  }
-
-  margin-right: 30px;
-
-  &:nth-child(4n) {
-    margin-right: 0;
-  }
-}
-```
 
 ## Todo
 
+- ant looper
+  - add namespace support
+- Redo article with new API.
+- This needs more thought and may only be useful for the `ant` prop, but it'd be really nice to somehow split sizes lists on newlines, example:
+
+```scss
+$sizes:
+  1px auto 1px
+  2px auto 2px
+;
+
+// get(2) would return 100% - 2px and 100% - 4px respectively.
+```
+
 - Rewrite docs.
+  - Take down old docs.
   - Focus on the strengths of ant (preprocessor looping makes defining a grid really nice, and bespoking grid systems a breeze).
   - Provide example of a vs. flexbox alone methodology to prove speed of development.
   - Don't fight with flexbox. Mention its `flex-grow` looping weakness and the flexbugs, but don't focus on it. Use flexbox in most examples, but be sure to mention IE8 support.
   - Make README a bit beefier.
-  - Make it so users can generate ant-grid.css with custom number of columns and checkboxes for whatever bits they need.
+  - Use React to make grid generator with custom selectors, feature checkboxes, etc. that outputs ant-grid.css, ant-grid.min.css, and a source map.
   - Make some videos!
-- Refactor.
+- Refactor. Lower priority.
   - All those switches and such could be wrapped up in a function.
   - Could probably consolidate a lot of the calc formulas into their own consts since a lot of them are repeated and just have a gutter or two tacked on the end.
-- Create hard widths arg, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers). Slightly low priority as this might take forever.
+- Create hard widths arg, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers). Slightly low priority as this might take a long time.
 - Add more visual tests for a plethora of sizes/params combinations. ant should be bulletproof.
 - Add AVA tests. This is low priority because it will take forever and the visual test seems much more effective during initial development. Should add these before 1.0.0 though.
-- Add `unbump` on a case-by-case basis.

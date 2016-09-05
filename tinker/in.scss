@@ -1,0 +1,34 @@
+@import 'common.css';
+@ant-grid negative-margin;
+
+section {
+  ant: sizes(100px auto 300px);
+
+  > * {
+    &:nth-child(2) {
+      margin-right: sizes(100px auto 300px) get(3) bump(30px * 1.5);
+    }
+  }
+}
+
+// div {
+//   ant: sizes(1/4 1/2) get(2);
+//
+//   if negmar
+//   margin-left: -half gut
+//   margin-right: -half gut
+//   > *
+//     margin-left: half gut
+//     margin-right: half gut
+//
+//   @for $i in 1..length($sizes) {
+//     &:nth-child(length($sizes)n + $i) {
+//       width: getsize
+//     }
+//   }
+//
+//   if nth
+//   &:nth-child(lengthn + length) {
+//     margin-right: 0;
+//   }
+// }

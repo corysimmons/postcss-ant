@@ -1,0 +1,9 @@
+* {
+  background: rgba(0, 0, 255, .05);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 50px;
+  text-align: center;
+}

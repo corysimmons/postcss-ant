@@ -14,14 +14,23 @@
     }
   ],
   "scripts": {
-    "start": "npm-run-all -p chokidar:* browser-sync",
+    "start": "npm-run-all -p chokidar:babel chokidar:sass chokidar:postcss browser-sync",
     "chokidar:babel": "chokidar './lib/index.babel.js' -c 'npm run babel'",
-    "chokidar:stylus": "chokidar './demo/css/src/in.styl' -c 'npm run stylus'",
-    "chokidar:postcss": "chokidar './demo/css/src/out.css' './index.js' -c 'npm run postcss'",
+    "xxx-chokidar:stylus": "chokidar './demo/css/src/in.styl' -c 'npm run stylus'",
+    "chokidar:stylus": "chokidar './tinker/style.styl' -c 'npm run stylus'",
+    "chokidar:sass": "chokidar './tinker/in.scss' -c 'npm run sass'",
+    "xxx-chokidar:postcss": "chokidar './demo/css/src/out.css' './index.js' -c 'npm run postcss'",
+    "chokidar:postcss": "chokidar './tinker/out.css' './index.js' -c 'npm run postcss:sass'",
     "babel": "babel './lib/index.babel.js' -o './index.js'",
-    "stylus": "stylus './demo/css/src/in.styl' -o './demo/css/src/out.css'",
-    "postcss": "postcss --local-plugins -u './index.js' -o './demo/css/style.css' './demo/css/src/out.css'",
-    "browser-sync": "browser-sync start --startPath='./demo' --server --files='./demo/index.html, ./demo/css/style.css, ./index.js' --no-notify --no-open"
+    "xxx-stylus": "stylus './demo/css/src/in.styl' -o './demo/css/src/out.css'",
+    "stylus": "stylus './tinker/style.styl'",
+    "sass": "node-sass tinker/in.scss tinker/out.css",
+    "xxx-postcss": "postcss --local-plugins -u './index.js' -o './demo/css/style.css' './demo/css/src/out.css'",
+    "postcss": "npm-run-all -p postcss:*",
+    "postcss:stylus": "postcss --local-plugins -u './index.js' -o './tinker/final-stylus.css' './tinker/style.css'",
+    "postcss:sass": "postcss --local-plugins -u './index.js' -o './tinker/final.css' './tinker/out.css'",
+    "xxx-browser-sync": "browser-sync start --startPath='./demo' --server --files='./demo/index.html, ./demo/css/style.css, ./index.js' --no-notify --no-open",
+    "browser-sync": "browser-sync start --startPath='./tinker' --server --files='./tinker/index.html, ./tinker/final.css, ./tinker/final-stylus.css, ./index.js' --no-notify --no-open"
   },
   "keywords": [
     "postcss-plugin",
@@ -57,7 +66,10 @@
     "babel-preset-stage-0": "^6.5.0",
     "browser-sync": "^2.14.0",
     "chokidar-cli": "^1.2.0",
+    "eslint": "^3.4.0",
+    "node-sass": "^3.8.0",
     "npm-run-all": "^2.3.0",
+    "postcss-calc": "^5.3.0",
     "standard": "^7.1.2",
     "stylus": "^0.54.5"
   }
