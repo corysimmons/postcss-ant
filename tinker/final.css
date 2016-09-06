@@ -1,18 +1,18 @@
 @import url(common.css);
 @ant-grid negative-margin;
-section {
+.grid {
   display: flex;
   flex-wrap: wrap;
   margin-left: calc(-30px / 2);
   margin-right: calc(-30px / 2); }
-section > * {
+.grid > * {
   margin-left: calc(30px / 2);
   margin-right: calc(30px / 2); }
-section > *:nth-child(3n + 1) {
-  width: 100px; }
-section > *:nth-child(3n + 2) {
-  width: calc((99.99% - (100px + 300px) - ((2 + 1) * 30px)) / 1); }
-section > *:nth-child(3n + 3) {
-  width: 300px; }
-  section > *:nth-child(2) {
-    margin-right: calc(300px  + 45px); }
+.grid > *:nth-child(4n + 1) {
+  width: calc(99.99% * 1/9.47173 - 30px); }
+.grid > *:nth-child(4n + 2) {
+  width: calc(99.99% * 1.618/9.47173 - 30px); }
+.grid > *:nth-child(4n + 3) {
+  width: calc(99.99% * 2.61792/9.47173 - 30px); }
+.grid > *:nth-child(4n + 4) {
+  width: calc(99.99% * 4.2358/9.47173 - 30px); }

@@ -32,6 +32,7 @@ Generic PostCSS plugin usage can be found [here](https://github.com/postcss/post
 
 - ant looper
   - add namespace support
+  - clear: left on {length}n + (length + 1)
 - Redo article with new API.
 - This needs more thought and may only be useful for the `ant` prop, but it'd be really nice to somehow split sizes lists on newlines, example:
 

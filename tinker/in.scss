@@ -1,15 +1,21 @@
 @import 'common.css';
+// @ant-grid negative-margin;
+
 @ant-grid negative-margin;
 
-section {
-  ant: sizes(100px auto 300px);
+$sizes:
+  1/9.471725032
+  1.618/9.471725032
+  2.617924/9.471725032
+  4.235801032/9.471725032;
 
-  > * {
-    &:nth-child(2) {
-      margin-right: sizes(100px auto 300px) get(3) bump(30px * 1.5);
-    }
-  }
+.grid {
+  ant: sizes($sizes);
 }
+
+// .grid > *:nth-child(1) {
+//   margin-right: sizes(1/9.471725032 4.235924/9.471725032 4.235801032/9.471725032) get(2) bump(30px * 1.5);
+// }
 
 // div {
 //   ant: sizes(1/4 1/2) get(2);
