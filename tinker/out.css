@@ -1,4 +1,7 @@
 @import url(common.css);
 @ant-grid negative-margin;
 .grid {
-  ant: sizes(1/9.47173 1.618/9.47173 2.61792/9.47173 4.2358/9.47173); }
+  ant: sizes(ratio(3 pow 1) ratio(3 pow 2) ratio(3 pow 3)) gutter(5px); }
+
+.grid.two {
+  display: none; }

@@ -34,7 +34,7 @@ Generic PostCSS plugin usage can be found [here](https://github.com/postcss/post
   - add namespace support
   - clear: left on {length}n + (length + 1)
   - add vertical and waffle under a `direction()` param
-- Redo article with new API.
+  - add `ratio()` support
 - This needs more thought and may only be useful for the `ant` prop, but it'd be really nice to somehow split sizes lists on newlines, example:
 
 ```scss
@@ -54,7 +54,9 @@ $sizes:
   - Make README a bit beefier.
   - Use React to make grid generator with custom selectors, feature checkboxes, etc. that outputs ant-grid.css, ant-grid.min.css, and a source map.
   - Make some videos!
-- Refactor. Lower priority.
+- Refactor. Lower priority. Get some tips from better devs before starting the refactor.
+  - Conditional regex can probably be done better with JS's `test` method or something.
+  - Errors could definitely be refactored.
   - All those switches and such could be wrapped up in a function.
   - Could probably consolidate a lot of the calc formulas into their own consts since a lot of them are repeated and just have a gutter or two tacked on the end.
 - Create hard widths arg, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers). Slightly low priority as this might take a long time.

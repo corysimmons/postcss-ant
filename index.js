@@ -14,8 +14,6 @@ var _chalk2 = _interopRequireDefault(_chalk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Declarer
-
 var ant = _postcss2.default.plugin('postcss-ant', function () {
   var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
@@ -70,6 +68,44 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
             // Strip quotes
             var quoteless = param.replace(/'|"/g, '');
+
+            // If ratios() appears inside of a param (like sizes(...)).
+            if (quoteless.match(/ratio\([^]*?\)/)) {
+              (function () {
+                // Cache matches in const. p1 is the stuff in between ratio(...)
+                var matches = quoteless.match(/ratio\(([^]*?)\)/g);
+
+                // forEach loop over matches, cleaning then pushing to numerators array.
+                var numerators = [];
+                matches.forEach(function (match) {
+                  // Strip ratio() of its breaking parens.
+                  var cleanRatio = match.replace(/ratio\(|\)/g, '');
+
+                  // Ensure the correct syntax "ratio pow integer". Throw helpful error.
+                  if (!cleanRatio.match(/\s+pow\s+/)) {
+                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': Improper ratio([ratio] pow [integer]) syntax in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nTry a syntax similar to sizes( ' + _chalk2.default.green('ratio(1.618 pow 2)') + ' ).\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                ');
+                  }
+
+                  // Math.pow the ratio with the integer to create numerator.
+                  var ratioAndPowerArr = cleanRatio.split('pow');
+                  var numerator = Math.pow(ratioAndPowerArr[0].trim(), ratioAndPowerArr[1].trim());
+
+                  // Put numerator in numerators array.
+                  numerators.push(numerator);
+                });
+
+                // Combine all numerators to get denominator.
+                var denominator = numerators.reduce(function (prev, next) {
+                  return prev + next;
+                });
+
+                // forEach over original matches. Pass iterator.
+                matches.forEach(function (match, i) {
+                  // Replace entire match with numerators[i]/denominator.
+                  quoteless = quoteless.replace(/ratio\([^]*?\)/, numerators[i] + '/' + denominator);
+                });
+              })();
+            }
 
             // Get key: value matches that coorespond to each param(arg).
             var keyVal = quoteless.match(/(.*)\(([^]*)\)/);
