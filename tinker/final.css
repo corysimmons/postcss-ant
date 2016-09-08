@@ -1,5 +1,4 @@
 @import url(common.css);
-@ant-grid negative-margin;
 .grid {
   display: flex;
   flex-wrap: wrap;

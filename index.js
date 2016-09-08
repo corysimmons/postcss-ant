@@ -28,18 +28,22 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
     css.walkAtRules(function (rule) {
       if (rule.name === 'ant-namespace') {
         namespace = rule.params;
+        rule.remove();
       }
 
       if (rule.name === 'ant-gutter') {
         gutter = rule.params;
+        rule.remove();
       }
 
       if (rule.name === 'ant-grid') {
         grid = rule.params;
+        rule.remove();
       }
 
       if (rule.name === 'ant-support') {
         support = rule.params;
+        rule.remove();
       }
     });
 
