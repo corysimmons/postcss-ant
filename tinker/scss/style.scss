@@ -1,0 +1,38 @@
+@ant-grid negative-margin;
+
+// Common
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  overflow-x: hidden;
+  font-family: sans-serif;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: rgba(blue, .5);
+  padding: 30px;
+}
+
+.grid * {
+  background: rgba(blue, .25);
+  margin-bottom: 30px;
+}
+
+// Tinker
+.grid {
+  $ratio: 1.618;
+
+  ant:
+    sizes(
+      ratio($ratio pow 1)
+      ratio($ratio pow 2)
+      ratio($ratio pow 3)
+      ratio($ratio pow 4)
+      ratio($ratio pow 5)
+    )
+  ;
+}

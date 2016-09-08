@@ -1,0 +1,22 @@
+@ant-grid negative-margin;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  overflow-x: hidden;
+  font-family: sans-serif;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: rgba(255, 0, 0, 0.75);
+  padding: 30px;
+}
+.grid * {
+  background: rgba(255, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+.grid {
+  ant: sizes(ratio(1.618 pow 1) ratio(1.618 pow 2) ratio(1.618 pow 3) ratio(1.618 pow 4) ratio(1.618 pow 5));
+}
