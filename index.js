@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var _postcss = require('postcss');
 
 var _postcss2 = _interopRequireDefault(_postcss);
@@ -58,8 +60,8 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       var antIndication = 'sizes?([^]*?)';
       var antIndicationRegex = namespace !== '' ? new RegExp('' + namespace + antIndication, 'g') : new RegExp(antIndication, 'g');
 
-      if (decl.value.match(antIndicationRegex) || decl.prop === namespace + 'ant') {
-        (function () {
+      if (decl.value.match(antIndicationRegex) || decl.prop === namespace + 'generate-grid') {
+        var _ret = function () {
           // Sorry about all the walking -- too stupid to figure out another way. Entire damn thing needs refactored. 😜
           // 🎵 I am a sinner -- probably gonna sin again. 🎵
 
@@ -127,6 +129,15 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
           // Split up params and assign them to a params object (p).
           var paramsRegex = namespace !== '' ? new RegExp('^' + namespace + 'sizes?([^]*)') : new RegExp(/^sizes?\([^]*\)/);
+
+          // Improper namespacing error.
+          if (!decl.value.match(paramsRegex)) {
+            console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': Couldn\'t process the parameter provided in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nIt\'s possible you set a namespace, and aren\'t using it ' + _chalk2.default.bold('everywhere') + '.\nIf you are using a namespace, make sure ' + _chalk2.default.bold('generate-grid') + ' and ' + _chalk2.default.bold('all') + ' ant methods are prefixed with it.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n          ');
+            return {
+              v: void 0
+            };
+          }
+
           var paramsArr = _postcss2.default.list.space(decl.value.match(paramsRegex)[0]);
           var p = {};
           paramsArr.forEach(function (param) {
@@ -191,7 +202,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           }
 
           // If pluck(...) doesn't work with sizes(...) then throw a helpful error. These 2 args are required.
-          if (!p.sizes[p.pluck - 1] && decl.prop !== namespace + 'ant') {
+          if (!p.sizes[p.pluck - 1] && decl.prop !== namespace + 'generate-grid') {
             console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': pluck(' + _chalk2.default.red(p.pluck) + ') isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry pluck(' + _chalk2.default.green(p.pluck + 1) + ') instead.\n\nAlso, make sure you\'re passing ' + _chalk2.default.bold('something') + ' to your size parameter.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n          ');
           }
 
@@ -440,10 +451,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           };
 
           // Is this an ant decl.prop? If so, loop over it and output appropriate styles.
-          if (decl.prop === namespace + 'ant') {
+          if (decl.prop === namespace + 'generate-grid') {
             // Throw error if pluck().
             if (decl.value.match(/pluck\([^]*?\)/)) {
-              console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': Don\'t use ' + _chalk2.default.red('pluck()') + ' in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\n' + namespace + 'ant: ... automatically iterates over sizes to create loops with (or without) preprocessors.\n\npluck() is used to fetch a particular size, so it\'s not needed in this context.\n\nIf you\'d like to fetch a particular size, try using something like:\n\n' + decl.parent.selector + ' {\n  width: sizes(' + p.sizes + ') pluck(' + p.pluck + ');\n}\n\nIf you\'d like to combine both techniques for offsetting and such, try overwriting the loop afterwards like:\n\n' + decl.parent.selector + ' {\n  ' + namespace + 'ant: sizes(' + p.sizes + ') grid(negative-margin);\n}\n\n' + decl.parent.selector + ' > *:nth-child(' + p.pluck + ') {\n  margin-right: sizes(' + p.sizes + ') pluck(' + (p.pluck + 1) + ') bump(' + p.gutter + ' * 1.5);\n}\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n            ');
+              console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': Don\'t use ' + _chalk2.default.red('pluck()') + ' in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\n' + namespace + 'generate-grid: ... automatically iterates over sizes to create loops with (or without) preprocessors.\n\npluck() is used to fetch a particular size, so it\'s not needed in this context.\n\nIf you\'d like to fetch a particular size, try using something like:\n\n' + decl.parent.selector + ' {\n  width: sizes(' + p.sizes + ') pluck(' + p.pluck + ');\n}\n\nIf you\'d like to combine both techniques for offsetting and such, try overwriting the loop afterwards like:\n\n' + decl.parent.selector + ' {\n  ' + namespace + 'generate-grid: sizes(' + p.sizes + ') grid(negative-margin);\n}\n\n' + decl.parent.selector + ' > *:nth-child(' + p.pluck + ') {\n  margin-right: sizes(' + p.sizes + ') pluck(' + (p.pluck + 1) + ') bump(' + p.gutter + ' * 1.5);\n}\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n            ');
             }
 
             // Applies to current selector.
@@ -585,7 +596,9 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           } else {
             decl.value = getSize();
           }
-        })();
+        }();
+
+        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
       }
     });
   };

@@ -9,8 +9,6 @@
 
 [![Gitter](https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square)](https://gitter.im/postcss-ant/Lobby)
 
-> Note: The `ant` property will likely change to something like `cast` to avoid people namespacing with `ant-`, then having `ant-ant` littered everywhere. The API is still a bit unstable...
-
 ## Getting Started
 
 ### Installation
@@ -30,12 +28,12 @@ Using Webpack or something? Other PostCSS plugin usage instructions can be found
 
 ### Examples
 
-##### ant loop
+##### Grid generation
 
 ```scss
 // in.scss
 .grid {
-  ant:
+  generate-grid:
     sizes(
       1/2
       1/4
@@ -184,7 +182,7 @@ You can override global settings (except `@ant-namespace`) on a local setting le
 
 ###### @ant-namespace
 
-Define a namespace for your project. The `ant` property and all methods get this namespace.
+Define a namespace for your project. The `generate-grid` property and **all** other methods (`sizes(), ratio(), etc.`) get this namespace.
 
 It is up to you to define the separator like so: `@ant-namespace acme-;`
 
@@ -239,12 +237,12 @@ Handy for when you want to cast a symmetrical fractional grid.
 
 `sizes()` is ant's required/primary method used to generate/return the `calc` formulas.
 
-`sizes()` can be used within the `ant` property by itself, but requires `pluck()` outside of the `ant` property.
+`sizes()` can be used within the `generate-grid` property by itself, but requires `pluck()` outside of the `generate-grid` property.
 
 ```scss
 // in-1.scss
 .grid {
-  ant: sizes(100px 1/2 1/2);
+  generate-grid: sizes(100px 1/2 1/2);
 }
 
 // in-2.scss

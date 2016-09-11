@@ -1,4 +1,7 @@
-@ant-namespace ant-;
+.tink {
+  generate-grid: sizes(ratio(1.618, 3) ratio(1.618, 2) ratio(1.618, 7) ratio(1.618, 2)) gutter(15px);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +18,7 @@
   padding: 15px;
 }
 
+.tink *,
 .grid * {
   background: rgba(0, 0, 255, 0.15);
   margin-bottom: 15px;
@@ -33,13 +37,13 @@
 }
 
 .column-1 {
-  width: ant-sizes(ratio(1.618, 2) ratio(1.618, 6) ratio(1.618, 4)) ant-gutter(15px) ant-pluck(1) ant-grid(negative-margin);
+  width: sizes(ratio(1.618, 2) ratio(1.618, 6) ratio(1.618, 4)) gutter(15px) pluck(1) grid(negative-margin);
 }
 
 .column-2 {
-  width: ant-sizes(ratio(1.618, 2) ratio(1.618, 6) ratio(1.618, 4)) ant-gutter(15px) ant-pluck(2) ant-grid(negative-margin);
+  width: sizes(ratio(1.618, 2) ratio(1.618, 6) ratio(1.618, 4)) gutter(15px) pluck(2) grid(negative-margin);
 }
 
 .column-3 {
-  width: ant-sizes(ratio(1.618, 2) ratio(1.618, 6) ratio(1.618, 4)) ant-gutter(15px) ant-pluck(3) ant-grid(negative-margin);
+  width: sizes(ratio(1.618, 2) ratio(1.618, 6) ratio(1.618, 4)) gutter(15px) pluck(3) grid(negative-margin);
 }

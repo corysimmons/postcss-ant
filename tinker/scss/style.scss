@@ -1,4 +1,18 @@
-@ant-namespace ant-;
+@mixin grid() {
+  generate-grid:
+    sizes(
+      ratio(1.618, 3)
+      ratio(1.618, 2)
+      ratio(1.618, 7)
+      ratio(1.618, 2)
+    )
+    gutter(15px)
+  ;
+}
+
+.tink {
+  @include grid;
+}
 
 // Common
 * {
@@ -17,6 +31,7 @@
   padding: 15px;
 }
 
+.tink *,
 .grid * {
   background: rgba(blue, .15);
   margin-bottom: 15px;
@@ -47,10 +62,10 @@ $length: length($sizes);
 @for $i from 1 through $length {
   .column-#{$i} {
     width:
-      ant-sizes($sizes)
-      ant-gutter($gutter)
-      ant-pluck($i)
-      ant-grid(negative-margin)
+      sizes($sizes)
+      gutter($gutter)
+      pluck($i)
+      grid(negative-margin)
     ;
   }
 }
