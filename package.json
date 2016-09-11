@@ -1,6 +1,6 @@
 {
   "name": "postcss-ant",
-  "version": "0.1.2-beta",
+  "version": "0.1.2",
   "description": "Grids redefined.",
   "license": "MIT",
   "author": {
@@ -10,7 +10,7 @@
     {
       "name": "Neil Kistner",
       "email": "neil.kistner@gmail.com",
-      "url": "https://neilkistner.com"
+      "url": "http://neilkistner.com"
     }
   ],
   "scripts": {

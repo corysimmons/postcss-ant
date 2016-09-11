@@ -1,28 +1,8 @@
 # Todo
 
 - Education/marketing
-  - Take down wall-of-text old docs.
-  - README
-    - Use fancier logo.
-    - ToC
-    - API
-      - global settings ✔
-        - namespace
-        - gutter
-        - grid
-        - support
-      - size ✔
-      - sizes ✔
-      - pluck
-      - gutter
-      - grid
-      - support
-      - pow
-      - sum
-      - ratio
-      - bump
-      - generate-grid
   - Rewrite docs.
+    - Take down whatever is up. Add empty landing page.
     - API
     - Guides
     - Focus on the strengths of ant
