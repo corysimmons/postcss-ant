@@ -5,18 +5,25 @@
 </p>
 
 <p align="center">
-  **by Cory Simmons**
+  <b>by Cory Simmons</b>
 </p>
 
 <p align="center">
-  [![Gitter](https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square)](https://gitter.im/postcss-ant/Lobby)
+  <a href="https://gitter.im/postcss-ant/Lobby" target="_blank">
+    <img src="https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square" alt="Gitter chat badge">
+  </a>
 </p>
 
 <p align="center">
-  [![npm](https://img.shields.io/npm/v/postcss-ant.svg?maxAge=2592000)](https://www.npmjs.com/package/postcss-ant)
-  [![Dependencies](https://img.shields.io/david/corysimmons/postcss-ant.svg?maxAge=2592000)](https://github.com/corysimmons/postcss-ant/blob/master/package.json)
-  [![devDependencies](https://img.shields.io/david/dev/corysimmons/postcss-ant.svg?maxAge=2592000)](https://github.com/corysimmons/postcss-ant/blob/master/package.json)
-  [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/corysimmons/postcss-ant/blob/master/LICENSE)
+  <a href="https://www.npmjs.com/package/postcss-ant" target="_blank">
+    <img src="https://img.shields.io/npm/v/postcss-ant.svg?maxAge=2592000" alt="npm version badge">
+  </a>
+  <a href="https://github.com/corysimmons/postcss-ant/blob/master/package.json" target="_blank">
+    <img src="https://img.shields.io/david/dev/corysimmons/postcss-ant.svg?maxAge=2592000" alt="Dev dependencies status badge">
+  </a>
+  <a href="https://github.com/corysimmons/postcss-ant/blob/master/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="MIT license badge">
+  </a>
 </p>
 
 ## Getting Started
