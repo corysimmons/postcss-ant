@@ -9,6 +9,8 @@
 
 [![Gitter](https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square)](https://gitter.im/postcss-ant/Lobby)
 
+> Note: The `ant` property will likely change to something like `cast` to avoid people namespacing with `ant-`, then having `ant-ant` littered everywhere. The API is still a bit unstable...
+
 ## Getting Started
 
 ### Installation
@@ -19,7 +21,7 @@
 
 `postcss -w -u postcss-ant -o out.css in.css`
 
-Generic PostCSS plugin usage can be found [here](https://github.com/postcss/postcss#usage).
+Using Webpack or something? Other PostCSS plugin usage instructions can be found [here](https://github.com/postcss/postcss#usage).
 
 ### CLI Usage with Sass
 
@@ -87,6 +89,70 @@ Generic PostCSS plugin usage can be found [here](https://github.com/postcss/post
 }
 ```
 
+##### Bespoking asymmetrical ratio grid classes with preprocessor loops
+
+```scss
+// in.scss
+$gutter: 15px;
+$ratio: 1.618;
+$sizes:
+  ratio($ratio, 2)
+  ratio($ratio, 6)
+  ratio($ratio, 4)
+;
+$length: length($sizes);
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter / 2;
+  margin-right: -$gutter / 2;
+
+  > * {
+    margin-left: $gutter / 2;
+    margin-right: $gutter / 2;
+  }
+}
+
+@for $i from 1 through $length {
+  .column-#{$i} {
+    width:
+      sizes($sizes)
+      gutter($gutter)
+      pluck($i)
+      grid(negative-margin)
+    ;
+  }
+}
+```
+
+```scss
+// final.css
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -7.5px;
+  margin-right: -7.5px;
+}
+
+.grid > * {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+
+.column-1 {
+  width: calc(99.99% * 2.6179240000000004/27.41346045246828 - 15px);
+}
+
+.column-2 {
+  width: calc(99.99% * 17.942010382692274/27.41346045246828 - 15px);
+}
+
+.column-3 {
+  width: calc(99.99% * 6.853526069776002/27.41346045246828 - 15px);
+}
+```
+
 #### Order of operations
 
 Math methods are performed before anything else in this order:
@@ -108,20 +174,42 @@ Sizes take precedence in this order:
 
 > Note: Returned `calc` formulas are gutter-aware/grid-friendly (it can get crazy), so don't take the pseudocode above literally.
 
-### API
+## API
 
 You can mix-and-match a bunch of these functions. ant has pretty friendly console errors to guide you.
 
+### Global Settings
+
+You can override global settings (except `@ant-namespace`) on a local setting level.
+
+###### @ant-namespace
+
+Define a namespace for your project. The `ant` property and all methods get this namespace.
+
+It is up to you to define the separator like so: `@ant-namespace acme-;`
+
+###### @ant-gutter
+
+A global gutter setting. `30px` by default. Can be any valid CSS length. Can be overridden with `gutter()`.
+
+###### @ant-grid
+
+Defines the type of `calc` formulas to return results for. `nth` by default. Can be `nth` or `negative-margin`. Can be overridden with `grid()`.
+
+###### @ant-support
+
+Defines if you want to support older browsers. `flexbox` by default. Can be `flexbox` or `float`. Can be overridden with `support()`.
+
 ##### size(*size*)
 
-"Size" can be a lot of things:
+*size* can be a lot of things:
 - any valid CSS length
   - px, em, %, etc.
 - fractions
 - decimals
 - `auto` keyword
 
-Handy for when you want to cast a symmetrical fractional nth grid.
+Handy for when you want to cast a symmetrical fractional grid.
 
 ```scss
 // in.scss
@@ -149,9 +237,9 @@ Handy for when you want to cast a symmetrical fractional nth grid.
 
 ##### sizes(*space separated sizes*)
 
-`sizes()` can be used within the `ant` property by itself, but requires `pluck()` outside of the `ant` property.
-
 `sizes()` is ant's required/primary method used to generate/return the `calc` formulas.
+
+`sizes()` can be used within the `ant` property by itself, but requires `pluck()` outside of the `ant` property.
 
 ```scss
 // in-1.scss

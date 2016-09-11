@@ -27,7 +27,6 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
     var gutter = options.gutter || '30px';
     var grid = options.grid || 'nth';
     var support = options.support || 'flexbox';
-
     // Did the user specify global settings?
     css.walkAtRules(function (rule) {
       if (rule.name === 'ant-namespace') {
@@ -56,12 +55,11 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
     css.walkDecls(function (decl) {
       // Tests if user is passing size(...) OR sizes(...) and pluck(...) -- indicating this is an ant declaration value.
-      var antIndication = /sizes?\([^]*?\)/;
-      var antIndicationRegex = namespace !== '' ? new RegExp(namespace + '(' + antIndication + ')', 'g') : new RegExp(antIndication, 'g');
+      var antIndication = 'sizes?([^]*?)';
+      var antIndicationRegex = namespace !== '' ? new RegExp('' + namespace + antIndication, 'g') : new RegExp(antIndication, 'g');
 
-      if (decl.value.match(antIndicationRegex)) {
+      if (decl.value.match(antIndicationRegex) || decl.prop === namespace + 'ant') {
         (function () {
-          // Order of operations: pow -> sum -> ratio -> sizes.
           // Sorry about all the walking -- too stupid to figure out another way. Entire damn thing needs refactored. 😜
           // 🎵 I am a sinner -- probably gonna sin again. 🎵
 
@@ -134,13 +132,13 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           paramsArr.forEach(function (param) {
             // Reject any non-ant params.
             var validParams = 'sizes?\\(|pluck\\(|grid\\(|gutter\\(|bump\\(|support\\(';
-            var validParamsRegex = namespace !== '' ? new RegExp('^' + namespace + '(' + validParams + ')') : new RegExp('^' + validParams);
+            var validParamsRegex = namespace !== '' ? new RegExp('^' + namespace + validParams) : new RegExp('^' + validParams);
 
             if (!param.match(validParamsRegex)) {
               console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': ' + _chalk2.default.red(param) + ' isn\'t a valid parameter in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nTry one of these parameters instead: ' + _chalk2.default.green('sizes, pluck, grid, gutter, bump, support') + '\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n            ');
             }
 
-            // Strip quotes
+            // Strip quotes.
             var quoteless = param.replace(/'|"/g, '');
 
             // Get key: value matches that coorespond to each param(arg).
@@ -165,7 +163,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
               console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': You can\'t pass pluck(' + _chalk2.default.red(p.pluck) + ') along with ' + _chalk2.default.bold('singular') + ' size(' + _chalk2.default.red(p.size) + ') in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nTry removing pluck(' + _chalk2.default.red(p.pluck) + ') or changing size(' + _chalk2.default.red(p.size) + ') to sizes(' + _chalk2.default.green(p.size) + ').\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n            ');
             }
 
-            // Throw error if user passes too many args to size()
+            // Throw error if user passes too many args to size().
             if (_postcss2.default.list.space(p.size).length > 1) {
               console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': You tried passing too many sizes to the singular ' + _chalk2.default.red('size()') + ' function in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nTry just passing a single size like size(' + _chalk2.default.green(_postcss2.default.list.space(p.size)[0]) + ')\nOr use the ' + _chalk2.default.green('sizes()') + ' function along with ' + _chalk2.default.green('pluck()') + ' instead.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n            ');
             }
@@ -177,7 +175,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           // Split sizes.
           p.sizes = _postcss2.default.list.space(p.sizes);
 
-          // Convert pluck(...) to number for use in arrays later. Everything else are strings.
+          // Convert pluck(...) to number for use in arrays later. Everything else should be strings.
           p.pluck = Number(p.pluck);
 
           // Ensure bump is something usable.
@@ -193,7 +191,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           }
 
           // If pluck(...) doesn't work with sizes(...) then throw a helpful error. These 2 args are required.
-          if (!p.sizes[p.pluck - 1] && decl.prop !== 'ant') {
+          if (!p.sizes[p.pluck - 1] && decl.prop !== namespace + 'ant') {
             console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': pluck(' + _chalk2.default.red(p.pluck) + ') isn\'t a valid index in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nRemember the indexes are 1-based, not 0-based like you\'re probably used to.\nTry pluck(' + _chalk2.default.green(p.pluck + 1) + ') instead.\n\nAlso, make sure you\'re passing ' + _chalk2.default.bold('something') + ' to your size parameter.\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n          ');
           }
 
@@ -442,7 +440,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           };
 
           // Is this an ant decl.prop? If so, loop over it and output appropriate styles.
-          if (decl.prop === 'ant') {
+          if (decl.prop === namespace + 'ant') {
             // Throw error if pluck().
             if (decl.value.match(/pluck\([^]*?\)/)) {
               console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': Don\'t use ' + _chalk2.default.red('pluck()') + ' in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\n' + namespace + 'ant: ... automatically iterates over sizes to create loops with (or without) preprocessors.\n\npluck() is used to fetch a particular size, so it\'s not needed in this context.\n\nIf you\'d like to fetch a particular size, try using something like:\n\n' + decl.parent.selector + ' {\n  width: sizes(' + p.sizes + ') pluck(' + p.pluck + ');\n}\n\nIf you\'d like to combine both techniques for offsetting and such, try overwriting the loop afterwards like:\n\n' + decl.parent.selector + ' {\n  ' + namespace + 'ant: sizes(' + p.sizes + ') grid(negative-margin);\n}\n\n' + decl.parent.selector + ' > *:nth-child(' + p.pluck + ') {\n  margin-right: sizes(' + p.sizes + ') pluck(' + (p.pluck + 1) + ') bump(' + p.gutter + ' * 1.5);\n}\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n            ');
@@ -508,6 +506,18 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
                   prop: 'width',
                   value: getSize()
                 }).moveTo(decl.parent.next());
+
+                // Clear new rows on float layouts.
+                if (p.pluck === 1) {
+                  if (p.support === 'float') {
+                    if (p.grid === 'nth') {
+                      decl.clone({
+                        prop: 'clear',
+                        value: 'left'
+                      }).moveTo(decl.parent.next());
+                    }
+                  }
+                }
               };
 
               // Remove margin-right from last element in row in nth grids.

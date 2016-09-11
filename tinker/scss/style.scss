@@ -1,3 +1,5 @@
+@ant-namespace ant-;
+
 // Common
 * {
   margin: 0;
@@ -12,194 +14,43 @@
   text-align: center;
   font-weight: bold;
   color: rgba(blue, .5);
-  padding: 30px;
+  padding: 15px;
 }
 
-[data-ant*="grid("] * {
-  background: rgba(blue, .25);
-  margin-bottom: 30px;
-}
-
-// Ratios
-// .grid {
-//   $ratio: 1.618;
-//
-//   ant:
-//     sizes(
-//       ratio($ratio pow 1)
-//       ratio($ratio pow 2)
-//       ratio($ratio pow 3)
-//       ratio($ratio pow 4)
-//       ratio($ratio pow 5)
-//     )
-//   ;
-// }
-
-// Attr Selectors
-$columns: 3;
-$gutter: 2px;
-$breakpoints: (
-  'mobile': 0,
-  'tablet': 700px,
-  'desktop': 1000px
-);
-
-body {
-  @media (min-width: map-get($breakpoints, 'tablet')) {
-    background: rgba(red, .25);
-  }
-  @media (min-width: map-get($breakpoints, 'desktop')) {
-    background: rgba(green, .25);
-  }
-}
-
-// nth
-// [data-ant*="grid(nth)"] {
-//   display: flex;
-//   flex-wrap: wrap;
-//
-//   > *:last-child {
-//     margin-right: 0 !important;
-//   }
-//
-//   @each $bp, $breakpoint in $breakpoints {
-//     @media (min-width: $breakpoint) {
-//       @for $i from 1 through $columns {
-//         [data-ant*="#{$bp}-columns(#{$i})"] {
-//           width:
-//             size(#{$i}/#{$columns})
-//             gutter($gutter)
-//           ;
-//           margin-right: $gutter;
-//         }
-//
-//         [data-ant*="#{$bp}-columns(#{$i}, break)"] {
-//           width:
-//             size(#{$i}/#{$columns})
-//             gutter($gutter)
-//           ;
-//           margin-right: 0;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// negative-margin
-// [data-ant*="grid(negative-margin)"] {
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin-left: -$gutter / 2;
-//   margin-right: -$gutter / 2;
-//
-//   > * {
-//     margin-left: $gutter / 2;
-//     margin-right: $gutter / 2;
-//   }
-//
-//   @each $bp, $breakpoint in $breakpoints {
-//     @media (min-width: $breakpoint) {
-//       @for $i from 1 through $columns {
-//         [data-ant*="#{$bp}-columns(#{$i})"] {
-//           width:
-//             size(#{$i}/#{$columns})
-//             gutter($gutter)
-//             grid(negative-margin)
-//           ;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// negative-margin ratio classes
-// [data-ant*="grid(negative-margin)"] {
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin-left: -$gutter / 2;
-//   margin-right: -$gutter / 2;
-//
-//   > * {
-//     margin-left: $gutter / 2;
-//     margin-right: $gutter / 2;
-//   }
-//
-//   $numerators: ();
-//
-//   @for $i from 1 through $columns {
-//     $numerators: append($numerators, pow(1.618, #{$i}));
-//   }
-//
-//   @each $bp, $breakpoint in $breakpoints {
-//     @media (min-width: $breakpoint) {
-//       @for $i from 1 through $columns {
-//         [data-ant*="#{$bp}-columns(#{$i})"] {
-//           width:
-//             size(pow(1.618, #{$i})/summer(#{$numerators}))
-//             gutter($gutter)
-//             grid(negative-margin)
-//           ;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// $columns: 5;
-// $ratio: 1.618;
-//
-// $numerators: ();
-// @for $i from 1 through $columns {
-//   $numerators: append($numerators, pow($ratio, #{$i}));
-// }
-
-[data-ant*="grid(negative-margin)"] {
-  // ant:
-  //   sizes(
-  //     pow($ratio, 2)/sum($numerators)
-  //     pow($ratio, 1)/sum($numerators)
-  //     pow($ratio, 5)/sum($numerators)
-  //     pow($ratio, 3)/sum($numerators)
-  //     pow($ratio, 4)/sum($numerators)
-  //   )
-  //   gutter(5px)
-  // ;
-  ant:
-    sizes(
-      ratio(1.618, 1)
-      ratio(1.618, 2)
-      ratio(1.618, 3)
-      ratio(1.618, 4)
-    )
-  ;
-}
-
-.thirds {
-  width: size(1/3);
-  margin-right: 30px;
-
-  &:nth-child(3n + 3) {
-    margin-right: 0;
-  }
+.grid * {
+  background: rgba(blue, .15);
+  margin-bottom: 15px;
 }
 
 // in.scss
+$gutter: 15px;
+$ratio: 1.618;
+$sizes:
+  ratio($ratio, 2)
+  ratio($ratio, 6)
+  ratio($ratio, 4)
+;
+$length: length($sizes);
+
 .grid {
-  ant: sizes(100px 1/2 1/2);
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter / 2;
+  margin-right: -$gutter / 2;
+
+  > * {
+    margin-left: $gutter / 2;
+    margin-right: $gutter / 2;
+  }
 }
 
-// in.scss
-.half-sans-100px {
-  width: sizes(100px 1/2 1/2) pluck(2);
-}
-
-.grid {
-  ant:
-    sizes(
-      1/2
-      1/4
-      1/4
-    )
-    grid(negative-margin)
-  ;
+@for $i from 1 through $length {
+  .column-#{$i} {
+    width:
+      ant-sizes($sizes)
+      ant-gutter($gutter)
+      ant-pluck($i)
+      ant-grid(negative-margin)
+    ;
+  }
 }

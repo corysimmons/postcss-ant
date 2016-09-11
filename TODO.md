@@ -1,23 +1,28 @@
 # Todo
 
-- ant loop
-  - add namespace support
-  - clear: left on {length}n + (length + 1)
-  - add vertical and waffle under a `direction()` param
-- It might be nice to somehow split sizes lists on newlines. This would let users cast varying sizes-per-row. Would require another param. Might only be useful for ant loop.
-
-```scss
-$sizes:
-  50px auto 50px
-  200px auto 200px
-;
-
-// get(2) would return 100% - 100px and 100% - 400px respectively.
-```
-
+- Convert confusing `ant` property to `cast`.
 - Education/marketing
   - Take down wall-of-text old docs.
-  - Add API to README.
+  - README
+    - Use fancier logo.
+    - ToC
+    - API
+      - global settings ✔
+        - namespace
+        - gutter
+        - grid
+        - support
+      - size ✔
+      - sizes ✔
+      - pluck
+      - gutter
+      - grid
+      - support
+      - pow
+      - sum
+      - ratio
+      - bump
+      - ant (cast)
   - Rewrite docs.
     - API
     - Guides
@@ -29,11 +34,33 @@ $sizes:
   - Redesign site.
     - Homepage
     - Use React to make grid generator with custom selectors, feature checkboxes, etc. that outputs ant.css, ant.min.css, and a source map.
-- Refactor!!! Lower priority but god it needs some ES6 sweet functional loving. Get some tips from better devs before starting the refactor. So embarrassed...
+- Clean up repo. Migrate tinkering stuff out.
+- Tests
+  - Add visual tests first.
+  - If everything looks right, use values to create AVA tests.
+  - Should be in before 1.0.0.
+  - Do refactoring sweeps before, after, and during.
+- Refactor with some sweet functional loving. Get some tips from better devs before starting the refactor. So embarrassed... In no particular order:
+  - Consider pulling everything out to postcss-value-parser. All the regex crap everywhere is pretty silly.
   - Conditional regex needs to be `test` method.
-  - Errors need to use the postcss error handling, or at least be abstracted into a function.
+  - Break modules out.
+  - Break the math functions out to postcss plugins. postcss-sum, postcss-ratio are pretty specific, but pow could be wrapped up in something like postcss-math (which had access to all JS math).
+  - Destructure variables everywhere -- at least in global options.
+  - `namespace` could be dumbed down to '' and then just `${namespace}foooo` instead of the stupid RegExp objects everywhere.
+  - Errors need to use the postcss error handling, or at least be abstracted into a function. It might be nice to abstract errors out to markdown or something.
   - All those switches and such could be wrapped up in a function.
   - Could probably consolidate a lot of the calc formulas into their own consts since a lot of them are repeated and just have a gutter or two tacked on the end.
-- Create hard widths arg, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers). Slightly low priority as this might take a long time and doesn't seem to address a lot of use cases at first glance.
-- Add more visual tests for a plethora of sizes/params combinations. ant should be bulletproof.
-- Add AVA tests. This is low priority because it will take forever and the visual test seems much more effective during initial development. Should add these before 1.0.0 though.
+- Possible features
+  - Don't require sizes() in ant prop. `ant: grid(...)` should cast a grid. if no sizes, require `grid()`.
+  - Vertical and waffle to ant loop under a `direction()` param after refactoring into declarer.
+  - Create hard widths arg, so 1/5 of a container is 1/5 of that container (not whatever is leftover after subtracting fixed numbers). Slightly low priority as this might take a long time and doesn't seem to address a lot of use cases at first glance.
+  - It might be nice to somehow split sizes lists on newlines. This would let users cast varying sizes-per-"row". Would require another param. Might only be useful for ant loop.
+
+```scss
+$sizes:
+  50px auto 50px
+  200px auto 200px
+;
+
+// get(2) would return 100% - 100px and 100% - 400px respectively.
+```

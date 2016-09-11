@@ -1,7 +1,7 @@
 {
   "name": "postcss-ant",
-  "version": "0.1.1-beta",
-  "description": "A size-getting function that accepts fractions, decimals, fixed numbers, and everything in-between.",
+  "version": "0.1.2-beta",
+  "description": "Grids redefined.",
   "license": "MIT",
   "author": {
     "name": "Cory Simmons"
@@ -58,25 +58,23 @@
   "eslintConfig": {
     "extends": "standard"
   },
-  "dependencies": {
-    "chalk": "^1.1.3",
-    "postcss": "^5.1.1"
-  },
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-plugin-add-module-exports": "*",
-    "babel-preset-es2015": "*",
-    "babel-preset-stage-0": "*",
-    "browser-sync": "*",
-    "chokidar-cli": "*",
-    "eslint": "*",
+    "babel-cli": "^6.14.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "browser-sync": "^2.14.3",
+    "chalk": "^1.1.3",
+    "chokidar-cli": "^1.2.0",
+    "eslint": "^3.4.0",
     "less": "^2.7.1",
-    "node-sass": "*",
-    "npm-run-all": "*",
-    "postcss-calc": "*",
+    "node-sass": "^3.9.3",
+    "npm-run-all": "^3.1.0",
+    "postcss": "^5.2.0",
+    "postcss-calc": "^5.3.1",
     "postcss-cli": "^2.6.0",
     "postcss-value-parser": "^3.3.0",
-    "standard": "*",
-    "stylus": "*"
+    "standard": "^8.0.0",
+    "stylus": "^0.54.5"
   }
 }
