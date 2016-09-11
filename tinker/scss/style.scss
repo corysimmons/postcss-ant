@@ -182,3 +182,24 @@ body {
     margin-right: 0;
   }
 }
+
+// in.scss
+.grid {
+  ant: sizes(100px 1/2 1/2);
+}
+
+// in.scss
+.half-sans-100px {
+  width: sizes(100px 1/2 1/2) pluck(2);
+}
+
+.grid {
+  ant:
+    sizes(
+      1/2
+      1/4
+      1/4
+    )
+    grid(negative-margin)
+  ;
+}

@@ -65,3 +65,53 @@
 .thirds:nth-child(3n + 3) {
   margin-right: 0;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid > *  {
+  margin-right: 30px;
+}
+
+.grid > *:nth-child(3n + 1)  {
+  width: 100px;
+}
+
+.grid > *:nth-child(3n + 2)  {
+  width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
+}
+
+.grid > *:nth-child(3n + 3)  {
+  width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
+  margin-right: 0;
+}
+
+.half-sans-100px {
+  width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-30px / 2);
+  margin-right: calc(-30px / 2);
+}
+
+.grid > *  {
+  margin-left: calc(30px / 2);
+  margin-right: calc(30px / 2);
+}
+
+.grid > *:nth-child(3n + 1)  {
+  width: calc(99.99% * 1/2 - 30px);
+}
+
+.grid > *:nth-child(3n + 2)  {
+  width: calc(99.99% * 1/4 - 30px);
+}
+
+.grid > *:nth-child(3n + 3)  {
+  width: calc(99.99% * 1/4 - 30px);
+}
