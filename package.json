@@ -75,6 +75,7 @@
     "npm-run-all": "*",
     "postcss-calc": "*",
     "postcss-cli": "^2.6.0",
+    "postcss-value-parser": "^3.3.0",
     "standard": "*",
     "stylus": "*"
   }

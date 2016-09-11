@@ -8,6 +8,10 @@ var _postcss = require('postcss');
 
 var _postcss2 = _interopRequireDefault(_postcss);
 
+var _postcssValueParser = require('postcss-value-parser');
+
+var _postcssValueParser2 = _interopRequireDefault(_postcssValueParser);
+
 var _chalk = require('chalk');
 
 var _chalk2 = _interopRequireDefault(_chalk);
@@ -57,6 +61,72 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       if (decl.value.match(antIndicationRegex)) {
         (function () {
+          // Order of operations: pow -> sum -> ratio -> sizes.
+          // Sorry about all the walking -- too stupid to figure out another way. Entire damn thing needs refactored. 😜
+          // 🎵 I am a sinner -- probably gonna sin again. 🎵
+
+          // pow
+          (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
+            if (node.type === 'function' && node.value === 'pow') {
+              var powArgs = node.nodes.filter(function (a) {
+                return a.type === 'word';
+              }).map(function (a) {
+                return Number(a.value);
+              });
+              var powResult = Math.pow(powArgs[0], powArgs[1]);
+              decl.value = decl.value.replace(/pow\([^]+?\)/, powResult);
+            }
+          });
+
+          // sum
+          (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
+            if (node.type === 'function' && node.value === 'sum') {
+              var sumArgs = node.nodes.filter(function (a) {
+                return a.type === 'word';
+              }).map(function (a) {
+                return Number(a.value);
+              });
+              var sumResult = sumArgs.reduce(function (prev, curr) {
+                return prev + curr;
+              });
+              decl.value = decl.value.replace(/sum\([^]+?\)/, sumResult);
+            }
+          });
+
+          // ratio()
+          // Collect ratios into array.
+          var ratios = [];
+          (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
+            if (node.type === 'function' && node.value === 'ratio') {
+              ratios.push(node);
+            }
+          });
+
+          // Loop over ratios, performing pow to create numerators. Stashing those numerators in an array.
+          var numerators = [];
+          ratios.forEach(function (ratio) {
+            var ratioArgs = ratio.nodes.filter(function (a) {
+              return a.type === 'word';
+            }).map(function (a) {
+              return Number(a.value);
+            });
+            var numerator = Math.pow(ratioArgs[0], ratioArgs[1]);
+            numerators.push(numerator);
+          });
+
+          // Get sum of numerators as denominator.
+          var denominator = void 0;
+          if (numerators.length) {
+            denominator = numerators.reduce(function (prev, curr) {
+              return prev + curr;
+            });
+          }
+
+          // Replace ratio() instances with the resulting fraction.
+          ratios.forEach(function (ratio, i) {
+            decl.value = decl.value.replace(/ratio\([^]+?\)/, numerators[i] + '/' + denominator);
+          });
+
           // Split up params and assign them to a params object (p).
           var paramsRegex = namespace !== '' ? new RegExp('^' + namespace + 'sizes?([^]*)') : new RegExp(/^sizes?\([^]*\)/);
           var paramsArr = _postcss2.default.list.space(decl.value.match(paramsRegex)[0]);
@@ -72,44 +142,6 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
             // Strip quotes
             var quoteless = param.replace(/'|"/g, '');
-
-            // If ratios() appears inside of a param (like sizes(...)).
-            if (quoteless.match(/ratio\([^]*?\)/)) {
-              (function () {
-                // Cache matches in const. p1 is the stuff in between ratio(...)
-                var matches = quoteless.match(/ratio\(([^]*?)\)/g);
-
-                // forEach loop over matches, cleaning then pushing to numerators array.
-                var numerators = [];
-                matches.forEach(function (match) {
-                  // Strip ratio() of its breaking parens.
-                  var cleanRatio = match.replace(/ratio\(|\)/g, '');
-
-                  // Ensure the correct syntax "ratio pow integer". Throw helpful error.
-                  if (!cleanRatio.match(/\s+pow\s+/)) {
-                    console.log('\n' + line + '\n\n' + _chalk2.default.red.underline('ant error') + ': Improper ratio([ratio] pow [integer]) syntax in:\n\n' + decl.parent.selector + ' {\n  ' + decl + ';\n}\n\nTry a syntax similar to sizes( ' + _chalk2.default.green('ratio(1.618 pow 2)') + ' ).\n\nIf you\'re pretty sure you\'re doing everything right, please file a bug at:\nhttps://github.com/corysimmons/postcss-ant/issues/new\n\n' + line + '\n\n                ');
-                  }
-
-                  // Math.pow the ratio with the integer to create numerator.
-                  var ratioAndPowerArr = cleanRatio.split('pow');
-                  var numerator = Math.pow(ratioAndPowerArr[0].trim(), ratioAndPowerArr[1].trim());
-
-                  // Put numerator in numerators array.
-                  numerators.push(numerator);
-                });
-
-                // Combine all numerators to get denominator.
-                var denominator = numerators.reduce(function (prev, next) {
-                  return prev + next;
-                });
-
-                // forEach over original matches. Pass iterator.
-                matches.forEach(function (match, i) {
-                  // Replace entire match with numerators[i]/denominator.
-                  quoteless = quoteless.replace(/ratio\([^]*?\)/, numerators[i] + '/' + denominator);
-                });
-              })();
-            }
 
             // Get key: value matches that coorespond to each param(arg).
             var keyVal = quoteless.match(/(.*)\(([^]*)\)/);
