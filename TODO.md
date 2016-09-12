@@ -3,7 +3,6 @@
 - Before tests
   - Add assets to npmignore.
   - Ensure dependencies are being installed. Maybe it's just my system but npm doesn't seem to be grabbing them.
-  - Update netmag exercise repo.
   - Update ielove (with flexibility.js) and Boy (with CDN'd and local jQueries) then test on IE8. Test on various browsers to confirm the 99.99% stuff is still accurate. Check the Lost issue tracker to see exactly why they changed that.
   - Add example images and better examples to README docs.
 - Tests
