@@ -1,7 +1,7 @@
 <h1 align="center">postcss-ant</h1>
 
 <p align="center">
-  <img src="https://corysimmons.github.io/postcss-ant/img/postcss-ant-logo.png" width="200">
+  <img src="assets/postcss-ant-logo.png" width="200" alt="Cartoon ant with a cape.">
 </p>
 
 <p align="center">
@@ -15,19 +15,19 @@
 
 <p align="center">
   <a href="https://gitter.im/postcss-ant/Lobby" target="_blank">
-    <img src="https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square" alt="Gitter chat badge">
+    <img src="https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square" alt="Gitter chat badge.">
   </a>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/postcss-ant" target="_blank">
-    <img src="https://img.shields.io/npm/v/postcss-ant.svg?maxAge=2592000" alt="npm version badge">
+    <img src="https://img.shields.io/npm/v/postcss-ant.svg?maxAge=2592000" alt="npm version badge.">
   </a>
   <a href="https://github.com/corysimmons/postcss-ant/blob/master/package.json" target="_blank">
-    <img src="https://img.shields.io/david/dev/corysimmons/postcss-ant.svg?maxAge=2592000" alt="Dev dependencies status badge">
+    <img src="https://img.shields.io/david/dev/corysimmons/postcss-ant.svg?maxAge=2592000" alt="Dev dependencies status badge.">
   </a>
   <a href="https://github.com/corysimmons/postcss-ant/blob/master/LICENSE" target="_blank">
-    <img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="MIT license badge">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="MIT license badge.">
   </a>
 </p>
 
@@ -70,12 +70,14 @@
 
 ### CLI Usage
 
-`postcss -w -u postcss-ant -o out.css in.css`
+- `npm i -D postcss-cli`
+- `postcss -w -u postcss-ant -o out.css in.css`
 
 Using Webpack or something? Other PostCSS plugin usage instructions can be found [here](https://github.com/postcss/postcss#usage).
 
 ### CLI Usage with Sass
 
+- `npm i -D node-sass`
 - `node-sass -w in.scss out.css`
 - `postcss -w -u postcss-ant -o final.css out.css`
 
@@ -85,15 +87,23 @@ All of ant's functionality works with vanilla CSS, or any preprocessor. Througho
 
 ##### Grid generation
 
+<img src="assets/example-1.png" alt="5 elements in a 3-column grid where the first column is 1/2 of its container, and the next 2 columns are 1/4.">
+
+```html
+<div class="grid">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+```
+
 ```scss
 // in.scss
 .grid {
   generate-grid:
-    sizes(
-      1/2
-      1/4
-      1/4
-    )
+    sizes(1/2 1/4 1/4)
     grid(negative-margin)
   ;
 }
@@ -128,24 +138,70 @@ All of ant's functionality works with vanilla CSS, or any preprocessor. Througho
 
 ##### Plucking
 
+<img src="assets/example-2.png" alt="3 elements in a 3-column grid where the first element is 100px wide and the next 2 elements are each 1/2 of the remaining space.">
+
+```html
+<div class="grid">
+  <div class="fixed-100px">1</div>
+  <div class="half-sans-100px">2</div>
+  <div class="half-sans-100px">3</div>
+</div>
+```
+
 ```scss
 // in.scss
+.fixed-100px {
+  float: left;
+  width: 100px;
+  margin-right: 30px;
+}
+
 .half-sans-100px {
+  float: left;
   width:
-    sizes(100px 1/2 1/2)
+    sizes(100px 1/2)
     pluck(2)
   ;
+  margin-right: 30px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 ```
 
 ```scss
 // final.css
+.fixed-100px {
+  float: left;
+  width: 100px;
+  margin-right: 30px;
+}
+
 .half-sans-100px {
+  float: left;
   width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
+  margin-right: 30px;
+}
+
+.half-sans-100px:last-child {
+  margin-right: 0;
 }
 ```
 
 ##### Bespoking asymmetrical ratio grid classes with preprocessor loops
+
+<img src="assets/example-3.png" alt="5 elements in a 3-column golden ratio grid where the first element is small, the middle element is large, and the last element is medium-sized.">
+
+```html
+<div class="grid">
+  <div class="column-1">1</div>
+  <div class="column-2">2</div>
+  <div class="column-3">3</div>
+  <div class="column-1">1</div>
+  <div class="column-2">2</div>
+</div>
+```
 
 ```scss
 // in.scss
@@ -244,6 +300,8 @@ Define a namespace for your project. The `generate-grid` property and **all** ot
 
 It is up to you to define the separator like so: `@ant-namespace acme-;`
 
+There is no default namespace since namespaces look pretty bad and this code will be processed **before** it gets to a browser (so future W3C specs won't clash). The only way I see this being a problem is if you are using a preprocessor library that might clash. For instance, a Sass library with a `sizes()` mixin would throw an error.
+
 ###### @ant-gutter
 
 A global gutter setting. `30px` by default. Can be any valid CSS length. Can be overridden with `gutter()`.
@@ -260,16 +318,27 @@ Defines if you want to support older browsers. `flexbox` by default. Can be `fle
 
 *size* can be a lot of things:
 - any valid CSS length
-  - px, em, %, etc.
+  - `px`, `em`, `%`, `ex`, `ch`, etc.
 - fractions
 - decimals
 - `auto` keyword
 
 Handy for when you want to cast a symmetrical fractional grid.
 
+<img src="assets/example-size.png" alt="3-column grid with columns of equal size.">
+
+```html
+<div class="thirds">1</div>
+<div class="thirds">2</div>
+<div class="thirds">3</div>
+<div class="thirds">4</div>
+<div class="thirds">5</div>
+```
+
 ```scss
 // in.scss
 .thirds {
+  float: left;
   width: size(1/3);
   margin-right: 30px;
 
@@ -282,6 +351,7 @@ Handy for when you want to cast a symmetrical fractional grid.
 ```scss
 // final.css
 .thirds {
+  float: left;
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
   margin-right: 30px;
 }
@@ -297,23 +367,30 @@ Handy for when you want to cast a symmetrical fractional grid.
 
 `sizes()` can be used within the `generate-grid` property by itself, but requires `pluck()` outside of the `generate-grid` property.
 
-```scss
-// in-1.scss
-.grid {
-  generate-grid: sizes(100px 1/2 1/2);
-}
+> **Note:** `auto` is a keyword that will fill the remaining space after other sizes have been processed. Multiple `auto`s will divide the space amongst themselves. `flex-grow` cannot do this and the final element in this grid would overexpand to the right edge.
 
-// in-2.scss
-.half-sans-100px {
-  width:
-    sizes(100px 1/2 1/2)
-    pluck(2)
-  ;
+<img src="assets/example-sizes.png" alt="6 elements in a 4-column grid where the first element is a 250px, the third element is 1/5 of whatever is left over after the 250px element, and the second and fourth elements are each half of the remaining space.">
+
+```html
+<div class="grid">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+```
+
+```scss
+// in.scss
+.grid {
+  generate-grid: sizes(250px auto 1/5 auto);
 }
 ```
 
 ```scss
-// final-1.css
+// final.css
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -323,45 +400,66 @@ Handy for when you want to cast a symmetrical fractional grid.
   margin-right: 30px;
 }
 
-.grid > *:nth-child(3n + 1)  {
-  width: 100px;
+.grid > *:nth-child(4n + 1)  {
+  width: 250px;
 }
 
-.grid > *:nth-child(3n + 2)  {
-  width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
+.grid > *:nth-child(4n + 2)  {
+  width: calc((99.99% - ((250px + (30px * 1)) + ((99.99% - (250px + (30px * 1))) * (1/5) - (30px - 30px * (1/5)))) - (30px * 2)) / 2);
 }
 
-.grid > *:nth-child(3n + 3)  {
-  width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
+.grid > *:nth-child(4n + 3)  {
+  width: calc((99.99% - (250px + (30px * 1))) * 1/5 - (30px - 30px * 1/5));
+}
+
+.grid > *:nth-child(4n + 4)  {
+  width: calc((99.99% - ((250px + (30px * 1)) + ((99.99% - (250px + (30px * 1))) * (1/5) - (30px - 30px * (1/5)))) - (30px * 2)) / 2);
   margin-right: 0;
-}
-
-// final-2.css
-.half-sans-100px {
-  width: calc((99.99% - (100px + (30px * 1))) * 1/2 - (30px - 30px * 1/2));
 }
 ```
 
 ### pluck(*number*)
 
-`pluck()` is used to "pluck" a grid-friendly value from the list within `sizes()`.
+`pluck()` is used to "pluck" a grid-friendly value from the list within `sizes()`. It is a **1-based** index to `sizes()`. It is 1-based to align with how `nth` selectors number things. This makes it easy to loop over with the same iterator when assigning values to both `nth` selectors and `pluck()`. 
 
 It is not needed when you are using the singular `size()` or when you are using `grid-generator`.
 
+<img src="assets/example-pluck.png" alt="A single element -- 2/7 the width of the container -- centered using hard-width margins on each side.">
+
+```html
+<-- The container isn't needed. It's just included so you can see the autos in action. -->
+<div class="container">
+  <div class="center-two-sevenths">1</div>
+</div>
+```
+
 ```scss
 // in.scss
-div {
-  width:
-    sizes(1/4 1/2 auto)
+$sizes: auto 2/7 auto;
+
+.center-two-sevenths {
+  margin-left:
+    sizes($sizes)
     pluck(1)
   ;
+  width:
+    sizes($sizes)
+    pluck(2)
+  ;
+  margin-right:
+    sizes($sizes)
+    pluck(3)
+  ;
 }
+
 ```
 
 ```scss
 // final.css
-div {
-  width: calc(99.99% * 1/4 - (30px - 30px * 1/4));
+.center-two-sevenths {
+  margin-left: calc(((99.99% - (99.99% * (2/7) - (30px - 30px * (2/7)))) / 2) - 30px);
+  width: calc(99.99% * 2/7 - (30px - 30px * 2/7));
+  margin-right: calc(((99.99% - (99.99% * (2/7) - (30px - 30px * (2/7)))) / 2) - 30px);
 }
 ```
 
@@ -369,30 +467,153 @@ div {
 
 This local method can override the global gutter (which defaults to `30px`). With it you can adjust the gutters between elements.
 
+<img src="assets/example-gutter.png" alt="4 grids, each with varying spaces between the columns.">
+
+```html
+<div class="grid-default-gutters">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+
+<div class="grid-big-gutters">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+
+<div class="grid-small-gutters">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+
+<div class="grid-no-gutters">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+```
+
 ```scss
 // in.scss
-@ant-gutter 60px; // Define global gutter. Default is 30px.
-
-.foo {
-  width: size(1/3);
+.grid-default-gutters {
+  generate-grid: sizes(1/3 1/3 1/3);
 }
 
-.bar {
-  width:
-    size(1/3)
-    gutter(15px) // Override the global gutter.
-  ;
+.grid-big-gutters {
+  generate-grid: sizes(1/3 1/3 1/3) gutter(100px);
+}
+
+.grid-small-gutters {
+  generate-grid: sizes(1/3 1/3 1/3) gutter(5px);
+}
+
+.grid-no-gutters {
+  generate-grid: sizes(1/3 1/3 1/3) gutter(0);
 }
 ```
 
 ```scss
 // final.css
-.foo {
-  width: calc(99.99% * 1/3 - (60px - 60px * 1/3));
+// Default Gutters
+.grid-default-gutters {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.bar {
-  width: calc(99.99% * 1/3 - (15px - 15px * 1/3));
+.grid-default-gutters > *  {
+  margin-right: 30px;
+}
+
+.grid-default-gutters > *:nth-child(3n + 1)  {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+.grid-default-gutters > *:nth-child(3n + 2)  {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+.grid-default-gutters > *:nth-child(3n + 3)  {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  margin-right: 0;
+}
+
+// Big Gutters
+.grid-big-gutters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-big-gutters > *  {
+  margin-right: 100px;
+}
+
+.grid-big-gutters > *:nth-child(3n + 1)  {
+  width: calc(99.99% * 1/3 - (100px - 100px * 1/3));
+}
+
+.grid-big-gutters > *:nth-child(3n + 2)  {
+  width: calc(99.99% * 1/3 - (100px - 100px * 1/3));
+}
+
+.grid-big-gutters > *:nth-child(3n + 3)  {
+  width: calc(99.99% * 1/3 - (100px - 100px * 1/3));
+  margin-right: 0;
+}
+
+// Small Gutters
+.grid-small-gutters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-small-gutters > *  {
+  margin-right: 5px;
+}
+
+.grid-small-gutters > *:nth-child(3n + 1)  {
+  width: calc(99.99% * 1/3 - (5px - 5px * 1/3));
+}
+
+.grid-small-gutters > *:nth-child(3n + 2)  {
+  width: calc(99.99% * 1/3 - (5px - 5px * 1/3));
+}
+
+.grid-small-gutters > *:nth-child(3n + 3)  {
+  width: calc(99.99% * 1/3 - (5px - 5px * 1/3));
+  margin-right: 0;
+}
+
+// No Gutters
+.grid-no-gutters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-no-gutters > *  {
+  margin-right: 0;
+}
+
+.grid-no-gutters > *:nth-child(3n + 1)  {
+  width: calc(99.999999% * 1/3);
+}
+
+.grid-no-gutters > *:nth-child(3n + 2)  {
+  width: calc(99.999999% * 1/3);
+}
+
+.grid-no-gutters > *:nth-child(3n + 3)  {
+  width: calc(99.999999% * 1/3);
+  margin-right: 0;
 }
 ```
 
@@ -651,9 +872,11 @@ $sizes:
 
 ### bump(*`calc`-friendly formula*)
 
-`bump()` is useful when the returned `calc` formula is a little bit off. You can feed it any calc-friendly formula (sorry, you can't nest `sizes()/pluck()` within it), and it will append the formula to the end of the original formula.
+`bump()` is useful when the returned `calc` formula is a little bit off (usually by parts of the gutter). You can feed it any calc-friendly formula (sorry, you can't nest `sizes(), pluck(), etc.` within it), and it will append the formula to the end of the original formula.
 
-This is particularly helpful when offsetting, or source ordering, elements but can be used to help nudge your way to many solutions.
+This can be a subtraction to the formula as well (e.g. `bump(-15px)`).
+
+This is particularly helpful when offsetting or source ordering elements. `bump()` can be used to help nudge your way to many solutions.
 
 ```html
 <div class="grid">
@@ -707,11 +930,11 @@ $gutter: 30px;
 
 ### generate-grid: *sizes() [options but pluck() is not needed]*;
 
-`generate-grid` is a CSS declaration property (like `font-size`), that accepts `sizes()`. It will loop over the number of sizes, creating valid/minimal styles for each `nth-child` in the list of sizes.
+`generate-grid` is a CSS declaration property (like `font-size`), that accepts `sizes()`. It will loop over the number of sizes, creating valid/minimal styles for each `nth-child` in the list of sizes (even if you're using a negative-margin grid).
 
 This is extremely handy for casting bulletproof grids in a speedy way.
 
-Don't rely solely on `generate-grid` for everything. It's very possible you might just need to `pluck()` a few sizes instead of creating bloat by casting all the styles for an unnecessary grid system. Always consider what you're building.
+That said, don't rely solely on `generate-grid` for everything. It's very possible you might just need to `pluck()` a few sizes instead of creating bloat by casting all the styles for an unnecessary grid system. Always consider what you're building.
 
 ```scss
 // in.scss
@@ -808,7 +1031,7 @@ ant can generate some pretty gnarly `calc` formulas. You can mitigate this probl
 
 > It also does not condense **everything**. Please open detailed issues in that project if something obvious (e.g. `(30px * 1)`) isn't being condensed.
 
-## Acknowledgement
+## Acknowledgements
 
 - [Neil Kistner](http://neilkistner.com/) for dumping a ton of work into the original version of this; watching me scrap the entire thing; and continuing to help. The man is a saint and amazing JS developer.
 - [Alex Bass](https://abass.co/) for letting me bounce ideas off him and making me think about adding an `auto` keyword, which started me down this whole rabbit-hole.

@@ -1,5 +1,10 @@
 # Todo
 
+- Add example images and better examples to README docs.
+- Add `size()` support to `generate-grid`. If 1/n fraction, set n to nth-child cycle. Anything else, no nth-child magic.
+- Write tests.
+- Ensure dependencies are being installed. Maybe it's just my system but npm doesn't seem to be grabbing them.
+- Update ielove (with flexibility.js) and Boy (with CDN'd and local jQueries) then test on IE8. Test on various browsers to confirm the 99.99% stuff is still accurate.
 - Education/marketing
   - Rewrite docs.
     - Take down whatever is up. Add empty landing page.

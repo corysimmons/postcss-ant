@@ -255,7 +255,12 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           var getSize = function getSize() {
             // Alias for use in billion calc formulas.
             var val = p.sizes[p.pluck - 1];
-            var gut = p.gutter;
+            var gut = void 0;
+            if (Number(p.gutter) === 0) {
+              gut = 0;
+            } else {
+              gut = p.gutter;
+            }
             var bump = p.bump || '';
 
             // val is a fixed number
