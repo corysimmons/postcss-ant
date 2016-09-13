@@ -1,5 +1,6 @@
 # Todo
 
+- Figure out if flexbox should be flex-basis or width. Also check flexbugs.
 - Before tests
   - Add assets to npmignore. Leave them in master so people who clone the repo will have them available offline. Offline-first damn you all!
   - Ensure dependencies are being installed. Maybe it's just my system but npm doesn't seem to be grabbing them.
@@ -8,6 +9,7 @@
 - Tests
   - Create visual test generator that just accepts args.
   - If everything looks right, use values to create/lock AVA tests.
+  - Coverage pls
 - Refactor with some sweet functional loving. Get some tips from better devs before starting the refactor. So embarrassed... In no particular order:
   - Consider pulling everything out to postcss-value-parser. All the regex crap everywhere is pretty silly. Just worried about performance of multiple walks.
   - Conditional regex needs to be `test` method.
