@@ -1,40 +1,19 @@
 {
   "name": "postcss-ant",
-  "version": "0.1.3",
-  "description": "Grids redefined.",
+  "version": "0.1.4",
+  "description": "A size-getting function masquerading as the most advanced CSS grid ever created.",
   "license": "MIT",
   "author": {
-    "name": "Cory Simmons"
+    "name": "Cory Simmons",
+    "email": "cory@launchboxhq.com",
+    "url": "http://launchboxhq.com"
   },
-  "contributors": [
-    {
-      "name": "Neil Kistner",
-      "email": "neil.kistner@gmail.com",
-      "url": "http://neilkistner.com"
-    }
-  ],
-  "scripts": {
-    "vanilla": "npm-run-all babel:build -p babel:watch chokidar:postcss:vanilla browser-sync",
-    "scss": "npm-run-all scss:build babel:build -p babel:watch scss:watch chokidar:postcss:scss browser-sync",
-    "styl": "npm-run-all babel:build -p babel:watch styl:watch chokidar:postcss:styl browser-sync",
-    "less": "npm-run-all babel:build -p babel:watch chokidar:less chokidar:postcss:less browser-sync",
-    "babel:build": "babel './lib/index.babel.js' -o './index.js'",
-    "babel:watch": "babel -w './lib/index.babel.js' -o './index.js'",
-    "scss:build": "node-sass tinker/scss/style.scss tinker/scss/style.css --output-style expanded",
-    "scss:watch": "node-sass -w tinker/scss/style.scss tinker/scss/style.css --output-style expanded",
-    "styl:watch": "stylus -w tinker/styl/style.styl",
-    "chokidar:less": "chokidar './tinker/less/style.less' -c 'npm run less:build'",
-    "less:build": "lessc tinker/less/style.less tinker/less/style.css",
-    "chokidar:postcss:vanilla": "chokidar './tinker/vanilla/style.css' './index.js' -c 'npm run postcss:vanilla'",
-    "chokidar:postcss:scss": "chokidar './tinker/scss/style.css' './index.js' -c 'npm run postcss:scss'",
-    "chokidar:postcss:styl": "chokidar './tinker/styl/style.css' './index.js' -c 'npm run postcss:styl'",
-    "chokidar:postcss:less": "chokidar './tinker/less/style.css' './index.js' -c 'npm run postcss:less'",
-    "postcss:vanilla": "postcss --local-plugins -u './index.js' -o './tinker/style.css' './tinker/vanilla/style.css'",
-    "postcss:scss": "postcss --local-plugins -u './index.js' -o './tinker/style.css' './tinker/scss/style.css'",
-    "postcss:styl": "postcss --local-plugins -u './index.js' -o './tinker/style.css' './tinker/styl/style.css'",
-    "postcss:less": "postcss --local-plugins -u './index.js' -o './tinker/style.css' './tinker/less/style.css'",
-    "browser-sync": "browser-sync start --startPath='./tinker' --server --files='./tinker/index.html, ./tinker/style.css' --no-notify --no-open"
+  "bugs": "https://github.com/corysimmons/postcss-ant/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corysimmons/postcss-ant"
   },
+  "homepage": "https://corysimmons.github.io/postcss-ant",
   "keywords": [
     "postcss-plugin",
     "postcss",
@@ -58,23 +37,20 @@
   "eslintConfig": {
     "extends": "standard"
   },
+  "scripts": {
+    "start": "babel -w lib/index.babel.js -o ./index.js"
+  },
+  "dependencies": {
+    "postcss": "^5.2.0",
+    "postcss-value-parser": "^3.3.0",
+    "chalk": "^1.1.3"
+  },
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-0": "^6.5.0",
-    "browser-sync": "^2.14.3",
-    "chalk": "^1.1.3",
-    "chokidar-cli": "^1.2.0",
     "eslint": "^3.4.0",
-    "less": "^2.7.1",
-    "node-sass": "^3.9.3",
-    "npm-run-all": "^3.1.0",
-    "postcss": "^5.2.0",
-    "postcss-calc": "^5.3.1",
-    "postcss-cli": "^2.6.0",
-    "postcss-value-parser": "^3.3.0",
-    "standard": "^8.0.0",
-    "stylus": "^0.54.5"
+    "standard": "^8.0.0"
   }
 }
