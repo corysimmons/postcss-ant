@@ -1,0 +1,11 @@
+div:nth-child(3n + 1) {
+  width: sizes(1/4 1/2 1/4) pluck(1) gutter(0);
+}
+
+div:nth-child(3n + 2) {
+  width: sizes(1/4 1/2 1/4) pluck(2) gutter(0);
+}
+
+div:nth-child(3n + 3) {
+  width: sizes(1/4 1/2 1/4) pluck(3) gutter(0);
+}

@@ -1,0 +1,15 @@
+div {
+  margin: 0 10px;
+}
+
+div:nth-child(3n + 1) {
+  width: sizes(100px 200px 300px) pluck(1) gutter(20px) technique(negative-margin);
+}
+
+div:nth-child(3n + 2) {
+  width: sizes(100px 200px 300px) pluck(2) gutter(20px) technique(negative-margin);
+}
+
+div:nth-child(3n + 3) {
+  width: sizes(100px 200px 300px) pluck(3) gutter(20px) technique(negative-margin);
+}

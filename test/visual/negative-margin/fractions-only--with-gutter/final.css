@@ -1,0 +1,15 @@
+div {
+  margin: 0 7.5px;
+}
+
+div:nth-child(3n + 1) {
+  width: calc(99.99% * 1/4 - 15px);
+}
+
+div:nth-child(3n + 2) {
+  width: calc(99.99% * 1/2 - 15px);
+}
+
+div:nth-child(3n + 3) {
+  width: calc(99.99% * 1/4 - 15px);
+}

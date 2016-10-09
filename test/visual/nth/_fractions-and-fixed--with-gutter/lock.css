@@ -1,0 +1,24 @@
+section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section div {
+  margin-right: 15px;
+}
+
+section div:nth-child(3n + 1) {
+  width: calc(99.99% * 1/4 - (15px - 15px / 3));
+}
+
+section div:nth-child(3n + 2) {
+  width: calc(99.99% * 1/2 - (15px - 15px / 3));
+}
+
+section div:nth-child(3n + 3) {
+  width: calc(99.99% * 1/4 - (15px - 15px / 3));
+}
+
+section div:last-child {
+  margin-right: 0;
+}

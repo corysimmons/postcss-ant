@@ -1,0 +1,18 @@
+div {
+  $sizes: 100px 200px 300px;
+  $length: length($sizes);
+  $gutter: 0;
+
+  margin: 0 ($gutter / 2);
+
+  @for $i from 1 through $length {
+    &:nth-child(#{$length}n + #{$i}) {
+      width:
+        sizes($sizes)
+        pluck($i)
+        gutter($gutter)
+        technique(negative-margin)
+      ;
+    }
+  }
+}

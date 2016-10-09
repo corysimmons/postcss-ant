@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/node
+# Created by https://www.gitignore.io/api/node,sass
 
 ### Node ###
 # Logs
@@ -42,3 +42,15 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+
+### Sass ###
+.sass-cache/
+*.css.map
+
+
+### Custom ###
+todo.md
