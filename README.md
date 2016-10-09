@@ -9,11 +9,6 @@
 </p>
 
 <p align="center">
-  Dedicated to my children Gabriel, Gavin, and Olive.<br>
-  You deserved a better father.
-</p>
-
-<p align="center">
   <a href="https://gitter.im/postcss-ant/Lobby" target="_blank">
     <img src="https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square" alt="Gitter chat badge.">
   </a>
