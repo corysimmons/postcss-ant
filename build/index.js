@@ -20,19 +20,24 @@ var _getSize = require('./utils/get-size');
 
 var _getSize2 = _interopRequireDefault(_getSize);
 
+var _generateGrid = require('./helpers/generate-grid');
+
+var _generateGrid2 = _interopRequireDefault(_generateGrid);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Stash global settings in an opts obj
 var ant = _postcss2.default.plugin('postcss-ant', function () {
-  var opts = arguments.length <= 0 || arguments[0] === undefined ? {
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     rounders: '99.99% 99.999999%'.trim().split(/\s+/),
     gutter: '30px 30px'.trim().split(/\s+/),
     bump: '',
     pluck: 1,
     namespace: '',
     support: 'flexbox',
-    technique: 'nth'
-  } : arguments[0];
+    technique: 'nth',
+    children: 'nth-child'
+  };
 
   return function (css) {
     // Update global settings if there are atRule settings
@@ -40,31 +45,38 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       switch (rule.name) {
         case 'ant-namespace':
           opts.namespace = rule.params;
+          rule.remove();
           break;
         case 'ant-gutter':
           opts.gutter = rule.params.split(/\s+/);
+          rule.remove();
           break;
         case 'ant-rounders':
           opts.rounders = rule.params.split(/\s+/);
+          rule.remove();
           break;
         case 'ant-support':
           opts.support = rule.params;
+          rule.remove();
           break;
         case 'ant-technique':
           opts.technique = rule.params;
+          rule.remove();
+          break;
+        case 'ant-children':
+          opts.children = rule.params;
+          rule.remove();
           break;
         default:
           break;
       }
-
-      rule.remove();
     });
 
     // Walk declarations. Shallow walk with valueParser to stash local opts in opts obj. Then deepest-first walks over methods.
     css.walkDecls(function (decl) {
       // Local settings walk
       var optsParsed = (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
-        var optsRegexp = new RegExp(opts.namespace + '(?=gutter|rounders|support|pluck|bump|technique)');
+        var optsRegexp = new RegExp(opts.namespace + '(?=gutter|rounders|support|pluck|bump|technique|children)');
         if (node.type === 'function' && optsRegexp.test(node.value)) {
           node.type = 'word'; // transform existing function node into a word so we can replace its value with a string
 
@@ -95,6 +107,10 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
             case opts.namespace + 'technique':
               opts.technique = node.nodes[0].value;
+              break;
+
+            case opts.namespace + 'children':
+              opts.children = node.nodes[0].value;
               break;
 
             default:
@@ -141,8 +157,19 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       _methods2.default.ratio(decl, numerators, opts);
 
+      // Walk to grab columns() first size set length for use with rows()
+      var firstColumnSetLength = 0;
+      var columnsParsed = (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+        var columnsRegexp = new RegExp(opts.namespace + '(?=columns)');
+        if (node.type === 'function' && columnsRegexp.test(node.value)) {
+          if (node.value === 'columns') {
+            firstColumnSetLength = _postcss2.default.list.space(_postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes))[0]).length;
+          }
+        }
+      }, true);
+
       // Finally, we walk/process all sizes(), columns(), and rows(), and get a calc formula back from getSize.
-      var sizesParsed = (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+      var sizesParsed = (0, _postcssValueParser2.default)(columnsParsed.toString()).walk(function (node) {
         var sizesRegexp = new RegExp(opts.namespace + '(?=sizes|columns|rows)');
         if (node.type === 'function' && sizesRegexp.test(node.value)) {
           switch (node.value) {
@@ -153,7 +180,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
             case opts.namespace + 'columns':
             case opts.namespace + 'rows':
-              console.log('Handle with helpers/generate-grid.js');
+              (0, _generateGrid2.default)(node, opts, node.value, decl, firstColumnSetLength);
               break;
 
             default:
@@ -161,9 +188,27 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           }
         }
       }, false);
+
+      // Delete generate-grid if it was used
+      var cleanParsed = (0, _postcssValueParser2.default)(sizesParsed.toString()).walk(function (node) {
+        if (node.type === 'function') {
+          if (node.value === opts.namespace + 'columns' || node.value === opts.namespace + 'rows') {
+            // Remove selector if no other nodes present.
+            if (decl.parent) {
+              if (decl.parent.nodes.every(function (node) {
+                return node === decl;
+              })) {
+                decl.parent.remove();
+              }
+            }
+
+            // Remove generate-grid declaration.
+            decl.remove();
+          }
+        }
+      }, true);
     });
   };
 });
-
 exports.default = ant;
 module.exports = exports['default'];

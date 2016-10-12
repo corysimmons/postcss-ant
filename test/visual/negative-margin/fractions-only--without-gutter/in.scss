@@ -1,14 +1,7 @@
-$gutter: 15px;
-
-.neg section {
-  margin: 0 -($gutter / 2);
-}
-
 div {
   $sizes: 1/4 1/2 1/4;
   $length: length($sizes);
-
-  margin: 0 ($gutter / 2);
+  $gutter: 0;
 
   @for $i from 1 through $length {
     &:nth-child(#{$length}n + #{$i}) {

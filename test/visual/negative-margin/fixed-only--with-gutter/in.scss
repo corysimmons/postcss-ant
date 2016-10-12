@@ -1,7 +1,12 @@
+$gutter: 15px;
+
+.neg section {
+  margin: 0 -($gutter / 2);
+}
+
 div {
   $sizes: 100px 200px 300px;
   $length: length($sizes);
-  $gutter: 20px;
 
   margin: 0 ($gutter / 2);
 

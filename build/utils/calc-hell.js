@@ -12,7 +12,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 //   3. Return a clean calc formula (via string building functions) based on opts and the pluck index
 
 exports.default = function (sizes, opts) {
-
   if (opts.bump !== '') {
     opts.bump = opts.bump.trim();
 
@@ -186,12 +185,13 @@ exports.default = function (sizes, opts) {
 
   // - fraction(s) only
   if (valFraction && numFixed === 0 && numFrs === 0) {
-    //neg: return `calc(99.99% * ${val} - ${gut}${bump})`
     return result = formula(rounder(gut) + ' * ' + val + techBuilder(tech, gutBuilder(gut, ' - (' + gut + ' - ' + gut + ' * ' + val + ')'), gutBuilder(gut, ' - ' + gut)));
   }
 
   // - fraction(s) and fixed number(s) only
-  if (valFraction && numFixed > 0 && numFrs === 0) {}
+  if (valFraction && numFixed > 0 && numFrs === 0) {
+    // ...
+  }
 
   return 'postcss-ant: How the hell did you get here? Please file a bug at https://github.com/corysimmons/postcss-ant/issues/new';
 };

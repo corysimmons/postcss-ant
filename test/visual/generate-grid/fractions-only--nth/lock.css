@@ -1,9 +1,5 @@
-.neg section {
-  margin: -7.5px;
-}
-
 div {
-  margin: 0 7.5px;
+  margin-right: 20px;
 }
 
 div:nth-child(3n + 1) {
@@ -16,4 +12,8 @@ div:nth-child(3n + 2) {
 
 div:nth-child(3n + 3) {
   width: 300px;
+}
+
+div:last-child {
+  margin-right: 0;
 }

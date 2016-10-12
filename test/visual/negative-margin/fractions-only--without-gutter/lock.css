@@ -1,0 +1,11 @@
+div:nth-child(3n + 1) {
+  width: calc(99.999999% * 1/4);
+}
+
+div:nth-child(3n + 2) {
+  width: calc(99.999999% * 1/2);
+}
+
+div:nth-child(3n + 3) {
+  width: calc(99.999999% * 1/4);
+}

@@ -54,9 +54,17 @@ exports.default = function (node, opts, decl) {
       sizeSets.map(function (set) {
         // Split sizes by space
         var sizes = _postcss2.default.list.space(set);
-        results.push((0, _calcHell2.default)(sizes, opts));
-      });
 
+        var setResults = [];
+
+        for (var i = 1; i <= sizes.length; i++) {
+          // Intentionally assign pluck to 1..2..3.. so we can pluck the correct size for each size in a set.
+          opts.pluck = i;
+          setResults.push((0, _calcHell2.default)(sizes, opts));
+        }
+
+        results.push(setResults);
+      });
       break;
 
     default:

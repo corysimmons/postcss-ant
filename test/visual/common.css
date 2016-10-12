@@ -14,7 +14,3 @@ section {
   display: flex;
   flex-wrap: wrap;
 }
-
-.neg section {
-  margin: 0 -10px;
-}

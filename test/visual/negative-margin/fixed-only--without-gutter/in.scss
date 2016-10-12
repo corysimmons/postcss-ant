@@ -1,7 +1,8 @@
+$gutter: 0;
+
 div {
   $sizes: 100px 200px 300px;
   $length: length($sizes);
-  $gutter: 0;
 
   margin: 0 ($gutter / 2);
 

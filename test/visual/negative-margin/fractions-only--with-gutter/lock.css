@@ -1,19 +1,19 @@
+.neg section {
+  margin: -7.5px;
+}
+
 div {
-  margin-right: 15px;
+  margin: 0 7.5px;
 }
 
 div:nth-child(3n + 1) {
-  width: calc(99.99% * 1/4 - (15px - 15px * 1/4));
+  width: calc(99.99% * 1/4 - 15px);
 }
 
 div:nth-child(3n + 2) {
-  width: calc(99.99% * 1/2 - (15px - 15px * 1/2));
+  width: calc(99.99% * 1/2 - 15px);
 }
 
 div:nth-child(3n + 3) {
-  width: calc(99.99% * 1/4 - (15px - 15px * 1/4));
-}
-
-div:last-child {
-  margin-right: 0;
+  width: calc(99.99% * 1/4 - 15px);
 }
