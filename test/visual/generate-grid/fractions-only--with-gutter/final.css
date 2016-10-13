@@ -15,14 +15,9 @@
   color: rgba(0, 0, 255, 0.4);
 }
 
-section > * {
-  float: left;
-}
-
-section::after {
-  content: '';
-  display: table;
-  clear: both;
+section {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 section > *:nth-child(n) {
@@ -62,14 +57,9 @@ section > *:nth-child(5n + 3) {
   margin-left: 0;
 }
 
-section > * {
-  float: left;
-}
-
-section::after {
-  content: '';
-  display: table;
-  clear: both;
+section {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 section > *:nth-child(n) {
