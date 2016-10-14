@@ -24,6 +24,10 @@ var _generateGrid = require('./helpers/generate-grid');
 
 var _generateGrid2 = _interopRequireDefault(_generateGrid);
 
+var _cssnano = require('cssnano');
+
+var _cssnano2 = _interopRequireDefault(_cssnano);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Stash global settings in an opts obj
@@ -157,22 +161,42 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       _methods2.default.ratio(decl, numerators, opts);
 
-      // Walk to grab columns() first size set length for use with rows()
+      // Walk to grab columns() first size set length for use with rows().
+      // Also check if columns is set.
+      var columnsRegexp = new RegExp(opts.namespace + '(?=columns)');
+      var foundColumns = false;
       var firstColumnSetLength = 0;
-      var columnsParsed = (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
-        var columnsRegexp = new RegExp(opts.namespace + '(?=columns)');
+      (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
         if (node.type === 'function' && columnsRegexp.test(node.value)) {
           if (node.value === 'columns') {
-            firstColumnSetLength = _postcss2.default.list.space(_postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes))[0]).length;
+            foundColumns = true;
+
+            var firstColumnSet = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes))[0];
+            if (firstColumnSet !== 'reset') {
+              firstColumnSetLength = _postcss2.default.list.space(firstColumnSet).length;
+            }
           }
         }
       }, true);
 
+      // Does the decl.value contain both columns() and rows()? Stash bool for use in generate-grid (to help cleanup output).
+      var foundColumnsAndRows = false;
+      if (foundColumns) {
+        (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+          var rowsRegexp = new RegExp(opts.namespace + '(?=rows)');
+          if (node.type === 'function' && rowsRegexp.test(node.value)) {
+            foundColumnsAndRows = true;
+          }
+        }, true);
+      }
+
       // Finally, we walk/process all sizes(), columns(), and rows(), and get a calc formula back from getSize.
-      var sizesParsed = (0, _postcssValueParser2.default)(columnsParsed.toString()).walk(function (node) {
-        var sizesRegexp = new RegExp(opts.namespace + '(?=sizes|columns|rows)');
+      var prevSourceIndex = 0;
+      var sizesParsed = (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+        var sizesRegexp = new RegExp(opts.namespace + '(?=sizes?|columns|rows)');
         if (node.type === 'function' && sizesRegexp.test(node.value)) {
           switch (node.value) {
+            case opts.namespace + 'size':
             case opts.namespace + 'sizes':
               // Replace the decl.value with the final output
               decl.value = (0, _getSize2.default)(node, opts, decl)[0];
@@ -180,7 +204,11 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
             case opts.namespace + 'columns':
             case opts.namespace + 'rows':
-              (0, _generateGrid2.default)(node, opts, node.value, decl, firstColumnSetLength);
+              var ggRegexp = new RegExp(opts.namespace + '(?=generate-grid|gg)');
+              // Ensure the property is generate-grid or gg
+              if (ggRegexp.test(decl.prop)) {
+                (0, _generateGrid2.default)(node, opts, node.value, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex);
+              }
               break;
 
             default:
@@ -210,5 +238,6 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
     });
   };
 });
+
 exports.default = ant;
 module.exports = exports['default'];

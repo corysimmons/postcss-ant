@@ -32,6 +32,7 @@ exports.default = function (node, opts, decl) {
 
   switch (node.value) {
     // If sizes(), we don't need to split into sets. We need to use pluck though.
+    case opts.namespace + 'size':
     case opts.namespace + 'sizes':
       var sizes = _postcss2.default.list.space(value);
 

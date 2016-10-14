@@ -20,17 +20,13 @@ var _ruleSetter = require('../utils/rule-setter');
 
 var _ruleSetter2 = _interopRequireDefault(_ruleSetter);
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (node, opts, direction, decl, firstColumnSetLength) {
-  // Assign grid depending on support()
-  if (opts.support === 'flexbox') {
-    (0, _ruleSetter2.default)('' + decl.parent.selector, ['display: flex', 'flex-wrap: wrap'], decl);
-  } else if (opts.support === 'float') {
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *', ['float: left'], decl);
-    (0, _ruleSetter2.default)(decl.parent.selector + '::after', ['content: \'\'', 'display: table', 'clear: both'], decl);
-  }
-
+exports.default = function (node, opts, direction, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex) {
   // Grab all the contents within the function and sort them into size sets.
   var value = _postcssValueParser2.default.stringify(node.nodes);
   var sizeSets = _postcss2.default.list.comma(value);
@@ -38,6 +34,49 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength) {
   sizeSets.map(function (sizeSet) {
     totalSizes += _postcss2.default.list.space(sizeSet).length;
   });
+
+  // Determine if this is the last/first columns() or rows() call in the declaration value.
+  var lastCall = false;
+  var firstCall = false;
+  if (node.sourceIndex > prevSourceIndex) {
+    lastCall = true;
+  }
+  if (node.sourceIndex === 0) {
+    firstCall = true;
+  }
+
+  // Set both gutters if only 1 gutter has been specified
+  if (opts.gutter.length === 1) {
+    opts.gutter = [opts.gutter[0], opts.gutter[0]];
+  }
+
+  // Assign grid depending on support()
+  if (value !== 'reset') {
+    if (firstCall) {
+      if (opts.support === 'flexbox') {
+        (0, _ruleSetter2.default)('' + decl.parent.selector, ['display: flex', 'flex-wrap: wrap'], decl);
+      } else if (opts.support === 'float') {
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *', ['float: left'], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + '::after', ['content: \'\'', 'display: table', 'clear: both'], decl);
+      }
+    }
+  }
+
+  // Explicit reset support
+  if (value === 'reset') {
+    switch (node.value) {
+      case 'columns':
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: 0'], decl);
+        return;
+
+      case 'rows':
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
+        return;
+
+      default:
+        break;
+    }
+  }
 
   // Convert columns() to width and rows() to height for shorter conditionals and usage when assigning sizes to that particular dimension.
   var getDirection = function getDirection() {
@@ -53,30 +92,29 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength) {
     }
   };
 
-  // Reset dimensions and margins with each generate-grid. This prevents a huge amount of media query gotchas.
-  // todo: This can be refactored to avoid media query gotchas but requires a lot of conditionals.
-  switch (getDirection()) {
-    case 'width':
-      (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: 0'], decl);
+  // Implicitly reset dimensions and margins with each generate-grid. This prevents a huge amount of media query gotchas.
+  if (foundColumnsAndRows && firstCall) {
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-left: ' + opts.gutter[0]], decl);
 
-      (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(1n)', ['margin-left: ' + opts.gutter[0]], decl);
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutter[1]], decl);
+  } else if (firstCall) {
+    switch (getDirection()) {
+      case 'width':
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: ' + opts.gutter[0]], decl);
 
-      break;
+        break;
 
-    case 'height':
-      (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
+      case 'height':
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
 
-      // This technique prevents people from having to know how many elements appear on the last row.
-      if (opts.gutter.length === 1) {
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutter[0]], decl);
-      } else {
+        // This technique prevents people from having to know how many elements appear on the last row.
         (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutter[1]], decl);
-      }
 
-      break;
+        break;
 
-    default:
-      break;
+      default:
+        break;
+    }
   }
 
   var counter = 0;
@@ -88,25 +126,39 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength) {
     }
   };
 
+  // Set dimension with cycling nth selector
   // Loop through each size in each size set, applying rulesets as we go.
-  (0, _getSize2.default)(node, opts, decl).map(function (setResults) {
-    setResults.map(function (sizeResult) {
-      // Set dimension with cycling nth selector
-      // todo: Kill bloat. Collect sizes into an array, then loop over that array for matches. If matches, only create a single ruleset. This is probably what declarer did.
-      (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(' + totalSizes + 'n + ' + incrementToTotalSizes() + ')', [getDirection() + ': ' + sizeResult], decl);
+  (0, _getSize2.default)(node, opts, decl).map(function (sizes) {
+    // Do some work to ensure selectors (when casting sizes) are combined/stacked neatly.
+    var obj = {};
+    sizes.map(function (size) {
+      // Cast selector: size pairs to obj
+      // example: {'.foo > *:nth-child(4n + 1)': '1px', ...}
+      obj[decl.parent.selector + ' > *:' + opts.children + '(' + totalSizes + 'n + ' + incrementToTotalSizes() + ')'] = size;
     });
+
+    // Find matching sizes, then invert the object so selectors are in an array
+    // example: {'1px': [ '.foo > *:nth-child(4n + 1)', '.foo > *:nth-child(4n + 2)' ], ...}
+    var inverted = _lodash2.default.invertBy(obj); // thank god for lodash...
+
+    // Cast our sizing-specific rulesets
+    for (var size in inverted) {
+      (0, _ruleSetter2.default)(inverted[size].join(',\n' + decl.raws.before.substring(3)), [getDirection() + ': ' + size], decl);
+    }
   });
 
   // Negate column margins
-  // The first column in a row will never have a margin-left.
+  // The first column in a row will never have a margin-left. We add the length of the previously used size set on each iteration. Start on 1.
   if (getDirection() === 'width') {
     (function () {
       var collectedSetLengths = 1;
+      var selectors = [];
       sizeSets.map(function (sizeSet) {
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(' + totalSizes + 'n + ' + collectedSetLengths + ')', ['margin-left: 0'], decl);
-
+        selectors.push(decl.parent.selector + ' > *:' + opts.children + '(' + totalSizes + 'n + ' + collectedSetLengths + ')');
         collectedSetLengths += _postcss2.default.list.space(sizeSet).length;
       });
+
+      (0, _ruleSetter2.default)(selectors.join(',\n' + decl.raws.before.substring(3)), ['margin-left: 0'], decl);
     })();
   }
 };
