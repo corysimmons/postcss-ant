@@ -39,6 +39,6 @@ section {
 
 @media (min-width: 1300px) {
   section {
-    gg: columns(1/4 1/4 1/4 1/4, 1/6 1/6 1/6 1/6 1/6 1/6) rows(70px) gutter(15px, 10px);
+    gg: columns(1/4 1/4 1/4 1/4, 1/6 1/6 1/6 1/6 1/6 1/6) rows(70px) gutters(15px, 10px);
   }
 }

@@ -16,10 +16,6 @@ var _postcss = require('postcss');
 
 var _postcss2 = _interopRequireDefault(_postcss);
 
-var _errorHandler = require('./error-handler');
-
-var _errorHandler2 = _interopRequireDefault(_errorHandler);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // This is where we split up sizes and size sets into arrays. Then we pass that to calcHell to return the appropriate calc formula.
@@ -35,14 +31,6 @@ exports.default = function (node, opts, decl) {
     case opts.namespace + 'size':
     case opts.namespace + 'sizes':
       var sizes = _postcss2.default.list.space(value);
-
-      if (sizes.find(function (size) {
-        return (/,/.test(size)
-        );
-      })) {
-        (0, _errorHandler2.default)(decl, 'You can\'t have a comma in sizes().', 'Try removing the comma. If you\'re trying to use size sets (which only work with generate-grid), use columns() and/or rows() instead of sizes().');
-      }
-
       results.push((0, _calcHell2.default)(sizes, opts));
       break;
 
@@ -61,7 +49,7 @@ exports.default = function (node, opts, decl) {
         for (var i = 1; i <= sizes.length; i++) {
           // Intentionally assign pluck to 1..2..3.. so we can pluck the correct size for each size in a set.
           opts.pluck = i;
-          setResults.push((0, _calcHell2.default)(sizes, opts));
+          setResults.push((0, _calcHell2.default)(sizes, opts, node));
         }
 
         results.push(setResults);

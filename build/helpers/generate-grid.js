@@ -46,8 +46,8 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
   }
 
   // Set both gutters if only 1 gutter has been specified
-  if (opts.gutter.length === 1) {
-    opts.gutter = [opts.gutter[0], opts.gutter[0]];
+  if (opts.gutters.length === 1) {
+    opts.gutters = [opts.gutters[0], opts.gutters[0]];
   }
 
   // Assign grid depending on support()
@@ -94,13 +94,13 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
 
   // Implicitly reset dimensions and margins with each generate-grid. This prevents a huge amount of media query gotchas.
   if (foundColumnsAndRows && firstCall) {
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-left: ' + opts.gutter[0]], decl);
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-left: ' + opts.gutters[0]], decl);
 
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutter[1]], decl);
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutters[1]], decl);
   } else if (firstCall) {
     switch (getDirection()) {
       case 'width':
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: ' + opts.gutter[0]], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: ' + opts.gutters[0]], decl);
 
         break;
 
@@ -108,7 +108,7 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
         (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
 
         // This technique prevents people from having to know how many elements appear on the last row.
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutter[1]], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutters[1]], decl);
 
         break;
 

@@ -22,71 +22,38 @@ section {
 
 section > *:nth-child(n) {
   width: auto;
-  margin-left: 0;
-}
-
-section > *:nth-child(1n) {
-  margin-left: 0;
-}
-
-section > *:nth-child(5n + 1) {
-  width: calc(99.999999% * 1/2);
-}
-
-section > *:nth-child(5n + 2) {
-  width: calc(99.999999% * 1/2);
-}
-
-section > *:nth-child(5n + 3) {
-  width: calc(99.999999% * 1/3);
-}
-
-section > *:nth-child(5n + 4) {
-  width: calc(99.999999% * 1/3);
-}
-
-section > *:nth-child(5n + 5) {
-  width: calc(99.999999% * 1/3);
-}
-
-section > *:nth-child(5n + 1) {
-  margin-left: 0;
-}
-
-section > *:nth-child(5n + 3) {
-  margin-left: 0;
-}
-
-section {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-section > *:nth-child(n) {
   height: auto;
   margin-top: 0;
+  margin-left: 0;
 }
 
 section > *:nth-child(n + 3) {
   margin-top: 0;
 }
 
-section > *:nth-child(5n + 1) {
-  height: 100px;
+section > *:nth-child(5n + 1),
+section > *:nth-child(5n + 2) {
+  width: calc(99.999999% * 1/2);
 }
 
+section > *:nth-child(5n + 3),
+section > *:nth-child(5n + 4),
+section > *:nth-child(5n + 5) {
+  width: calc(99.999999% * 1/3);
+}
+
+section > *:nth-child(5n + 1),
+section > *:nth-child(5n + 3) {
+  margin-left: 0;
+}
+
+section > *:nth-child(5n + 1),
 section > *:nth-child(5n + 2) {
   height: 100px;
 }
 
-section > *:nth-child(5n + 3) {
-  height: 200px;
-}
-
-section > *:nth-child(5n + 4) {
-  height: 200px;
-}
-
+section > *:nth-child(5n + 3),
+section > *:nth-child(5n + 4),
 section > *:nth-child(5n + 5) {
   height: 200px;
 }

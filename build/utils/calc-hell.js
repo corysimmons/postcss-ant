@@ -4,6 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _postcssValueParser = require('postcss-value-parser');
+
+var _postcssValueParser2 = _interopRequireDefault(_postcssValueParser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 // This is where we:
@@ -11,7 +17,20 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 //   2. Reduce those arrays to single values (for cleaner formulas)
 //   3. Return a clean calc formula (via string building functions) based on opts and the pluck index
 
-exports.default = function (sizes, opts) {
+exports.default = function (sizes, opts, node) {
+  // Stash function name and value if node exists
+  var funcName = '';
+  var value = '';
+  if (node) {
+    if (node.type === 'function') {
+      // Name of the function
+      funcName = node.value;
+      // Whatever the function contains
+      value = _postcssValueParser2.default.stringify(node.nodes);
+    }
+  }
+
+  // Ensure bump() is a usable value
   if (opts.bump !== '') {
     opts.bump = opts.bump.trim();
 
@@ -154,8 +173,7 @@ exports.default = function (sizes, opts) {
   // Aliases/caching for terser/faster formulas
   var val = sizes[pluck];
   var tech = opts.technique;
-  // todo: Add conditional for generate-grid multi-gutter assignment.
-  var gut = parseInt(opts.gutter[0], 10) !== 0 ? opts.gutter[0] : 0;
+  var gut = parseInt(opts.gutters[0], 10) !== 0 ? opts.gutters[0] : 0;
 
   var valFixed = fixedsRegexp.test(val) ? true : false;
   var valFraction = fractionsRegexp.test(val) ? true : false;
@@ -177,6 +195,7 @@ exports.default = function (sizes, opts) {
   var settings = function settings() {
     console.log('\nsizes: ' + String(sizes) + '\n\nopts: ' + JSON.stringify(opts, null, 2) + '\n    ');
   };
+  // settings()
 
   // Abandon hope! 👺
 

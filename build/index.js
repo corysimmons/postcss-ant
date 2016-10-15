@@ -16,6 +16,10 @@ var _methods = require('./methods');
 
 var _methods2 = _interopRequireDefault(_methods);
 
+var _errorHandler = require('./utils/error-handler');
+
+var _errorHandler2 = _interopRequireDefault(_errorHandler);
+
 var _getSize = require('./utils/get-size');
 
 var _getSize2 = _interopRequireDefault(_getSize);
@@ -24,17 +28,13 @@ var _generateGrid = require('./helpers/generate-grid');
 
 var _generateGrid2 = _interopRequireDefault(_generateGrid);
 
-var _cssnano = require('cssnano');
-
-var _cssnano2 = _interopRequireDefault(_cssnano);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Stash global settings in an opts obj
 var ant = _postcss2.default.plugin('postcss-ant', function () {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    rounders: '99.99% 99.999999%'.trim().split(/\s+/),
-    gutter: '30px 30px'.trim().split(/\s+/),
+    rounders: _postcss2.default.list.comma('99.99%, 99.999999%'),
+    gutters: _postcss2.default.list.comma('30px, 30px'),
     bump: '',
     pluck: 1,
     namespace: '',
@@ -51,12 +51,12 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           opts.namespace = rule.params;
           rule.remove();
           break;
-        case 'ant-gutter':
-          opts.gutter = rule.params.split(/\s+/);
+        case 'ant-gutters':
+          opts.gutters = _postcss2.default.list.comma(rule.params);
           rule.remove();
           break;
         case 'ant-rounders':
-          opts.rounders = rule.params.split(/\s+/);
+          opts.rounders = _postcss2.default.list.comma(rule.params);
           rule.remove();
           break;
         case 'ant-support':
@@ -75,34 +75,35 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           break;
       }
     });
-
     // Walk declarations. Shallow walk with valueParser to stash local opts in opts obj. Then deepest-first walks over methods.
     css.walkDecls(function (decl) {
+      // Ensure user is combining methods correctly.
+      // Throw helpful suggestions to help newcomers. Don't be too strict and limit boundary-pushers.
+      (0, _errorHandler2.default)(opts, decl);
+
       // Local settings walk
       var optsParsed = (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
-        var optsRegexp = new RegExp(opts.namespace + '(?=gutter|rounders|support|pluck|bump|technique|children)');
+        var optsRegexp = new RegExp(opts.namespace + '(?=gutters?|rounders?|support|pluck|bump|technique|children)');
         if (node.type === 'function' && optsRegexp.test(node.value)) {
           node.type = 'word'; // transform existing function node into a word so we can replace its value with a string
 
           switch (node.value) {
             case opts.namespace + 'gutter':
-              if (node.nodes.length > 1) {
-                opts.gutter = [node.nodes[0].value, node.nodes[2].value];
-              } else {
-                opts.gutter = [node.nodes[0].value];
-              }
+            case opts.namespace + 'gutters':
+              opts.gutters = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes));
               break;
 
+            case opts.namespace + 'rounder':
             case opts.namespace + 'rounders':
-              opts.rounders = [node.nodes[0].value, node.nodes[2].value];
+              opts.rounders = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes));
               break;
 
             case opts.namespace + 'support':
-              opts.support = node.nodes[0].value;
+              opts.support = _postcssValueParser2.default.stringify(node.nodes);
               break;
 
             case opts.namespace + 'pluck':
-              opts.pluck = Number(node.nodes[0].value);
+              opts.pluck = Number(_postcssValueParser2.default.stringify(node.nodes));
               break;
 
             case opts.namespace + 'bump':
@@ -110,11 +111,11 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
               break;
 
             case opts.namespace + 'technique':
-              opts.technique = node.nodes[0].value;
+              opts.technique = _postcssValueParser2.default.stringify(node.nodes);
               break;
 
             case opts.namespace + 'children':
-              opts.children = node.nodes[0].value;
+              opts.children = _postcssValueParser2.default.stringify(node.nodes);
               break;
 
             default:
