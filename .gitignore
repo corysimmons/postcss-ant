@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/node,sass
+# Created by https://www.gitignore.io/api/node
 
 ### Node ###
 # Logs
@@ -45,12 +45,3 @@ jspm_packages
 
 # Output of 'npm pack'
 *.tgz
-
-
-### Sass ###
-.sass-cache/
-*.css.map
-
-
-### Custom ###
-todo.md
