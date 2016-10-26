@@ -17676,8 +17676,6 @@ exports.default = function (_ref) {
   );
 };
 
-module.exports = exports['default'];
-
 /***/ },
 /* 112 */
 /***/ function(module, exports, __webpack_require__) {
