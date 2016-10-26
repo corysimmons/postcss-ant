@@ -3,23 +3,16 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "If you're not using Grid Spec, use postcss-ant.",
+  "homepage": "https://corysimmons.github.io/postcss-ant",
   "author": "Cory Simmons <github.cory@mailhero.io> (https://corysimmons.com)",
   "repository": "corysimmons/postcss-ant",
-  "main": "./index.js",
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-0"
-    ],
-    "plugins": [
-      "transform-flow-strip-types",
-      "add-module-exports"
-    ]
-  },
+  "main": "./build/index.js",
   "scripts": {
-    "start": "npm-run-all --parallel babel demo",
-    "babel": "babel -w lib/index.js -o index.js",
-    "demo": "webpack-dev-server --config demo.config.js"
+    "start": "npm-run-all -p stylus babel webpack browser-sync",
+    "babel": "babel -w lib -d build",
+    "stylus": "stylus -w demo/css/common.styl",
+    "webpack": "webpack",
+    "browser-sync": "browser-sync start -s --no-notify --startPath=demo --files=demo/index.html,demo/css/style.css,demo/js/bundle.js"
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -35,13 +28,24 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "browser-sync": "^2.17.5",
+    "imports-loader": "^0.6.5",
     "lodash": "^4.16.4",
     "npm-run-all": "^3.1.1",
+    "postcss-js": "^0.1.3",
     "react": "^15.4.0-rc.4",
     "react-dom": "^15.4.0-rc.4",
     "stylus": "^0.54.5",
-    "stylus-loader": "^2.3.1",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.9"
+    "webpack": "^2.1.0-beta.25"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-flow-strip-types",
+      "add-module-exports"
+    ]
   }
 }

@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgba(0,0,255,0.05);
+}
+:root {
+  padding: 30px;
+}
