@@ -2,8 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: rgba(0,0,255,0.05);
+  background: rgba(30,144,255,0.1);
 }
 :root {
+  font-family: sans-serif;
   padding: 30px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
 }

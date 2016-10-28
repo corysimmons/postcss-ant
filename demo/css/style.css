@@ -1,0 +1,26 @@
+.gg .fractions-only {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gg .fractions-only > *:nth-child(n) {
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  margin-left: 30px;
+}
+.gg .fractions-only > *:nth-child(n + 4) {
+  margin-top: 30px;
+}
+.gg .fractions-only > *:nth-child(3n + 1),
+.gg .fractions-only > *:nth-child(3n + 2),
+.gg .fractions-only > *:nth-child(3n + 3) {
+  width: calc(99.99% * 0.333333333333333 - (30px - 30px * 0.333333333333333));
+}
+.gg .fractions-only > *:nth-child(3n + 1) {
+  margin-left: 0;
+}
+.gg .fractions-only > *:nth-child(3n + 1),
+.gg .fractions-only > *:nth-child(3n + 2),
+.gg .fractions-only > *:nth-child(3n + 3) {
+  height: calc(99.99% * 0.333333333333333 - (30px - 30px * 0.333333333333333));
+}

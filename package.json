@@ -8,11 +8,12 @@
   "repository": "corysimmons/postcss-ant",
   "main": "./build/index.js",
   "scripts": {
-    "start": "npm-run-all -p stylus babel webpack browser-sync",
+    "start": "npm-run-all -p stylus chokidar postcss babel browser-sync",
     "babel": "babel -w lib -d build",
-    "stylus": "stylus -w demo/css/common.styl",
-    "webpack": "webpack",
-    "browser-sync": "browser-sync start -s --no-notify --startPath=demo --files=demo/index.html,demo/css/style.css,demo/js/bundle.js"
+    "stylus": "stylus -w demo/css/**",
+    "chokidar": "chokidar build/index.js demo/css/tests.css -c 'npm run postcss'",
+    "postcss": "postcss --local-plugins -u ./build/index.js -o demo/css/style.css demo/css/tests.css",
+    "browser-sync": "browser-sync start -s --no-open --no-notify --startPath=demo --files=demo/index.html,demo/css/*.css"
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -21,22 +22,17 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-loader": "^6.2.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
-    "babel-plugin-transform-react-stateless-component-name": "^1.0.1",
     "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-preset-es2015-rollup": "^1.2.0",
     "babel-preset-stage-0": "^6.16.0",
     "browser-sync": "^2.17.5",
-    "imports-loader": "^0.6.5",
+    "chokidar-cli": "^1.2.0",
     "lodash": "^4.16.4",
     "npm-run-all": "^3.1.1",
-    "postcss-js": "^0.1.3",
-    "react": "^15.4.0-rc.4",
-    "react-dom": "^15.4.0-rc.4",
-    "stylus": "^0.54.5",
-    "webpack": "^2.1.0-beta.25"
+    "postcss-cli": "^2.6.0",
+    "stylus": "^0.54.5"
   },
   "babel": {
     "presets": [

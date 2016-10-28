@@ -20,7 +20,9 @@ var _ruleSetter = require('../utils/rule-setter');
 
 var _ruleSetter2 = _interopRequireDefault(_ruleSetter);
 
-var _lodash = require('lodash');
+var _invertBy = require('lodash/invertBy');
+
+var _invertBy2 = _interopRequireDefault(_invertBy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -190,7 +192,7 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
 
     // Find matching sizes, then invert the object so selectors are in an array
     // example: {'1px': [ '.foo > *:nth-child(4n + 1)', '.foo > *:nth-child(4n + 2)' ], ...}
-    var inverted = (0, _lodash.invertBy)(obj); // thank god for lodash...
+    var inverted = (0, _invertBy2.default)(obj); // thank god for lodash...
 
     // Cast our sizing-specific rulesets
     for (var size in inverted) {
