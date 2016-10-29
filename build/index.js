@@ -167,7 +167,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       var columnsRegexp = new RegExp(opts.namespace + '(?=columns)');
       var foundColumns = false;
       var firstColumnSetLength = 0;
-      (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+      (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
         if (node.type === 'function' && columnsRegexp.test(node.value)) {
           if (node.value === 'columns') {
             foundColumns = true;
@@ -183,7 +183,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       // Does the decl.value contain both columns() and rows()? Stash bool for use in generate-grid (to help cleanup output).
       var foundColumnsAndRows = false;
       if (foundColumns) {
-        (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+        (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
           var rowsRegexp = new RegExp(opts.namespace + '(?=rows)');
           if (node.type === 'function' && rowsRegexp.test(node.value)) {
             foundColumnsAndRows = true;
@@ -193,7 +193,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       // Finally, we walk/process all sizes(), columns(), and rows(), and get a calc formula back from getSize.
       var prevSourceIndex = 0;
-      var sizesParsed = (0, _postcssValueParser2.default)(ratiosParsed.toString()).walk(function (node) {
+      var sizesParsed = (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
         var sizesRegexp = new RegExp(opts.namespace + '(?=sizes?|columns|rows)');
         if (node.type === 'function' && sizesRegexp.test(node.value)) {
           switch (node.value) {

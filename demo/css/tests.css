@@ -1,3 +1,60 @@
+.gg .fixed-only {
+  gg: columns(100px 200px) rows(200px 200px);
+}
 .gg .fractions-only {
+  height: 300px;
   gg: columns(0.333333333333333 0.333333333333333 0.333333333333333) rows(0.333333333333333 0.333333333333333 0.333333333333333);
+}
+.gg .fractions-only-2 {
+  gg: columns(0.25 0.5 0.25);
+}
+.gg .fractions-only-3 {
+  gg: columns(ratio(1.618, 1) ratio(1.618, 2));
+}
+.gg .fractions-only-4 {
+  height: 300px;
+  gg: columns(0.25 0.5 0.25) rows(0.333333333333333 0.333333333333333 0.333333333333333);
+}
+@media (min-width: 700px) {
+  .gg .fractions-only-4 {
+    gg: columns(reset) rows(reset);
+  }
+}
+@media (min-width: 1000px) {
+  .gg .fractions-only-4 {
+    gg: columns(0.5 0.5) rows(0.25 0.25);
+  }
+}
+.sizes > * {
+  display: flex;
+}
+.sizes > * > * {
+  margin-right: 30px;
+}
+.sizes > * > *:last-child {
+  margin-right: 0;
+}
+.sizes .fixed-only figure:nth-child(1) {
+  width: sizes(100px 200px) pluck(1);
+}
+.sizes .fixed-only figure:nth-child(2) {
+  width: sizes(100px 200px) pluck(2);
+}
+.sizes .fractions-only figure:nth-child(1) {
+  width: sizes(0.25 0.5 0.25) pluck(1);
+}
+.sizes .fractions-only figure:nth-child(2) {
+  width: sizes(0.25 0.5 0.25) pluck(2);
+}
+.sizes .fractions-only figure:nth-child(3) {
+  width: sizes(0.25 0.5 0.25) pluck(3);
+}
+.sizes .fractions-only-2 figure:nth-child(1) {
+  width: sizes(ratio(1.618, 1) ratio(1.618, 2) ratio(1.618, 3)) pluck(1);
+}
+.sizes .fractions-only-2 figure:nth-child(2) {
+  width: sizes(ratio(1.618, 1) ratio(1.618, 2) ratio(1.618, 3)) pluck(2);
+}
+.sizes .fractions-only-2 figure:nth-child(3) {
+  width: sizes(ratio(1.618, 1) ratio(1.618, 2) ratio(1.618, 3)) pluck(3);
 }

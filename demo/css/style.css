@@ -1,3 +1,29 @@
+.gg .fixed-only {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gg .fixed-only > *:nth-child(n) {
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  margin-left: 30px;
+}
+.gg .fixed-only > *:nth-child(n + 3) {
+  margin-top: 30px;
+}
+.gg .fixed-only > *:nth-child(2n + 1) {
+  width: 100px;
+}
+.gg .fixed-only > *:nth-child(2n + 2) {
+  width: 200px;
+}
+.gg .fixed-only > *:nth-child(2n + 1) {
+  margin-left: 0;
+}
+.gg .fixed-only > *:nth-child(2n + 1),
+.gg .fixed-only > *:nth-child(2n + 2) {
+  height: 200px;
+}
 .gg .fractions-only {
   display: flex;
   flex-wrap: wrap;
@@ -23,4 +49,142 @@
 .gg .fractions-only > *:nth-child(3n + 2),
 .gg .fractions-only > *:nth-child(3n + 3) {
   height: calc(99.99% * 0.333333333333333 - (30px - 30px * 0.333333333333333));
+}
+.gg .fractions-only {
+  height: 300px;
+}
+.gg .fractions-only-2 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gg .fractions-only-2 > *:nth-child(n) {
+  width: auto;
+  margin-left: 30px;
+}
+.gg .fractions-only-2 > *:nth-child(3n + 1),
+.gg .fractions-only-2 > *:nth-child(3n + 3) {
+  width: calc(99.99% * 0.25 - (30px - 30px * 0.25));
+}
+.gg .fractions-only-2 > *:nth-child(3n + 2) {
+  width: calc(99.99% * 0.5 - (30px - 30px * 0.5));
+}
+.gg .fractions-only-2 > *:nth-child(3n + 1) {
+  margin-left: 0;
+}
+.gg .fractions-only-3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gg .fractions-only-3 > *:nth-child(n) {
+  width: auto;
+  margin-left: 30px;
+}
+.gg .fractions-only-3 > *:nth-child(2n + 1) {
+  width: calc(99.99% * 1.618 / 4.235924000000001 - (30px - 30px * 1.618 / 4.235924000000001));
+}
+.gg .fractions-only-3 > *:nth-child(2n + 2) {
+  width: calc(99.99% * 2.6179240000000004 / 4.235924000000001 - (30px - 30px * 2.6179240000000004 / 4.235924000000001));
+}
+.gg .fractions-only-3 > *:nth-child(2n + 1) {
+  margin-left: 0;
+}
+.gg .fractions-only-4 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gg .fractions-only-4 > *:nth-child(n) {
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  margin-left: 30px;
+}
+.gg .fractions-only-4 > *:nth-child(n + 4) {
+  margin-top: 30px;
+}
+.gg .fractions-only-4 > *:nth-child(3n + 1),
+.gg .fractions-only-4 > *:nth-child(3n + 3) {
+  width: calc(99.99% * 0.25 - (30px - 30px * 0.25));
+}
+.gg .fractions-only-4 > *:nth-child(3n + 2) {
+  width: calc(99.99% * 0.5 - (30px - 30px * 0.5));
+}
+.gg .fractions-only-4 > *:nth-child(3n + 1) {
+  margin-left: 0;
+}
+.gg .fractions-only-4 > *:nth-child(3n + 1),
+.gg .fractions-only-4 > *:nth-child(3n + 2),
+.gg .fractions-only-4 > *:nth-child(3n + 3) {
+  height: calc(99.99% * 0.333333333333333 - (30px - 30px * 0.333333333333333));
+}
+.gg .fractions-only-4 {
+  height: 300px;
+}
+@media (min-width: 700px) {
+  .gg .fractions-only-4 > *:nth-child(n) {
+    width: auto;
+    margin-left: 0;
+  }
+  .gg .fractions-only-4 > *:nth-child(n) {
+    height: auto;
+    margin-top: 0;
+  }
+}
+@media (min-width: 1000px) {
+  .gg .fractions-only-4 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .gg .fractions-only-4 > *:nth-child(n) {
+    width: auto;
+    height: auto;
+    margin-top: 0;
+    margin-left: 30px;
+  }
+  .gg .fractions-only-4 > *:nth-child(n + 3) {
+    margin-top: 30px;
+  }
+  .gg .fractions-only-4 > *:nth-child(2n + 1),
+  .gg .fractions-only-4 > *:nth-child(2n + 2) {
+    width: calc(99.99% * 0.5 - (30px - 30px * 0.5));
+  }
+  .gg .fractions-only-4 > *:nth-child(2n + 1) {
+    margin-left: 0;
+  }
+  .gg .fractions-only-4 > *:nth-child(2n + 1),
+  .gg .fractions-only-4 > *:nth-child(2n + 2) {
+    height: calc(99.99% * 0.25 - (30px - 30px * 0.25));
+  }
+}
+.sizes > * {
+  display: flex;
+}
+.sizes > * > * {
+  margin-right: 30px;
+}
+.sizes > * > *:last-child {
+  margin-right: 0;
+}
+.sizes .fixed-only figure:nth-child(1) {
+  width: 100px;
+}
+.sizes .fixed-only figure:nth-child(2) {
+  width: 200px;
+}
+.sizes .fractions-only figure:nth-child(1) {
+  width: calc(99.99% * 0.25 - (30px - 30px * 0.25));
+}
+.sizes .fractions-only figure:nth-child(2) {
+  width: calc(99.99% * 0.5 - (30px - 30px * 0.5));
+}
+.sizes .fractions-only figure:nth-child(3) {
+  width: calc(99.99% * 0.25 - (30px - 30px * 0.25));
+}
+.sizes .fractions-only-2 figure:nth-child(1) {
+  width: calc(99.99% * 1.618 / 8.471725032000002 - (30px - 30px * 1.618 / 8.471725032000002));
+}
+.sizes .fractions-only-2 figure:nth-child(2) {
+  width: calc(99.99% * 2.6179240000000004 / 8.471725032000002 - (30px - 30px * 2.6179240000000004 / 8.471725032000002));
+}
+.sizes .fractions-only-2 figure:nth-child(3) {
+  width: calc(99.99% * 4.235801032000001 / 8.471725032000002 - (30px - 30px * 4.235801032000001 / 8.471725032000002));
 }
