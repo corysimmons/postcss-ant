@@ -10,8 +10,6 @@
   color: darken(dodgerblue, 33%)
   font-weight: bold
   padding: $g $g 0
-  line-height: 50px
-  text-align: center
   font-size: 12px
   -webkit-font-smoothing: antialiased
 
@@ -23,8 +21,24 @@ section
     background: rgba(dodgerblue, 5%)
     font-size: 14px
     padding: 0 ($g / 2)
+  > *
+    counter-reset: item
+    > *
+      position: relative
+      outline: 1px solid rgba(dodgerblue, 75%)
+      outline-offset: -1px
+      min-height: 50px
+      overflow: hidden
+      &::before
+        position: absolute
+        counter-increment: item
+        content: counter(item)
+        top: 50%
+        left: 50%
+        transform: translate3d(-50%, -50%, 0)
+        line-height: 0
 
-section:not(.gg)
+section:not([class*="generate-grid"])
   > *
     display: flex
     flex-wrap: wrap
@@ -55,3 +69,7 @@ section:not(.gg)
         margin-left: 0
     h6
       padding: 0 ($g / 2)
+
+h6
+  text-align: left
+  line-height: 50px

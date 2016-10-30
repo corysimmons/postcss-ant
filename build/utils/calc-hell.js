@@ -49,11 +49,11 @@ exports.default = function (sizes, localOpts, node) {
   // Prep arrs for: fixed (any valid CSS length), fractions (which include decimals), fr (replacing auto)
   var fixeds = [];
   var fractions = [];
-  var frs = [];
+  var autos = [];
 
   var fixedsRegexp = /em|ex|%|px$|cm|mm|in|pt|pc|ch|rem|vh|vw|vmin|vmax/;
   var fractionsRegexp = /\/|\./;
-  var frsRegexp = /fr$/;
+  var autosRegexp = /auto/;
 
   // Final return value
   var result = '';
@@ -74,16 +74,11 @@ exports.default = function (sizes, localOpts, node) {
   // Subtract 1 from pluck so it can be nth compatible (good for preprocessor looping), but easily interpolated in formulas.
   var pluck = localOpts.pluck - 1;
 
-  // Bail early if they're just serving a fixed number.
-  if (fixedsRegexp.test(sizes[pluck])) {
-    return result = formula(sizes[pluck]);
-  }
-
-  // Organize fixed numbers, fractions/decimals, and fr units, to their own arrays.
+  // Organize fixed numbers, fractions/decimals, and auto units, to their own arrays.
   sizes.map(function (size) {
     fixedsRegexp.test(size) ? fixeds.push(size) : null;
     fractionsRegexp.test(size) ? fractions.push(size) : null;
-    frsRegexp.test(size) ? frs.push(size) : null;
+    autosRegexp.test(size) ? autos.push(size) : null;
   });
 
   // Condense fixed numbers to a single value. We can still pluck single values from the existing arrays -- this just helps make our formulas smaller.
@@ -92,9 +87,9 @@ exports.default = function (sizes, localOpts, node) {
   }) : '';
 
   // Convert fractions to floats and combine with user-defined floats. Again, condensing to a single value for cleaner formulas.
-  var sumFraction = void 0;
+  var sumFrac = 0;
   if (fractions.length) {
-    sumFraction = fractions.reduce(function (prev, curr) {
+    sumFrac = fractions.reduce(function (prev, curr) {
       if (typeof prev === 'string') {
         if (/\//.test(prev)) {
           prev = prev.split('/')[0] / prev.split('/')[1];
@@ -111,32 +106,19 @@ exports.default = function (sizes, localOpts, node) {
     }, 0);
   }
 
-  // Condensing fr units for cleaner formulas.
-  var sumFr = frs.length ? frs.reduce(function (prev, curr) {
-    return parseInt(prev, 10) + parseInt(curr, 10) + 'fr';
-  }) : null;
-
-  var val = '';
-  if (frsRegexp.test(sizes[pluck])) {
-    var thisFr = sizes[pluck].replace('fr', '');
-    val = thisFr;
-    // todo: continue replacing auto with fr sizes
-  } else {
-    val = sizes[pluck];
-  }
-
   // Aliases/caching for terser/faster formulas
+  var val = sizes[pluck];
   var tech = localOpts.technique;
   var gut = parseInt(localOpts.gutters[0], 10) !== 0 ? localOpts.gutters[0] : 0;
   var bump = localOpts.bump;
 
   var valFixed = fixedsRegexp.test(val) ? true : false;
   var valFraction = fractionsRegexp.test(val) ? true : false;
-  var valFr = frsRegexp.test(val) ? true : false;
+  var valAuto = autosRegexp.test(val) ? true : false;
 
   var numFixed = fixeds.length;
-  var numFractions = fractions.length;
-  var numFrs = frs.length;
+  var numFrac = fractions.length;
+  var numAuto = autos.length;
 
   // If gutter, use first rounder, if no gutter, use second rounder. Alias for terser formulas.
   var rounder = function rounder(gut) {
@@ -147,69 +129,156 @@ exports.default = function (sizes, localOpts, node) {
     }
   };
 
-  // console.log all sizes and settings
-  var s = function s() {
-    console.log('\nsizes: ' + String(sizes) + '\n\nlocalOpts: ' + JSON.stringify(localOpts, null, 2) + '\n    ');
-  };
-
   // Conditional Calc Hell! Abandon hope! 👺
 
-  // val is a fixed is covered above ^
+  // val is fixed
+  if (fixedsRegexp.test(sizes[pluck])) {
+    return result = formula(sizes[pluck]);
+  }
 
   // val is a fraction
-  if (fractionsRegexp.test(val)) {
+  if (valFraction) {
     // fraction(s) only
-    if (valFraction && numFixed === 0 && numFrs === 0) {
+    if (numFixed === 0 && numAuto === 0) {
       if (gut) {
         switch (tech) {
           case 'nth':
-            return result = formula(rounder(gut) + ' * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')' + bump);
+            return result = formula(rounder(gut) + ' * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')');
           case 'negative-margin':
-            return result = formula(rounder(gut) + ' * ' + val + ' - ' + gut + bump);
+            return result = formula(rounder(gut) + ' * ' + val + ' - ' + gut);
           default:
             return;
         }
+        return;
       } else {
-        return result = formula(rounder(gut) + ' * ' + val + bump);
+        return result = formula(rounder(gut) + ' * ' + val);
       }
     }
 
     // fraction(s) and fixed number(s) only
-    if (valFraction && numFixed > 0 && numFrs === 0) {
+    if (numFixed > 0 && numAuto === 0) {
       if (gut) {
         switch (tech) {
           case 'nth':
-            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')' + bump);
+            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')');
           case 'negative-margin':
-            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + val + ' - ' + gut + bump);
+            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + val + ' - ' + gut);
           default:
             return;
         }
         return;
       } else {
-        return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ')) * ' + val + bump);
+        return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ')) * ' + val);
       }
     }
 
     // fraction(s) and auto(s) only
-    if (numFractions > 0 && numFrs > 0 && numFixed === 0) {
+    if (numAuto > 0 && numFixed === 0) {
       if (gut) {
         switch (tech) {
           case 'nth':
-            return result = formula(rounder(gut) + ' * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')' + bump);
+            return result = formula(rounder(gut) + ' * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')');
           case 'negative-margin':
-            return result = formula(rounder(gut) + ' * ' + val + ' - ' + gut + bump);
+            return result = formula(rounder(gut) + ' * ' + val + ' - ' + gut);
           default:
             return;
         }
         return;
       } else {
-        return result = formula(rounder(gut) + ' * ' + val + bump);
+        return result = formula(rounder(gut) + ' * ' + val);
+      }
+    }
+
+    // fraction(s), fixed number(s), and auto(s)
+    if (numFixed > 0 && numAuto > 0) {
+      if (gut) {
+        switch (tech) {
+          case 'nth':
+            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + val + ' - (' + gut + ' - ' + gut + ' * ' + val + ')');
+          case 'negative-margin':
+            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + val + ' - ' + gut);
+          default:
+            return;
+        }
+        return;
+      } else {
+        return result = formula('(' + rounder(gut) + ' - ' + sumFixed + ') * ' + val);
       }
     }
   } // end val is fraction
 
-  return 'postcss-ant: How did you get here? Please file a bug at https://github.com/corysimmons/postcss-ant/issues/new';
+  // val is auto
+  if (valAuto) {
+    // auto(s) only
+    if (numFrac === 0 && numFixed === 0) {
+      if (gut) {
+        switch (tech) {
+          case 'nth':
+            return result = formula('(' + rounder(gut) + ' - ((' + numAuto + ' - 1) * ' + gut + ')) / ' + numAuto);
+          case 'negative-margin':
+            return result = formula('(' + rounder(gut) + ' - ((' + numAuto + ') * ' + gut + ')) / ' + numAuto);
+          default:
+            return;
+        }
+        return;
+      } else {
+        return result = formula(rounder(gut) + ' / ' + numAuto);
+      }
+    }
+
+    // auto(s) and fixed number(s) only
+    if (numFixed > 0 && numFrac === 0) {
+      if (gut) {
+        switch (tech) {
+          case 'nth':
+            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ') - ((' + numFixed + ' + ' + numAuto + ' - 1) * ' + gut + ')) / ' + numAuto);
+          case 'negative-margin':
+            return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ') - ((' + numFixed + ' + ' + numAuto + ') * ' + gut + ')) / ' + numAuto);
+          default:
+            return;
+        }
+        return;
+      } else {
+        return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ')) / ' + numAuto);
+      }
+    }
+
+    // auto(s) and fraction(s) only
+    if (numFrac > 0 && numFixed === 0) {
+      if (gut) {
+        switch (tech) {
+          case 'nth':
+            return result = formula('((' + rounder(gut) + ' - (' + rounder(gut) + ' * ' + sumFrac + ' - (' + gut + ' - ' + gut + ' * ' + sumFrac + '))) / ' + numAuto + ') - ' + gut);
+          case 'negative-margin':
+            return result = formula('((' + rounder(gut) + ' - (' + rounder(gut) + ' * ' + sumFrac + ')) / ' + numAuto + ') - ' + gut);
+          default:
+            return;
+        }
+        return;
+      } else {
+        return result = formula('(' + rounder(gut) + ' - (' + rounder(gut) + ' * ' + sumFrac + ')) / ' + numAuto);
+      }
+    }
+
+    // auto(s), fraction(s), and fixed number(s)
+    if (numFrac > 0 && numFixed > 0) {
+      if (gut) {
+        switch (tech) {
+          case 'nth':
+            return result = formula('(' + rounder(gut) + ' - ((' + sumFixed + ' + (' + gut + ' * ' + numFixed + ')) + ((' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + sumFrac + ' - (' + gut + ' - ' + gut + ' * ' + sumFrac + '))) - (' + gut + ' * ' + numAuto + ')) / ' + numAuto);
+          case 'negative-margin':
+            return result = formula('(' + rounder(gut) + ' - ((' + sumFixed + ' + (' + gut + ' * ' + numFixed + ')) + ((' + rounder(gut) + ' - (' + sumFixed + ' + (' + gut + ' * ' + numFixed + '))) * ' + sumFrac + ' - ' + gut + ')) - ' + gut + ') / ' + numAuto + ' - ' + gut);
+          default:
+            return;
+        }
+        return;
+      } else {
+        return result = formula('(' + rounder(gut) + ' - (' + sumFixed + ' + ((' + rounder(gut) + ' - ' + sumFixed + ') * ' + sumFrac + '))) / ' + numAuto);
+      }
+    }
+  } // end val is auto
+
+  return 'postcss-ant: calc-hell.js fell through. Please file a bug with your CSS at https://github.com/corysimmons/postcss-ant/issues/new';
 };
 
 module.exports = exports['default'];

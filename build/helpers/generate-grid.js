@@ -26,7 +26,7 @@ var _invertBy2 = _interopRequireDefault(_invertBy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (node, opts, direction, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex) {
+exports.default = function (node, localOpts, direction, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex) {
   // Grab all the contents within the function and sort them into size sets.
   var value = _postcssValueParser2.default.stringify(node.nodes);
   var sizeSets = _postcss2.default.list.comma(value);
@@ -46,28 +46,33 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
   }
 
   // Set both gutters if only 1 gutter has been specified
-  if (opts.gutters.length === 1) {
-    opts.gutters = [opts.gutters[0], opts.gutters[0]];
+  if (localOpts.gutters.length === 1) {
+    localOpts.gutters = [localOpts.gutters[0], localOpts.gutters[0]];
   }
 
   // Assign grid depending on support()
   if (value !== 'reset') {
     if (firstCall) {
-      if (opts.support === 'flexbox') {
-        switch (opts.technique) {
+      if (localOpts.support === 'flexbox') {
+        switch (localOpts.technique) {
           case 'nth':
             (0, _ruleSetter2.default)('' + decl.parent.selector, ['display: flex', 'flex-wrap: wrap'], decl);
             break;
 
           case 'negative-margin':
-            (0, _ruleSetter2.default)('' + decl.parent.selector, ['display: flex', 'flex-wrap: wrap', 'margin-right: calc(-' + opts.gutters[0] + ' / 2)', 'margin-left: calc(-' + opts.gutters[0] + ' / 2)'], decl);
-            (0, _ruleSetter2.default)(decl.parent.selector + ' > *', ['margin-right: calc(' + opts.gutters[0] + ' / 2)', 'margin-left: calc(' + opts.gutters[0] + ' / 2)'], decl);
+            if (localOpts.gutters[0] !== '0') {
+              (0, _ruleSetter2.default)('' + decl.parent.selector, ['display: flex', 'flex-wrap: wrap', 'margin-right: calc(-' + localOpts.gutters[0] + ' / 2)', 'margin-left: calc(-' + localOpts.gutters[0] + ' / 2)'], decl);
+              (0, _ruleSetter2.default)(decl.parent.selector + ' > *', ['margin-right: calc(' + localOpts.gutters[0] + ' / 2)', 'margin-left: calc(' + localOpts.gutters[0] + ' / 2)'], decl);
+            } else {
+              (0, _ruleSetter2.default)('' + decl.parent.selector, ['display: flex', 'flex-wrap: wrap', 'margin-right: 0', 'margin-left: 0'], decl);
+              (0, _ruleSetter2.default)(decl.parent.selector + ' > *', ['margin-right: 0', 'margin-left: 0'], decl);
+            }
             break;
 
           default:
             break;
         }
-      } else if (opts.support === 'float') {
+      } else if (localOpts.support === 'float') {
         (0, _ruleSetter2.default)(decl.parent.selector + ' > *', ['float: left'], decl);
         (0, _ruleSetter2.default)(decl.parent.selector + '::after', ['content: \'\'', 'display: table', 'clear: both'], decl);
       }
@@ -78,14 +83,14 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
   if (value === 'reset') {
     switch (node.value) {
       case 'columns':
-        switch (opts.technique) {
+        switch (localOpts.technique) {
           case 'nth':
-            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: 0'], decl);
+            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'margin-left: 0'], decl);
             break;
 
           case 'negative-margin':
             (0, _ruleSetter2.default)('' + decl.parent.selector, ['margin-right: 0', 'margin-left: 0'], decl);
-            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-right: 0', 'margin-left: 0'], decl);
+            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'margin-right: 0', 'margin-left: 0'], decl);
             break;
 
           default:
@@ -95,7 +100,7 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
         return;
 
       case 'rows':
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
         return;
 
       default:
@@ -106,10 +111,10 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
   // Convert columns() to width and rows() to height for shorter conditionals and usage when assigning sizes to that particular dimension.
   var getDirection = function getDirection() {
     switch (direction) {
-      case opts.namespace + 'columns':
+      case localOpts.namespace + 'columns':
         return 'width';
 
-      case opts.namespace + 'rows':
+      case localOpts.namespace + 'rows':
         return 'height';
 
       default:
@@ -119,30 +124,30 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
 
   // Implicitly reset dimensions and margins with each generate-grid. This prevents a huge amount of media query gotchas.
   if (foundColumnsAndRows && firstCall) {
-    switch (opts.technique) {
+    switch (localOpts.technique) {
       case 'nth':
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-left: ' + opts.gutters[0]], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-left: ' + localOpts.gutters[0]], decl);
         break;
 
       case 'negative-margin':
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-right: calc(' + opts.gutters[0] + ' / 2)', 'margin-left: calc(' + opts.gutters[0] + ' / 2)'], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-right: calc(' + localOpts.gutters[0] + ' / 2)', 'margin-left: calc(' + localOpts.gutters[0] + ' / 2)'], decl);
         break;
 
       default:
         break;
     }
 
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutters[1]], decl);
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + localOpts.gutters[1]], decl);
   } else if (firstCall) {
     switch (getDirection()) {
       case 'width':
-        switch (opts.technique) {
+        switch (localOpts.technique) {
           case 'nth':
-            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-left: ' + opts.gutters[0]], decl);
+            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'margin-left: ' + localOpts.gutters[0]], decl);
             break;
 
           case 'negative-margin':
-            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: auto', 'margin-right: calc(' + opts.gutters[0] + ' / 2)', 'margin-left: calc(' + opts.gutters[0] + ' / 2)'], decl);
+            (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'margin-right: calc(' + localOpts.gutters[0] + ' / 2)', 'margin-left: calc(' + localOpts.gutters[0] + ' / 2)'], decl);
 
           default:
             break;
@@ -151,10 +156,10 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
         break;
 
       case 'height':
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['height: auto', 'margin-top: 0'], decl);
 
         // This technique prevents people from having to know how many elements appear on the last row.
-        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + opts.gutters[1]], decl);
+        (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n + ' + (firstColumnSetLength + 1) + ')', ['margin-top: ' + localOpts.gutters[1]], decl);
 
         break;
 
@@ -164,9 +169,9 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
   }
 
   // If columns(100%) and technique is negative-margin, then erase negative-margins
-  if (node.value === 'columns' && value === '100%' && opts.technique === 'negative-margin') {
+  if (node.value === 'columns' && value === '100%' && localOpts.technique === 'negative-margin') {
     (0, _ruleSetter2.default)('' + decl.parent.selector, ['margin-right: 0', 'margin-left: 0'], decl);
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + opts.children + '(n)', ['width: 100%', 'margin-right: 0', 'margin-left: 0'], decl);
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: 100%', 'margin-right: 0', 'margin-left: 0'], decl);
     return;
   }
 
@@ -181,13 +186,13 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
 
   // Set dimension with cycling nth selector
   // Loop through each size in each size set, applying rulesets as we go.
-  (0, _getSize2.default)(node, opts, decl).map(function (sizes) {
+  (0, _getSize2.default)(node, localOpts, decl).map(function (sizes) {
     // Do some work to ensure selectors (when casting sizes) are combined/stacked neatly.
     var obj = {};
     sizes.map(function (size) {
       // Cast selector: size pairs to obj
       // example: {'.foo > *:nth-child(4n + 1)': '1px', ...}
-      obj[decl.parent.selector + ' > *:' + opts.children + '(' + totalSizes + 'n + ' + incrementToTotalSizes() + ')'] = size;
+      obj[decl.parent.selector + ' > *:' + localOpts.children + '(' + totalSizes + 'n + ' + incrementToTotalSizes() + ')'] = size;
     });
 
     // Find matching sizes, then invert the object so selectors are in an array
@@ -202,13 +207,13 @@ exports.default = function (node, opts, direction, decl, firstColumnSetLength, f
 
   // Negate column margins on nth grids
   // The first column in a row will never have a margin-left. We add the length of the previously used size set on each iteration. Start on 1.
-  if (opts.technique === 'nth') {
+  if (localOpts.technique === 'nth') {
     if (getDirection() === 'width') {
       (function () {
         var collectedSetLengths = 1;
         var selectors = [];
         sizeSets.map(function (sizeSet) {
-          selectors.push(decl.parent.selector + ' > *:' + opts.children + '(' + totalSizes + 'n + ' + collectedSetLengths + ')');
+          selectors.push(decl.parent.selector + ' > *:' + localOpts.children + '(' + totalSizes + 'n + ' + collectedSetLengths + ')');
           collectedSetLengths += _postcss2.default.list.space(sizeSet).length;
         });
 
