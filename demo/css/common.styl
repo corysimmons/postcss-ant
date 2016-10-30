@@ -1,3 +1,5 @@
+@import 'settings'
+
 *
   margin: 0
   padding: 0
@@ -7,15 +9,49 @@
   font-family: sans-serif
   color: darken(dodgerblue, 33%)
   font-weight: bold
-  padding: 30px 30px 0
+  padding: $g $g 0
   line-height: 50px
   text-align: center
   font-size: 12px
   -webkit-font-smoothing: antialiased
 
 section
-  background: rgba(tomato, 33%)
+  margin-bottom: $g
   *
     background: rgba(dodgerblue, 66%)
-div
-  margin-bottom: 30px
+  h6
+    background: rgba(dodgerblue, 5%)
+    font-size: 14px
+    padding: 0 ($g / 2)
+
+section:not(.gg)
+  > *
+    display: flex
+    flex-wrap: wrap
+  &.nth
+    > *
+      > *
+        margin-right: $g
+        &:last-child
+          margin-right: 0
+  &.neg
+    > *
+      margin-left: -($g / 2)
+      margin-right: -($g / 2)
+      > *
+        margin-left: ($g / 2)
+        margin-right: ($g / 2)
+    h6
+      padding: 0 $g
+  &.gutless
+    > *
+      > *
+        margin-right: 0
+  &.gutless.neg
+    > *
+      margin-left: 0
+      margin-right: 0
+      > *
+        margin-left: 0
+    h6
+      padding: 0 ($g / 2)

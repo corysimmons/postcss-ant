@@ -3,73 +3,151 @@
   <head>
     <meta charset="UTF-8">
     <title>postcss-ant | Visual Tests</title>
-    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 
-    <section class="gg">
-      <div class="fixed-only">
-        <figure>1</figure>
-        <figure>2</figure>
-      </div>
 
-      <div class="fractions-only">
+    <!-- fraction(s) and auto(s) only -->
+    <section class="fractions-and-auto nth">
+      <div class="ex1">
         <figure>1</figure>
         <figure>2</figure>
         <figure>3</figure>
         <figure>4</figure>
-        <figure>5</figure>
-        <figure>6</figure>
-        <figure>7</figure>
-        <figure>8</figure>
-      </div>
-
-      <div class="fractions-only-2">
-        <figure>1</figure>
-        <figure>2</figure>
-        <figure>3</figure>
-        <figure>4</figure>
-        <figure>5</figure>
-      </div>
-
-      <div class="fractions-only-3">
-        <figure>1</figure>
-        <figure>2</figure>
-        <figure>3</figure>
-        <figure>4</figure>
-      </div>
-
-      <div class="fractions-only-4">
-        <figure>1</figure>
-        <figure>2</figure>
-        <figure>3</figure>
-        <figure>4</figure>
-        <figure>5</figure>
-        <figure>6</figure>
-        <figure>7</figure>
-        <figure>8</figure>
       </div>
     </section>
 
-    <section class="sizes">
-      <div class="fixed-only">
-        <figure>1</figure>
-        <figure>2</figure>
-      </div>
-
-      <div class="fractions-only">
+    <section class="fractions-and-auto neg">
+      <div class="ex1">
         <figure>1</figure>
         <figure>2</figure>
         <figure>3</figure>
+        <figure>4</figure>
       </div>
+    </section>
 
-      <div class="fractions-only-2">
+    <section class="fractions-and-auto nth gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+    <section class="fractions-and-auto neg gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+
+    <!-- fraction(s) and fixed number(s) only -->
+    <section class="fractions-and-fixed nth">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+    <section class="fractions-and-fixed neg">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+    <section class="fractions-and-fixed nth gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+    <section class="fractions-and-fixed neg gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+        <figure>4</figure>
+      </div>
+    </section>
+
+    <!-- fraction(s) only -->
+    <section class="fraction-only nth">
+      <div class="ex1">
         <figure>1</figure>
         <figure>2</figure>
         <figure>3</figure>
       </div>
     </section>
 
+    <section class="fraction-only neg">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+    <section class="fraction-only nth gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+    <section class="fraction-only neg gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+
+    <!-- fixed only -->
+    <section class="fixed-only nth">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+    <section class="fixed-only neg">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+    <section class="fixed-only nth gutless">
+      <div class="ex1">
+        <figure>1</figure>
+        <figure>2</figure>
+        <figure>3</figure>
+      </div>
+    </section>
+
+
+    <script>
+      // Add headings to each demo
+      const sections = document.querySelectorAll('section').forEach(el => {
+        el.innerHTML = `<h6>${el.classList.value}</h6> ${el.innerHTML}`
+      })
+    </script>
   </body>
 </html>

@@ -1,60 +1,228 @@
-.gg .fixed-only {
-  gg: columns(100px 200px) rows(200px 200px);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.gg .fractions-only {
-  height: 300px;
-  gg: columns(0.333333333333333 0.333333333333333 0.333333333333333) rows(0.333333333333333 0.333333333333333 0.333333333333333);
+:root {
+  font-family: sans-serif;
+  color: #0061bf;
+  font-weight: bold;
+  padding: 30px 30px 0;
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
 }
-.gg .fractions-only-2 {
-  gg: columns(0.25 0.5 0.25);
+section {
+  margin-bottom: 30px;
 }
-.gg .fractions-only-3 {
-  gg: columns(ratio(1.618, 1) ratio(1.618, 2));
+section * {
+  background: rgba(30,144,255,0.66);
 }
-.gg .fractions-only-4 {
-  height: 300px;
-  gg: columns(0.25 0.5 0.25) rows(0.333333333333333 0.333333333333333 0.333333333333333);
+section h6 {
+  background: rgba(30,144,255,0.05);
+  font-size: 14px;
+  padding: 0 15px;
 }
-@media (min-width: 700px) {
-  .gg .fractions-only-4 {
-    gg: columns(reset) rows(reset);
-  }
-}
-@media (min-width: 1000px) {
-  .gg .fractions-only-4 {
-    gg: columns(0.5 0.5) rows(0.25 0.25);
-  }
-}
-.sizes > * {
+section:not(.gg) > * {
   display: flex;
+  flex-wrap: wrap;
 }
-.sizes > * > * {
+section:not(.gg).nth > * > * {
   margin-right: 30px;
 }
-.sizes > * > *:last-child {
+section:not(.gg).nth > * > *:last-child {
   margin-right: 0;
 }
-.sizes .fixed-only figure:nth-child(1) {
-  width: sizes(100px 200px) pluck(1);
+section:not(.gg).neg > * {
+  margin-left: -15px;
+  margin-right: -15px;
 }
-.sizes .fixed-only figure:nth-child(2) {
-  width: sizes(100px 200px) pluck(2);
+section:not(.gg).neg > * > * {
+  margin-left: 15px;
+  margin-right: 15px;
 }
-.sizes .fractions-only figure:nth-child(1) {
+section:not(.gg).neg h6 {
+  padding: 0 30px;
+}
+section:not(.gg).gutless > * > * {
+  margin-right: 0;
+}
+section:not(.gg).gutless.neg > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+section:not(.gg).gutless.neg > * > * {
+  margin-left: 0;
+}
+section:not(.gg).gutless.neg h6 {
+  padding: 0 15px;
+}
+.fixed-only.nth .ex1 figure:nth-child(1) {
+  width: sizes(100px 200px 300px) pluck(1);
+}
+.fixed-only.nth .ex1 figure:nth-child(2) {
+  width: sizes(100px 200px 300px) pluck(2);
+}
+.fixed-only.nth .ex1 figure:nth-child(3) {
+  width: sizes(100px 200px 300px) pluck(3);
+}
+.fixed-only.neg .ex1 figure:nth-child(1) {
+  width: sizes(100px 200px 300px) pluck(1) technique(negative-margin);
+}
+.fixed-only.neg .ex1 figure:nth-child(2) {
+  width: sizes(100px 200px 300px) pluck(2) technique(negative-margin);
+}
+.fixed-only.neg .ex1 figure:nth-child(3) {
+  width: sizes(100px 200px 300px) pluck(3) technique(negative-margin);
+}
+.fixed-only.gutless .ex1 figure:nth-child(1) {
+  width: sizes(100px 200px 300px) pluck(1) gutter(0);
+}
+.fixed-only.gutless .ex1 figure:nth-child(2) {
+  width: sizes(100px 200px 300px) pluck(2) gutter(0);
+}
+.fixed-only.gutless .ex1 figure:nth-child(3) {
+  width: sizes(100px 200px 300px) pluck(3) gutter(0);
+}
+.fixed-only.neg.gutless .ex1 figure:nth-child(1) {
+  width: sizes(100px 200px 300px) pluck(1) gutter(0) technique(negative-margin);
+}
+.fixed-only.neg.gutless .ex1 figure:nth-child(2) {
+  width: sizes(100px 200px 300px) pluck(2) gutter(0) technique(negative-margin);
+}
+.fixed-only.neg.gutless .ex1 figure:nth-child(3) {
+  width: sizes(100px 200px 300px) pluck(3) gutter(0) technique(negative-margin);
+}
+.fraction-only.nth .ex1 figure:nth-child(1) {
   width: sizes(0.25 0.5 0.25) pluck(1);
 }
-.sizes .fractions-only figure:nth-child(2) {
+.fraction-only.nth .ex1 figure:nth-child(2) {
   width: sizes(0.25 0.5 0.25) pluck(2);
 }
-.sizes .fractions-only figure:nth-child(3) {
+.fraction-only.nth .ex1 figure:nth-child(3) {
   width: sizes(0.25 0.5 0.25) pluck(3);
 }
-.sizes .fractions-only-2 figure:nth-child(1) {
-  width: sizes(ratio(1.618, 1) ratio(1.618, 2) ratio(1.618, 3)) pluck(1);
+.fraction-only.neg .ex1 figure:nth-child(1) {
+  width: sizes(0.25 0.5 0.25) pluck(1) technique(negative-margin);
 }
-.sizes .fractions-only-2 figure:nth-child(2) {
-  width: sizes(ratio(1.618, 1) ratio(1.618, 2) ratio(1.618, 3)) pluck(2);
+.fraction-only.neg .ex1 figure:nth-child(2) {
+  width: sizes(0.25 0.5 0.25) pluck(2) technique(negative-margin);
 }
-.sizes .fractions-only-2 figure:nth-child(3) {
-  width: sizes(ratio(1.618, 1) ratio(1.618, 2) ratio(1.618, 3)) pluck(3);
+.fraction-only.neg .ex1 figure:nth-child(3) {
+  width: sizes(0.25 0.5 0.25) pluck(3) technique(negative-margin);
+}
+.fraction-only.gutless .ex1 figure:nth-child(1) {
+  width: sizes(0.25 0.5 0.25) pluck(1) gutter(0);
+}
+.fraction-only.gutless .ex1 figure:nth-child(2) {
+  width: sizes(0.25 0.5 0.25) pluck(2) gutter(0);
+}
+.fraction-only.gutless .ex1 figure:nth-child(3) {
+  width: sizes(0.25 0.5 0.25) pluck(3) gutter(0);
+}
+.fraction-only.neg.gutless .ex1 figure:nth-child(1) {
+  width: sizes(0.25 0.5 0.25) pluck(1) gutter(0) technique(negative-margin);
+}
+.fraction-only.neg.gutless .ex1 figure:nth-child(2) {
+  width: sizes(0.25 0.5 0.25) pluck(2) gutter(0) technique(negative-margin);
+}
+.fraction-only.neg.gutless .ex1 figure:nth-child(3) {
+  width: sizes(0.25 0.5 0.25) pluck(3) gutter(0) technique(negative-margin);
+}
+.fractions-and-fixed.nth .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 100px 200px) pluck(1);
+}
+.fractions-and-fixed.nth .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 100px 200px) pluck(2);
+}
+.fractions-and-fixed.nth .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 100px 200px) pluck(3);
+}
+.fractions-and-fixed.nth .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 100px 200px) pluck(4);
+}
+.fractions-and-fixed.neg .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 100px 200px) pluck(1) technique(negative-margin);
+}
+.fractions-and-fixed.neg .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 100px 200px) pluck(2) technique(negative-margin);
+}
+.fractions-and-fixed.neg .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 100px 200px) pluck(3) technique(negative-margin);
+}
+.fractions-and-fixed.neg .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 100px 200px) pluck(4) technique(negative-margin);
+}
+.fractions-and-fixed.gutless .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 100px 200px) pluck(1) gutter(0);
+}
+.fractions-and-fixed.gutless .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 100px 200px) pluck(2) gutter(0);
+}
+.fractions-and-fixed.gutless .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 100px 200px) pluck(3) gutter(0);
+}
+.fractions-and-fixed.gutless .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 100px 200px) pluck(4) gutter(0);
+}
+.fractions-and-fixed.neg.gutless .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 100px 200px) pluck(1) gutter(0) technique(negative-margin);
+}
+.fractions-and-fixed.neg.gutless .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 100px 200px) pluck(2) gutter(0) technique(negative-margin);
+}
+.fractions-and-fixed.neg.gutless .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 100px 200px) pluck(3) gutter(0) technique(negative-margin);
+}
+.fractions-and-fixed.neg.gutless .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 100px 200px) pluck(4) gutter(0) technique(negative-margin);
+}
+.fractions-and-auto.nth .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 auto auto) pluck(1);
+}
+.fractions-and-auto.nth .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 auto auto) pluck(2);
+}
+.fractions-and-auto.nth .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 auto auto) pluck(3);
+}
+.fractions-and-auto.nth .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 auto auto) pluck(4);
+}
+.fractions-and-auto.neg .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 auto auto) pluck(1) technique(negative-margin);
+}
+.fractions-and-auto.neg .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 auto auto) pluck(2) technique(negative-margin);
+}
+.fractions-and-auto.neg .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 auto auto) pluck(3) technique(negative-margin);
+}
+.fractions-and-auto.neg .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 auto auto) pluck(4) technique(negative-margin);
+}
+.fractions-and-auto.gutless .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 auto auto) pluck(1) gutter(0);
+}
+.fractions-and-auto.gutless .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 auto auto) pluck(2) gutter(0);
+}
+.fractions-and-auto.gutless .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 auto auto) pluck(3) gutter(0);
+}
+.fractions-and-auto.gutless .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 auto auto) pluck(4) gutter(0);
+}
+.fractions-and-auto.neg.gutless .ex1 figure:nth-child(1) {
+  width: sizes(0.5 0.5 auto auto) pluck(1) gutter(0) technique(negative-margin);
+}
+.fractions-and-auto.neg.gutless .ex1 figure:nth-child(2) {
+  width: sizes(0.5 0.5 auto auto) pluck(2) gutter(0) technique(negative-margin);
+}
+.fractions-and-auto.neg.gutless .ex1 figure:nth-child(3) {
+  width: sizes(0.5 0.5 auto auto) pluck(3) gutter(0) technique(negative-margin);
+}
+.fractions-and-auto.neg.gutless .ex1 figure:nth-child(4) {
+  width: sizes(0.5 0.5 auto auto) pluck(4) gutter(0) technique(negative-margin);
 }

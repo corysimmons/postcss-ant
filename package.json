@@ -20,8 +20,8 @@
   "scripts": {
     "start": "npm-run-all -p stylus chokidar postcss babel browser-sync",
     "babel": "babel -w lib -d build",
-    "stylus": "stylus -w demo/css/**",
-    "chokidar": "chokidar build/index.js demo/css/tests.css -c 'npm run postcss'",
+    "stylus": "stylus -w demo/css/tests.styl",
+    "chokidar": "chokidar build/*.js build/**/*.js demo/css/tests.css -c 'npm run postcss'",
     "postcss": "postcss --local-plugins -u ./build/index.js -o demo/css/style.css demo/css/tests.css",
     "browser-sync": "browser-sync start -s --no-open --no-notify --startPath=demo --files=demo/index.html,demo/css/*.css"
   },

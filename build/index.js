@@ -30,6 +30,8 @@ var _generateGrid2 = _interopRequireDefault(_generateGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 // Stash global settings in an opts obj
 var ant = _postcss2.default.plugin('postcss-ant', function () {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
@@ -75,47 +77,59 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           break;
       }
     });
+
     // Walk declarations. Shallow walk with valueParser to stash local opts in opts obj. Then deepest-first walks over methods.
     css.walkDecls(function (decl) {
       // Ensure user is combining methods correctly.
       // Throw helpful suggestions to help newcomers. Don't be too strict and limit boundary-pushers.
       (0, _errorHandler2.default)(opts, decl);
 
+      var localOpts = _defineProperty({
+        rounders: opts.rounders,
+        gutters: opts.gutters,
+        bump: opts.bump,
+        pluck: opts.pluck,
+        namespace: opts.namespace,
+        support: opts.support,
+        technique: opts.technique,
+        children: opts.children
+      }, 'namespace', opts.namespace);
+
       // Local settings walk
       var optsParsed = (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
-        var optsRegexp = new RegExp(opts.namespace + '(?=gutters?|rounders?|support|pluck|bump|technique|children)');
+        var optsRegexp = new RegExp(localOpts.namespace + '(?=gutters?|rounders?|support|pluck|bump|technique|children)');
         if (node.type === 'function' && optsRegexp.test(node.value)) {
           node.type = 'word'; // transform existing function node into a word so we can replace its value with a string
 
           switch (node.value) {
-            case opts.namespace + 'gutter':
-            case opts.namespace + 'gutters':
-              opts.gutters = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes));
+            case localOpts.namespace + 'gutter':
+            case localOpts.namespace + 'gutters':
+              localOpts.gutters = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)) ? _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)) : opts.gutters;
               break;
 
-            case opts.namespace + 'rounder':
-            case opts.namespace + 'rounders':
-              opts.rounders = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes));
+            case localOpts.namespace + 'rounder':
+            case localOpts.namespace + 'rounders':
+              localOpts.rounders = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)) ? _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)) : opts.rounders;
               break;
 
-            case opts.namespace + 'support':
-              opts.support = _postcssValueParser2.default.stringify(node.nodes);
+            case localOpts.namespace + 'support':
+              localOpts.support = _postcssValueParser2.default.stringify(node.nodes) ? _postcssValueParser2.default.stringify(node.nodes) : opts.support;
               break;
 
-            case opts.namespace + 'pluck':
-              opts.pluck = Number(_postcssValueParser2.default.stringify(node.nodes));
+            case localOpts.namespace + 'pluck':
+              localOpts.pluck = Number(_postcssValueParser2.default.stringify(node.nodes)) ? Number(_postcssValueParser2.default.stringify(node.nodes)) : opts.pluck;
               break;
 
-            case opts.namespace + 'bump':
-              opts.bump = ' ' + _postcssValueParser2.default.stringify(node.nodes);
+            case localOpts.namespace + 'bump':
+              localOpts.bump = ' ' + _postcssValueParser2.default.stringify(node.nodes) ? ' ' + _postcssValueParser2.default.stringify(node.nodes) : opts.bump;
               break;
 
-            case opts.namespace + 'technique':
-              opts.technique = _postcssValueParser2.default.stringify(node.nodes);
+            case localOpts.namespace + 'technique':
+              localOpts.technique = _postcssValueParser2.default.stringify(node.nodes) ? _postcssValueParser2.default.stringify(node.nodes) : opts.technique;
               break;
 
-            case opts.namespace + 'children':
-              opts.children = _postcssValueParser2.default.stringify(node.nodes);
+            case localOpts.namespace + 'children':
+              localOpts.children = _postcssValueParser2.default.stringify(node.nodes) ? _postcssValueParser2.default.stringify(node.nodes) : opts.children;
               break;
 
             default:
@@ -129,7 +143,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       // pow() walk
       var powsParsed = (0, _postcssValueParser2.default)(optsParsed.toString()).walk(function (node) {
-        var powRegexp = new RegExp(opts.namespace + 'pow');
+        var powRegexp = new RegExp(localOpts.namespace + 'pow');
         if (node.type === 'function' && powRegexp.test(node.value)) {
           node.type = 'word';
           node.value = String(_methods2.default.pow(node));
@@ -138,7 +152,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       // sum() walk
       var sumsParsed = (0, _postcssValueParser2.default)(powsParsed.toString()).walk(function (node) {
-        var sumRegexp = new RegExp(opts.namespace + 'sum');
+        var sumRegexp = new RegExp(localOpts.namespace + 'sum');
         if (node.type === 'function' && sumRegexp.test(node.value)) {
           node.type = 'word';
           node.value = String(_methods2.default.sum(node));
@@ -154,17 +168,17 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
 
       // ratio() walk
       var ratiosParsed = (0, _postcssValueParser2.default)(sumsParsed.toString()).walk(function (node) {
-        var ratioRegexp = new RegExp(opts.namespace + 'ratio');
+        var ratioRegexp = new RegExp(localOpts.namespace + 'ratio');
         if (node.type === 'function' && ratioRegexp.test(node.value)) {
           numerators.push(_methods2.default.pow(node));
         }
       }, false); // shallow because I'm weaksauce :(
 
-      _methods2.default.ratio(decl, numerators, opts);
+      _methods2.default.ratio(decl, numerators, localOpts);
 
       // Walk to grab columns() first size set length for use with rows().
       // Also check if columns is set.
-      var columnsRegexp = new RegExp(opts.namespace + '(?=columns)');
+      var columnsRegexp = new RegExp(localOpts.namespace + '(?=columns)');
       var foundColumns = false;
       var firstColumnSetLength = 0;
       (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
@@ -184,7 +198,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       var foundColumnsAndRows = false;
       if (foundColumns) {
         (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
-          var rowsRegexp = new RegExp(opts.namespace + '(?=rows)');
+          var rowsRegexp = new RegExp(localOpts.namespace + '(?=rows)');
           if (node.type === 'function' && rowsRegexp.test(node.value)) {
             foundColumnsAndRows = true;
           }
@@ -194,21 +208,21 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       // Finally, we walk/process all sizes(), columns(), and rows(), and get a calc formula back from getSize.
       var prevSourceIndex = 0;
       var sizesParsed = (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
-        var sizesRegexp = new RegExp(opts.namespace + '(?=sizes?|columns|rows)');
+        var sizesRegexp = new RegExp(localOpts.namespace + '(?=sizes?|columns|rows)');
         if (node.type === 'function' && sizesRegexp.test(node.value)) {
           switch (node.value) {
-            case opts.namespace + 'size':
-            case opts.namespace + 'sizes':
+            case localOpts.namespace + 'size':
+            case localOpts.namespace + 'sizes':
               // Replace the decl.value with the final output
-              decl.value = (0, _getSize2.default)(node, opts, decl)[0];
+              decl.value = (0, _getSize2.default)(node, localOpts, decl)[0];
               break;
 
-            case opts.namespace + 'columns':
-            case opts.namespace + 'rows':
-              var ggRegexp = new RegExp(opts.namespace + '(?=generate-grid|gg)');
+            case localOpts.namespace + 'columns':
+            case localOpts.namespace + 'rows':
+              var ggRegexp = new RegExp(localOpts.namespace + '(?=generate-grid|gg)');
               // Ensure the property is generate-grid or gg
               if (ggRegexp.test(decl.prop)) {
-                (0, _generateGrid2.default)(node, opts, node.value, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex);
+                (0, _generateGrid2.default)(node, localOpts, node.value, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex);
               }
               break;
 
@@ -221,7 +235,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       // Delete generate-grid if it was used
       var cleanParsed = (0, _postcssValueParser2.default)(sizesParsed.toString()).walk(function (node) {
         if (node.type === 'function') {
-          if (node.value === opts.namespace + 'columns' || node.value === opts.namespace + 'rows') {
+          if (node.value === localOpts.namespace + 'columns' || node.value === localOpts.namespace + 'rows') {
             // Remove selector if no other nodes present.
             if (decl.parent) {
               if (decl.parent.nodes.every(function (node) {

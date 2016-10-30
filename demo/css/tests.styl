@@ -1,56 +1,130 @@
-$r = 1.618
-$g = 30px
-$bp-1 = 700px
-$bp-2 = 1000px
-
-.gg
-  .fixed-only
-    gg: columns(100px 200px) rows(200px 200px)
-
-  .fractions-only
-    height: 300px
-    gg: columns(1/3 1/3 1/3) rows(1/3 1/3 1/3)
-
-  .fractions-only-2
-    gg: columns(1/4 1/2 1/4)
-
-  // ratios
-  .fractions-only-3
-    gg: columns(ratio($r, 1) ratio($r, 2))
-
-  // responsive
-  .fractions-only-4
-    height: 300px
-    gg: columns(1/4 1/2 1/4) rows(1/3 1/3 1/3)
-    @media (min-width: $bp-1)
-      gg: columns(reset) rows(reset)
-    @media (min-width: $bp-2)
-      gg: columns(1/2 1/2) rows(1/4 1/4)
+@import 'settings'
+@import 'common'
 
 
-.sizes
-  > *
-    display: flex
-    > *
-      margin-right: $g
-      &:last-child
-        margin-right: 0
+.fixed-only
+  $sizes = 100px 200px 300px
 
-  .fixed-only
-    figure
-      for $i in 1..2
-        &:nth-child({$i})
-          width: sizes(100px 200px) pluck($i)
+  &.nth
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
 
-  .fractions-only
-    figure
-      for $i in 1..3
-        &:nth-child({$i})
-          width: sizes(1/4 1/2 1/4) pluck($i)
+  &.neg
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
 
-  .fractions-only-2
-    figure
-      for $i in 1..3
-        &:nth-child({$i})
-          // ratios
-          width: sizes(ratio($r, 1) ratio($r, 2) ratio($r, 3)) pluck($i)
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fraction-only
+  $sizes = 1/4 1/2 1/4
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..3
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fractions-and-fixed
+  $sizes = 1/2 1/2 100px 200px
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fractions-and-auto
+  $sizes = 1/2 1/2 auto auto
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..4
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
