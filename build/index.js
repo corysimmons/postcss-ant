@@ -140,6 +140,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           node.value = '';
         }
       }, false); // shallow
+      console.log(localOpts.namespace);
 
       // pow() walk
       var powsParsed = (0, _postcssValueParser2.default)(optsParsed.toString()).walk(function (node) {

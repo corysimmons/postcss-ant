@@ -43,6 +43,9 @@ exports.default = function (sizes, localOpts, node) {
       localOpts.bump = localOpts.bump.replace(operatorRegexp, function (operator) {
         return operator + ' ';
       });
+    } else {
+      // If a preprocessor strips the operator, or if no operator provided, assume +
+      localOpts.bump = ' + ' + localOpts.bump;
     }
   }
 
