@@ -75,8 +75,8 @@ You should learn Grid Spec after it launches -- and bugs have been identified & 
 
 There are 3 categories of layout tools. postcss-ant, Grid Spec, and everything else.
 
-| postcss-ant | Grid Spec | Everything else
--|-
+|| postcss-ant | Grid Spec | Everything else
+:-:|:-:|:-:|:-:
 **Fractions** | ✔ | ❌ | Jeet & Lost
 **Fixed units and fractions** | ✔ | ❌ | ❌
 **Fixed units and auto** | ✔ | ✔ | Flexbox
