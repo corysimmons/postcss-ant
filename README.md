@@ -55,7 +55,7 @@
   - [bump()](#bumpcalc-friendly-formula)
   - [generate-grid](#generate-grid-sizes-options-but-pluck-is-not-needed)
 - [Reducing calc bloat with postcss-calc](#reducing-calc-bloat-with-postcss-calc)
-- [Acknowledgement](#acknowledgement)
+- [Acknowledgements](#acknowledgements)
 
 ## Getting Started
 
