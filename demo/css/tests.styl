@@ -1,22 +1,12 @@
 @import 'settings'
 @import 'common'
 
-@foooooo
-  width: 10px
-
 .tink
   padding: 60px 0
   h6
     display: none !important
   > .ex1
-    $rat = 2.75
-
-    gg:
-      columns(
-        340px\
-        ratio($rat, 2)\
-        ratio($rat, 1)\
-      )
+    gg: columns(100px 1/3 auto)
 
 .halves
   > *

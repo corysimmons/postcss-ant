@@ -86,7 +86,7 @@ h6 {
   display: none !important;
 }
 .tink > .ex1 {
-  gg: columns(340px ratio(2.75, 2) ratio(2.75, 1));
+  gg: columns(100px 0.333333333333333 auto);
 }
 .halves > * {
   gg: columns(0.5 0.5);

@@ -34,6 +34,7 @@
     "postcss-value-parser": "^3.3.0"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
     "babel-cli": "^6.18.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",

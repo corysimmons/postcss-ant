@@ -1,5 +1,31 @@
 # postcss-ant
 
+## Installation
+
+`npm install postcss-ant`
+
+## Usage
+
+- `npm install postcss-cli`
+- `node_modules/.bin/postcss -w -u postcss-ant -o style.post.css style.css`
+
+```html
+<section>
+  <div></div>
+  <div></div>
+  <div></div>
+</section>
+```
+
+```scss
+// style.css
+section {
+  generate-grid: columns(100px 1/3 auto);
+}
+```
+
+![](github/img/simple-example.png)
+
 ### Another grid?!
 
 Whoa! Hold up! Don't close that tab! Hit that ★ instead!
@@ -26,7 +52,7 @@ Obviously there are better ways to center elements. This is just an example -- o
 
 ---
 
-Since grid generation happens to be such a common use-case, postcss-ant has a `generate-grid` (aliased as `gg`) helper property the can cast low-bloat grids that make other CSS grids look like childrens' toys.
+Since grid generation happens to be such a common use-case, postcss-ant has a `generate-grid` helper property (aliased as `gg`) that can cast low-bloat grids that make other CSS grids look like childrens' toys.
 
 **Grid Example:**
 
@@ -201,6 +227,8 @@ section {
 
 As per PostCSS plugin convention, globals are set as atRules (like an `@import`).
 
+---
+
 ##### @ant-namespace
 
 By default, nothing in postcss-ant is namespaced (except for these global settings).
@@ -223,6 +251,8 @@ section {
 }
 ```
 
+---
+
 ##### @ant-gutters 30px, 30px
 
 postcss-ant offers two gutter settings. One is for the space between columns, the other is for the space between rows. If you only specify a single gutter, it will set both.
@@ -237,7 +267,22 @@ section {
 }
 ```
 
+---
+
 ##### @ant-support flexbox
+
+Flexbox is the default since it's supported in most modern browsers and offers bloat-cleanup, equal-height columns, and syntactic sugar for things like alignment/source ordering -- but if you need to support older browsers, postcss-ant also offers a `float` option that will use floats instead of flexbox to support IE9 (and IE8 with a few polyfills).
+
 ##### @ant-technique nth
+
+There are multiple ways to create CSS grids.
+
+- `nth`: You can say "every element should have a gutter except the last element in a row".
+  - **Pros:** Very light markup.
+  - **Cons:** You need to know how many elements will go in each row.
+- `negative-margin`: The containing element has a negative-margin. Elements within that container will get a margin on their sides. These are particularly good for photo galleries or somewhere you're confident will have varying sized columns randomly on each row.
+  - **Pros:** You don't need to know how many elements per row.
+  - **Cons:** More markup.
+
 ##### @ant-children nth-child
 ##### @ant-rounders 99.99%, 99.999999%
