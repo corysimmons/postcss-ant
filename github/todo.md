@@ -1,4 +1,0 @@
-- at rules broken
-- add more tests for combination of stuff. when everything looks right, make an AVA equal test vs lockfile
-- finish writing readme
-- make some pretty website

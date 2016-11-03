@@ -93,12 +93,13 @@ h6 {
   width: auto;
   margin-left: 30px;
 }
-.tink > .ex1 > *:nth-child(3n + 1),
-.tink > .ex1 > *:nth-child(3n + 2),
-.tink > .ex1 > *:nth-child(3n + 3) {
-  width: calc(99.99% * 0.333333333333333 - (30px - 30px * 0.333333333333333));
+.tink > .ex1 > *:nth-child(2n + 1) {
+  width: calc(99.99% * 4.235801032000001/5.853801032000002 - (30px - 30px * 4.235801032000001/5.853801032000002));
 }
-.tink > .ex1 > *:nth-child(3n + 1) {
+.tink > .ex1 > *:nth-child(2n + 2) {
+  width: calc(99.99% * 1.618/5.853801032000002 - (30px - 30px * 1.618/5.853801032000002));
+}
+.tink > .ex1 > *:nth-child(2n + 1) {
   margin-left: 0;
 }
 .halves > * {

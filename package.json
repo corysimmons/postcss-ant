@@ -22,6 +22,10 @@
     ]
   },
   "scripts": {
+    "playground": "npm-run-all -p playground:*",
+    "playground:sass": "node-sass --output-style expanded -w playground/css/style.scss playground/css/style.css",
+    "playground:postcss": "postcss -w --local-plugins -u ./build/index.js -o playground/css/style.posted.css playground/css/style.css",
+    "playground:browser-sync": "browser-sync start -s --no-notify --startPath=playground --files=playground/index.html,playground/css/style.posted.css",
     "start": "npm-run-all -p stylus chokidar postcss babel browser-sync",
     "babel": "babel -w lib -d build",
     "stylus": "stylus -w demo/css/tests.styl",
@@ -45,6 +49,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "browser-sync": "^2.17.5",
     "chokidar-cli": "^1.2.0",
+    "node-sass": "^3.10.1",
     "npm-run-all": "^3.1.1",
     "postcss-cli": "^2.6.0",
     "stylus": "^0.54.5"

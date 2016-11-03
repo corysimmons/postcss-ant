@@ -1,0 +1,3 @@
+- at rules broken
+- add more tests for combinations of stuff. when everything looks right, make an AVA equal test vs lockfile
+- make decent website with runkits, gitbook-like docs, and blog to write about flexbox and such

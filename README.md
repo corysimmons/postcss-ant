@@ -1,4 +1,39 @@
-# postcss-ant
+<h3 align="center">postcss-ant</h3>
+
+<p align="center">
+  <sup>Layouts made fun.</sup>
+</p>
+
+<p align="center">
+  <img src=".github/img/postcss-ant-logo.png" alt="Cartoon ant with red cape." width="320">
+</p>
+
+<h2 align="center">Author's Note</h2>
+
+I know a thing or two about grid systems and layouts in CSS. I made [Jeet](http://jeet.gs) and [Lost](http://lostgrid.org) in a few weeks.
+
+postcss-ant took months.
+
+CSS grids are bloaty and boring. Flexbox was an improvement, but it's still overrated and unpredictable.
+
+Grid Spec is nice but won't be production-ready for a year (even if it does launch in "early 2017") -- unless you exclusively support modern, desktop, browsers (Edge+).
+
+postcss-ant is like Grid Spec (myriad of units/sizes available). It's better in some ways (real fractions, ratio sizing, ability to fetch specific sizes to be used anywhere), but **postcss-ant can't do the 2D layout thing**.
+
+Use Grid Spec if you're one of those _"cutting-edge"_ people. Use postcss-ant for at least the next several months if you care about delivering a solid experience to the largest audience possible (aka: you actually make popular/profitable websites).
+
+Actually, postcss-ant's API is tiny; it'll save you a ton of layout work; it will expand your mind to new design paradigms; and you can use it alongside Grid Spec when the time is right. Learn/use it regardless.
+
+Or don't. I'm not your mom. 🐒
+
+---
+
+## Play with postcss-ant Right Now
+
+- Clone this repo
+- `npm install`
+- `npm run playground`
+- Edit `playground/index.html` and `playground/css/style.scss`
 
 ## Installation
 
@@ -11,9 +46,9 @@
 
 ```html
 <section>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
 </section>
 ```
 
@@ -24,13 +59,29 @@ section {
 }
 ```
 
-![](github/img/simple-example.png)
+![](.github/img/simple-example.png)
+
+### Usage with Sass CLI
+
+Docs are in Sass because Sass is more popular.
+
+- `npm install node-sass`
+- `node_modules/.bin/node-sass -w style.scss style.css`
+- `node_modules/.bin/postcss -w -u postcss-ant -o style.post.css style.css` (in another terminal tab)
+
+### Usage with Stylus CLI
+
+- `npm install stylus`
+- `node_modules/.bin/stylus -w style.styl`
+- `node_modules/.bin/postcss -w -u postcss-ant -o style.post.css style.css` (in another new terminal tab)
+
+> Stylus' syntax doesn't mesh well with a lot of PostCSS plugins. postcss-ant's API was specifically developed to be very friendly with preprecessors, but just keep in mind if you break methods onto new lines, Stylus will throw errors. To remedy this, just add a `\` before each line break (at the end of each line).
 
 &nbsp;
 
 ### Another grid?!
 
-Whoa! Hold up! Don't close that tab! Hit that ★ instead!
+I feel ya... But don't close that tab. This one is vastly different than anything out there.
 
 postcss-ant is a size-getting function capable of returning `%` sizes in the form of a `calc` formula. This means you can use it anywhere you could ever need a size. Have a layout itch? postcss-ant can scratch it.
 
@@ -48,23 +99,23 @@ div {
 }
 ```
 
-![](github/img/center.png)
+![](.github/img/center.png)
 
 Obviously there are better ways to center elements. This is just an example -- off the top of my head -- which should show how flexible size-getting can be. You can think of almost any type of size you could ever need, and postcss-ant can return it.
 
 ---
 
-Since grid generation happens to be such a common use-case, postcss-ant has a `generate-grid` helper property (aliased as `gg`) that can cast low-bloat grids that make other CSS grids look like childrens' toys.
+Since grid generation happens to be such a common use-case, postcss-ant has a `generate-grid` helper property (aliased as `gg`) that can cast low-bloat/powerful grids with an easy API.
 
 **Grid Example:**
 
 ```html
 <section>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
 </section>
 ```
 
@@ -76,12 +127,13 @@ section {
 }
 ```
 
-- That will produce a grid with two rows.
 - The first row will have three columns of sizes: `1/3`, `auto`, and `100px` (in that order). Each of those elements will be `150px` tall (as defined in the `rows()` method).
 - The second row will have two `1/2` columns that are each `200px` tall.
 - These rows will repeat indefinitely. Every odd row will be `150px` tall with `1/3 auto 100px` columns. Every even row will be `200px` tall with `1/2 1/2` columns.
 
-![](github/img/1-3-auto-100.png)
+![](.github/img/1-3-auto-100.png)
+
+If you can wrap your head around `generate-grid: columns()` then that's all you really need to get rolling with postcss-ant.
 
 &nbsp;
 
@@ -104,6 +156,8 @@ postcss-ant's `generate-grid` property defaults to flexbox for those reasons, bu
 Grid Spec won't be out for a few months. It will work in many cutting-edge browsers, but will likely have many bugs since the only people to play with it are a handful of developers since they made the decision to hide it behind a browser flag. It will just straight-up break websites in browsers without support (several percentage of users for a few years).
 
 You should learn Grid Spec after it launches -- and bugs have been identified & have workarounds. Many of its features are very nice, and its API is extremely terse. postcss-ant shares a lot of Grid Spec's most useful features but **postcss-ant works in IE9 (IE8 with polyfills)**.
+
+postcss-ant can also be used alongside Grid Spec with for things like real fractions and easy ratio sizing.
 
 There are 3 categories of layout tools. postcss-ant, Grid Spec, and everything else.
 
@@ -138,9 +192,9 @@ But postcss-ant still doesn't know what value you're looking for out of the two,
 - `width: sizes(100px auto) pluck(1);` returns `100px`.
 - `width: sizes(100px auto) pluck(2);` returns `calc((99.99% - (100px) - ((1 + 1 - 1) * 30px)) / 1)`. It looks nasty, but it works. That `calc` formula will return a `%` of whatever is left over.
 
-> **Tip:** `postcss-calc` can clean it up a bit if it offends your sensibilities. Would appreciate a PR to clean these up, but I just don't have time/desire to revisit them for aesthetic reasons.
+> **Tip:** `postcss-calc` can clean it up _a bit_ if it offends your sensibilities. Would appreciate a PR to clean these up, but I just don't have time/desire to revisit them for aesthetic reasons.
 
-![](github/img/100px-auto.png)
+![](.github/img/100px-auto.png)
 
 #### Order of Operations
 
@@ -152,7 +206,7 @@ The order of operations is `fixed -> fractions -> autos`.
 - `sizes(100px 1/3 auto) pluck(2)` returns `1/3` of what's left over _after_ `100px` is subtracted.
 - `sizes(100px 1/3 auto) pluck(3)` returns whatever is leftover after `100px` _and_ that `1/3` is subtracted.
 
-![](github/img/100px-1-3-auto.png)
+![](.github/img/100px-1-3-auto.png)
 
 
 #### `generate-grid`
@@ -188,7 +242,7 @@ section {
 }
 ```
 
-![](github/img/1-3-1-3-1-3-1-2-1-2.png)
+![](.github/img/1-3-1-3-1-3-1-2-1-2.png)
 
 You don't have to specify `rows()` and typically won't need to.
 
@@ -200,11 +254,11 @@ We'll break these out to their own lines for readability.
 
 ```html
 <section>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
 </section>
 ```
 
@@ -224,7 +278,7 @@ section {
 }
 ```
 
-![](github/img/ratio-grid.png)
+![](.github/img/ratio-grid.png)
 
 You can reorder those and combine them with fixed units. Fractions and `auto`s won't work in this context since `ratio()` operates on remaining space.
 
@@ -242,7 +296,7 @@ section {
 }
 ```
 
-![](github/img/ratio-with-fixed.png)
+![](.github/img/ratio-with-fixed.png)
 
 &nbsp;
 
@@ -327,6 +381,8 @@ It's probably best to leave this global setting alone, and modify rounders on a 
 
 Like `@ant-gutters`, this setting offers a singular (e.g. `@ant-rounder`) that will set both -- although this is strongly discouraged since the pixel rounding between gutter and gutter-less sizes is significant.
 
+&nbsp;
+
 ### Local Settings
 
 Excluding namespace, all of postcss-ant's global settings can be set on a local level. For instance, you can set `50px` gutters on a global level, and still have the ability to modify the gutter on specific grids throughout your project.
@@ -352,7 +408,7 @@ In addition to being able to override global settings, local settings offer a fe
 
 ---
 
-##### sizes() and pluck()
+##### `sizes() and pluck()`
 
 `generate-grid` (or `gg`) and `sizes() pluck()` are the two most common techniques you'll use with postcss-ant, so it bears expanding its definition with examples.
 
@@ -374,8 +430,8 @@ div {
 
 ```html
 <section>
-  <aside>Sidebar</aside>
-  <main>Content</main>
+  <aside>1</aside>
+  <main>2</main>
 </section>
 ```
 
@@ -393,7 +449,7 @@ main {
 }
 ```
 
-![](github/img/300px-auto.png)
+![](.github/img/300px-auto.png)
 
 &nbsp;
 
@@ -464,7 +520,7 @@ These are only the sizes, you'd need to add a custom grid class like so:
 }
 ```
 
-![](github/img/ratio-grid-classes.png)
+![](.github/img/ratio-grid-classes.png)
 
 &nbsp;
 
@@ -564,17 +620,17 @@ $columns: 12;
 /* ... */
 ```
 
-![](github/img/thirds.png)
+![](.github/img/thirds.png)
 
 > This particular example isn't very flexible, but I've made some pretty cool/flexible attribute grids using postcss-ant in the past.
 
-> The point of this section isn't to hand you selector grid -- that's not the point of postcss-ant -- but rather to get you pumped about playing with loops and postcss-ant to make/use/market your own grids. Please ping me in Gitter or via Issues if you make something.
+> The point of this section isn't to hand you a selector grid -- that's not the point of postcss-ant at all -- but rather to get you pumped about playing with loops and postcss-ant to make/use/market your own grids. Please ping me in Gitter or via Issues if you make something or need help in making something.
 
 > I'd love to see if the community can come up with some really awesome selector grid. 😻
 
 ---
 
-##### bump()
+##### `bump()`
 
 The final method postcss-ant offers is `bump()`. Every now and then you'll try to generate a specific size, but it will be off by a gutter, or 1.5x gutter, or just a few pixels, or _something!_ `bump()` offers you a way to nudge elements exactly where you need them.
 
@@ -586,9 +642,9 @@ The final method postcss-ant offers is `bump()`. Every now and then you'll try t
 
 ```html
 <section>
-  <div></div>
-  <div class="move-right"></div>
-  <div></div>
+  <div>1</div>
+  <div class="move-right">2</div>
+  <div>3</div>
 </section>
 ```
 
@@ -605,7 +661,113 @@ section {
 
 &nbsp;
 
+### Helpers
+
+You've already seen the `generate-grid` helper. There are a few other helpers as well:
+
+- `pow(base, exponent)` - Operates just like the JavaScript `pow()` function. It returns the power of a number.
+- `sum(list of numbers)` - Adds a list of numbers together.
+
+I haven't found a lot of use for these helpers, but maybe you will.
+
+##### `ratio()`
+
+`ratio()` is a combination of `pow()` and `sum()`. It takes the same arguments as `pow()` to create numerators, then `sum()` calculates over it to return the sum of all numerators. The result is easy ratio sizing.
+
+**Contrived Ratio Example:**
+
+```scss
+div {
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+      width:
+        sizes(
+          ratio(2, 1) // 2
+          ratio(2, 2) // 4
+          ratio(2, 3) // 8
+                      // 2 + 4 + 8 = 14
+                      // 2/14... 4/14... 8/14...
+        )
+        pluck($i)
+      ;
+    }
+  }
+}
+```
+
+```css
+div:nth-child(1) {
+  width: calc(99.99% * 2/14 - (30px - 30px * 2/14));
+}
+
+div:nth-child(2) {
+  width: calc(99.99% * 4/14 - (30px - 30px * 4/14));
+}
+
+div:nth-child(3) {
+  width: calc(99.99% * 8/14 - (30px - 30px * 8/14));
+}
+```
+
+**`generate-grid` Golden Ratio Example:**
+
+Let's create a page layout with a content area and sidebar.
+
+```html
+<section>
+  <main>1</main>
+  <aside>2</aside>
+</section>
+```
+
+We can scale this with the traditional `1/n` type grids. Or we can do something unique and use ratios. We're still creating proportional designs. But since they scale in size, they look more interesting.
+
+```scss
+$golden: 1.618;
+
+section {
+  generate-grid:
+    columns(
+      ratio($golden, 3)
+      ratio($golden, 1)
+    )
+  ;
+}
+```
+
+Take a second to notice how insane the fractions are for this sort of simple thing.
+
+```css
+/* ... */
+section > *:nth-child(2n + 1) {
+  width: calc(99.99% * 4.235801032000001/5.853801032000002 - (30px - 30px * 4.235801032000001/5.853801032000002));
+}
+
+section > *:nth-child(2n + 2) {
+  width: calc(99.99% * 1.618/5.853801032000002 - (30px - 30px * 1.618/5.853801032000002));
+}
+/* ... */
+```
+
+![](.github/img/simple-golden-ratio.png)
+
+&nbsp;
+
+### Wishlist
+
+postcss-ant's API was developed to be somewhat extensible. I have some ideas for features, but not a lot of money/interest in developing them.
+
+- `random()` - On save, generates a random mosaic grid out of a collection of user-defined sizes.
+
+&nbsp;
+
+### Thanks
+
+To everyone who has took interest in my work over the years, and all the chatroom gurus who have pulled me up each step by my diaper.
+
+&nbsp;
+
 ### Contributing
 
 - `fork, clone, npm i, npm start`
-- Work on stuff in `lib`. Test demos in `demo/index.html, demo/tests.styl`. AVA tests are in the works, but you'll need to add a demo regardless.
+- Work on stuff in `lib` (I'm using FlowType in some places but feel free to ignore it). Test demos in `demo/index.html, demo/tests.styl`. AVA tests are in the works, but you'll need to add a visual demo regardless.
