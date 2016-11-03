@@ -773,6 +773,14 @@ section > *:nth-child(2n + 2) {
 
 &nbsp;
 
+### Browser Support
+
+Anywhere [`calc`](http://caniuse.com/#feat=calc) is supported. IE9+.
+
+IE8+ and Android 4.0.3+ with polyfills.
+
+&nbsp;
+
 ### Wishlist
 
 postcss-ant's API was developed to be somewhat extensible. I have some ideas for features, but not a lot of money/interest in developing them.
