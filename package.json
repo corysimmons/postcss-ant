@@ -5,6 +5,9 @@
   "description": "If you're not using Grid Spec, use postcss-ant.",
   "homepage": "https://corysimmons.github.io/postcss-ant",
   "author": "Cory Simmons <github.cory@mailhero.io> (https://corysimmons.com)",
+  "contributors": [
+    "Neil Kistner"
+  ],
   "repository": "corysimmons/postcss-ant",
   "main": "./build/index.js",
   "jsnext:main": "./lib/index.js",
