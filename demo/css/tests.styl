@@ -1,0 +1,317 @@
+@import 'settings'
+@import 'common'
+
+.fixed-only
+  $sizes = 100px 200px 300px
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fraction-only
+  $sizes = 1/4 1/2 1/4
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fractions-and-fixed
+  $sizes = 1/2 1/2 100px 200px
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fractions-and-auto
+  $sizes = 1/7 auto auto 1/7
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.fractions-fixed-and-auto
+  $sizes = 1/7 100px auto auto 100px 1/7
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.autos-only
+  $sizes = auto auto auto auto
+
+  &.nth
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i)
+
+  &.neg
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      figure
+        for $i in 1..length($sizes)
+          &:nth-child({$i})
+            width: sizes($sizes) pluck($i) gutter(0) technique(negative-margin)
+
+
+.generate-grid
+  $columns0 = 1/7 100px auto, auto 100px 1/7
+  $rows0 = 100px 100px 100px, 200px 200px 200px
+
+  $columns1 = reset
+  $rows1 = reset
+
+  $columns2 = 1/3 auto 1/6
+  $rows2 = 75px 75px 75px
+
+  $columns3 = 50px 1/4 auto auto 1/4 50px, 1/2 1/2
+  $rows3 = 120px 120px 120px 120px 120px 120px, 80px 80px
+
+  &.nth
+    .ex1
+      gg: columns($columns0) rows($rows0)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1)
+        > *
+          min-width: 50px // so absolutely positioned content numbers don't disintegrate on reset
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3)
+
+  &.neg
+    .ex1
+      gg: columns($columns0) rows($rows0) technique(negative-margin)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1) technique(negative-margin)
+        > *
+          min-width: 50px
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2) technique(negative-margin)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      gg: columns($columns0) rows($rows0) gutter(0)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1) gutter(0)
+        > *
+          min-width: 50px
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2) gutter(0)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      gg: columns($columns0) rows($rows0) gutter(0) technique(negative-margin)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1) gutter(0)technique(negative-margin)
+        > *
+          min-width: 50px
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2) gutter(0) technique(negative-margin)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3) gutter(0) technique(negative-margin)
+
+
+.generate-grid-weird
+  $columns0 = 1/7 100px auto, auto 100px 1/7
+  $rows0 = 100px 100px 100px, 200px 200px 200px
+
+  $columns1 = reset
+  $rows1 = reset
+
+  $columns2 = 1/3 auto 1/6
+  $rows2 = 75px 75px 75px
+
+  $columns3 = 1/4 1/4 auto 10% auto 100px 20em, 1/2 1/2
+  $rows3 = 120px 120px 120px 120px 120px 120px 120px, 80px 80px
+
+  &.nth
+    .ex1
+      gg: columns($columns0) rows($rows0)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1)
+        > *
+          min-width: 50px // so absolutely positioned content numbers don't disintegrate on reset
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3)
+
+  &.neg
+    .ex1
+      gg: columns($columns0) rows($rows0) technique(negative-margin)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1) technique(negative-margin)
+        > *
+          min-width: 50px
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2) technique(negative-margin)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3) technique(negative-margin)
+
+  &.gutless
+    .ex1
+      gg: columns($columns0) rows($rows0) gutter(0)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1) gutter(0)
+        > *
+          min-width: 50px
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2) gutter(0)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3) gutter(0)
+
+  &.neg.gutless
+    .ex1
+      gg: columns($columns0) rows($rows0) gutter(0) technique(negative-margin)
+      @media (min-width: $bp1)
+        gg: columns($columns1) rows($rows1) gutter(0)technique(negative-margin)
+        > *
+          min-width: 50px
+      @media (min-width: $bp2)
+        gg: columns($columns2) rows($rows2) gutter(0) technique(negative-margin)
+      @media (min-width: $bp3)
+        gg: columns($columns3) rows($rows3) gutter(0) technique(negative-margin)
