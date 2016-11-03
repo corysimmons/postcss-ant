@@ -8,6 +8,26 @@
   <img src=".github/img/postcss-ant-logo.png" alt="Cartoon ant with red cape." width="320">
 </p>
 
+<p align="center">
+  <a href="https://gitter.im/postcss-ant/Lobby" target="_blank">
+    <img src="https://badges.gitter.im/postcss-ant/Lobby.svg?style=flat-square" alt="Gitter chat badge.">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/postcss-ant" target="_blank">
+    <img src="https://img.shields.io/npm/v/postcss-ant.svg?maxAge=2592000" alt="npm version badge.">
+  </a>
+  <a href="https://github.com/corysimmons/postcss-ant/blob/master/package.json" target="_blank">
+    <img src="https://img.shields.io/david/dev/corysimmons/postcss-ant.svg?maxAge=2592000" alt="Dev dependencies status badge.">
+  </a>
+  <a href="https://github.com/corysimmons/postcss-ant/blob/master/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="MIT license badge.">
+  </a>
+</p>
+
+&nbsp;
+
 <h2 align="center">Author's Note</h2>
 
 I know a thing or two about grid systems and layouts in CSS. I made [Jeet](http://jeet.gs) and [Lost](http://lostgrid.org) in a few weeks.
