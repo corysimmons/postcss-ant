@@ -2,7 +2,7 @@
   "name": "postcss-ant",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "If you're not using Grid Spec, use postcss-ant.",
+  "description": "Layouts made fun.",
   "homepage": "https://corysimmons.github.io/postcss-ant",
   "author": "Cory Simmons <github.cory@mailhero.io> (https://corysimmons.com)",
   "contributors": [
@@ -31,7 +31,8 @@
     "stylus": "stylus -w demo/css/tests.styl",
     "chokidar": "chokidar build/*.js build/**/*.js demo/css/tests.css -c 'npm run postcss'",
     "postcss": "postcss --local-plugins -u ./build/index.js -o demo/css/style.css demo/css/tests.css",
-    "browser-sync": "browser-sync start -s --no-open --no-notify --startPath=demo --files=demo/index.html,demo/css/*.css"
+    "browser-sync": "browser-sync start -s --no-open --no-notify --startPath=demo --files=demo/index.html,demo/css/*.css",
+    "markdown-toc": "markdown-toc -i README.md"
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -49,6 +50,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "browser-sync": "^2.17.5",
     "chokidar-cli": "^1.2.0",
+    "markdown-toc": "^0.13.0",
     "node-sass": "^3.10.1",
     "npm-run-all": "^3.1.1",
     "postcss-cli": "^2.6.0",
