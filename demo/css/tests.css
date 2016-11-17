@@ -79,18 +79,6 @@ h6 {
   text-align: left;
   line-height: 50px;
 }
-.tink {
-  padding: 60px 0;
-}
-.tink h6 {
-  display: none !important;
-}
-.tink > .ex1 {
-  gg: columns(ratio(1.618, 3) ratio(1.618, 1));
-}
-.halves > * {
-  gg: columns(0.5 0.5);
-}
 .fixed-only.nth .ex1 figure:nth-child(1) {
   width: sizes(100px 200px 300px) pluck(1);
 }
