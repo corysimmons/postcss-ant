@@ -26,7 +26,7 @@ var _invertBy2 = _interopRequireDefault(_invertBy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (node, localOpts, direction, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex) {
+exports.default = function (node, localOpts, direction, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex, locallySpecified, lastColumnSetLength) {
   // Grab all the contents within the function and sort them into size sets.
   var value = _postcssValueParser2.default.stringify(node.nodes);
   var sizeSets = _postcss2.default.list.comma(value);
@@ -48,6 +48,20 @@ exports.default = function (node, localOpts, direction, decl, firstColumnSetLeng
   // Set both gutters if only 1 gutter has been specified
   if (localOpts.gutters.length === 1) {
     localOpts.gutters = [localOpts.gutters[0], localOpts.gutters[0]];
+  }
+
+  // If columns() is set, and the user specifies gutters()
+  if (node.type === 'function' && node.value === 'columns' && locallySpecified.gutters === true && locallySpecified.rows === false) {
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['margin-bottom: ' + localOpts.gutters[1]], decl);
+
+    var lastOfNthSelector = '';
+    if (/child/.test(localOpts.children)) {
+      lastOfNthSelector = 'nth-last-child';
+    } else if (/type/.test(localOpts.children)) {
+      lastOfNthSelector = 'nth-last-of-type';
+    }
+
+    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + lastOfNthSelector + '(-n + ' + lastColumnSetLength + ')', ['margin-bottom: 0'], decl);
   }
 
   // Assign grid depending on support()

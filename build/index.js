@@ -30,8 +30,6 @@ var _generateGrid2 = _interopRequireDefault(_generateGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 // Stash global settings in an opts obj
 var ant = _postcss2.default.plugin('postcss-ant', function () {
   var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
@@ -84,7 +82,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       // Throw helpful suggestions to help newcomers. Don't be too strict and limit boundary-pushers.
       (0, _errorHandler2.default)(opts, decl);
 
-      var localOpts = _defineProperty({
+      var localOpts = {
         rounders: opts.rounders,
         gutters: opts.gutters,
         bump: opts.bump,
@@ -93,7 +91,14 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
         support: opts.support,
         technique: opts.technique,
         children: opts.children
-      }, 'namespace', opts.namespace);
+      };
+
+      // Create object to pass to various helpers to determine if something was specified on a local level.
+      // Everything defaults to false and is converted to true if so.
+      var locallySpecified = {
+        gutters: false,
+        rows: false
+      };
 
       // Local settings walk
       var optsParsed = (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
@@ -104,6 +109,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
           switch (node.value) {
             case localOpts.namespace + 'gutter':
             case localOpts.namespace + 'gutters':
+              locallySpecified.gutters = true;
               localOpts.gutters = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)) ? _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)) : opts.gutters;
               break;
 
@@ -183,13 +189,25 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
       var firstColumnSetLength = 0;
       (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
         if (node.type === 'function' && columnsRegexp.test(node.value)) {
-          if (node.value === 'columns') {
-            foundColumns = true;
+          foundColumns = true;
 
-            var firstColumnSet = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes))[0];
-            if (firstColumnSet !== 'reset') {
-              firstColumnSetLength = _postcss2.default.list.space(firstColumnSet).length;
-            }
+          var firstColumnSet = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes))[0];
+
+          if (firstColumnSet !== 'reset') {
+            firstColumnSetLength = _postcss2.default.list.space(firstColumnSet).length;
+          }
+        }
+      }, true);
+
+      // Walk to grab columns() last size set length for use with generate-grid.
+      var lastColumnSetLength = 0;
+      (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
+        if (node.type === 'function' && columnsRegexp.test(node.value)) {
+          var numberOfColumnSizeSets = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes)).length;
+          var lastColumnSet = _postcss2.default.list.comma(_postcssValueParser2.default.stringify(node.nodes))[numberOfColumnSizeSets - 1];
+
+          if (lastColumnSet !== 'reset') {
+            lastColumnSetLength = _postcss2.default.list.space(lastColumnSet).length;
           }
         }
       }, true);
@@ -200,6 +218,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
         (0, _postcssValueParser2.default)(decl.value).walk(function (node) {
           var rowsRegexp = new RegExp(localOpts.namespace + '(?=rows)');
           if (node.type === 'function' && rowsRegexp.test(node.value)) {
+            locallySpecified.rows = true;
             foundColumnsAndRows = true;
           }
         }, true);
@@ -222,7 +241,7 @@ var ant = _postcss2.default.plugin('postcss-ant', function () {
               var ggRegexp = new RegExp(localOpts.namespace + '(?=generate-grid|gg)');
               // Ensure the property is generate-grid or gg
               if (ggRegexp.test(decl.prop)) {
-                (0, _generateGrid2.default)(node, localOpts, node.value, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex);
+                (0, _generateGrid2.default)(node, localOpts, node.value, decl, firstColumnSetLength, foundColumnsAndRows, prevSourceIndex, locallySpecified, lastColumnSetLength);
               }
               break;
 
