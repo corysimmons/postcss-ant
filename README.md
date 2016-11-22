@@ -92,6 +92,7 @@ Or don't. I'm not your mom. 🐒
 ## Play with postcss-ant Right Now
 
 - Clone this repo
+- `npm install node-sass` (Sass isn't included with the playground as it'd make the `npm install` for postcss-ant take forever)
 - `npm install`
 - `npm run playground`
 - Edit `playground/index.html` and `playground/css/style.scss`
