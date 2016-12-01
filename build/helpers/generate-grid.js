@@ -137,7 +137,7 @@ exports.default = function (node, localOpts, direction, decl, firstColumnSetLeng
   };
 
   // Implicitly reset dimensions and margins with each generate-grid. This prevents a huge amount of media query gotchas.
-  if (foundColumnsAndRows && firstCall) {
+  if (firstCall) {
     switch (localOpts.technique) {
       case 'nth':
         (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['width: auto', 'height: auto', 'margin-top: 0', 'margin-left: ' + localOpts.gutters[0]], decl);
