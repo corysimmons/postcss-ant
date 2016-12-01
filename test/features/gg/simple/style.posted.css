@@ -1,0 +1,89 @@
+.g.x1 {
+
+    display: flex;
+
+    flex-wrap: wrap
+}
+
+.g.x1 > *:nth-child(n) {
+
+    width: auto;
+
+    height: auto;
+
+    margin-top: 0;
+
+    margin-left: 30px
+}
+
+.g.x1 > *:nth-child(n + 4) {
+
+    margin-top: 30px
+}
+
+.g.x1 > *:nth-child(3n + 1),
+.g.x1 > *:nth-child(3n + 2),
+.g.x1 > *:nth-child(3n + 3) {
+
+    width: calc((99.99% - ((3 - 1) * 30px)) / 3)
+}
+
+.g.x1 > *:nth-child(3n + 1) {
+
+    margin-left: 0
+}
+
+.g.x2 {
+
+    display: flex;
+
+    flex-wrap: wrap
+}
+
+.g.x2 > *:nth-child(n) {
+
+    width: auto;
+
+    height: auto;
+
+    margin-top: 0;
+
+    margin-left: 30px
+}
+
+.g.x2 > *:nth-child(n + 4) {
+
+    margin-top: 30px
+}
+
+.g.x2 > *:nth-child(5n + 1),
+.g.x2 > *:nth-child(5n + 2),
+.g.x2 > *:nth-child(5n + 3) {
+
+    width: calc((99.99% - ((3 - 1) * 30px)) / 3)
+}
+
+.g.x2 > *:nth-child(5n + 4),
+.g.x2 > *:nth-child(5n + 5) {
+
+    width: calc(99.99% * 1/2 - (30px - 30px * 1/2))
+}
+
+.g.x2 > *:nth-child(5n + 1),
+.g.x2 > *:nth-child(5n + 4) {
+
+    margin-left: 0
+}
+
+.g.x2 > *:nth-child(5n + 1),
+.g.x2 > *:nth-child(5n + 2),
+.g.x2 > *:nth-child(5n + 3) {
+
+    height: 100px
+}
+
+.g.x2 > *:nth-child(5n + 4),
+.g.x2 > *:nth-child(5n + 5) {
+
+    height: 200px
+}

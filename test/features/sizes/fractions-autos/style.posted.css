@@ -1,0 +1,11 @@
+.g div:nth-child(1) {
+  width: calc(99.99% * 1/5 - (30px - 30px * 1/5));
+}
+
+.g div:nth-child(2) {
+  width: calc(((99.99% - (99.99% * 0.34285714285714286 - (30px - 30px * 0.34285714285714286))) / 1) - 30px);
+}
+
+.g div:nth-child(3) {
+  width: calc(99.99% * 1/7 - (30px - 30px * 1/7));
+}

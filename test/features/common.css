@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 30px;
+  font-family: sans-serif;
+  text-align: center;
+  line-height: 50px;
+  color: #006ad1;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.g {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.g + .g {
+  margin-top: 30px;
+}
+
+.g > * {
+  background: rgba(30, 144, 255, 0.66);
+  outline: 1px solid rgba(30, 144, 255, 0.75);
+  outline-offset: -1px;
+}
+
+.nth > * {
+  margin-right: 30px;
+}
+
+.nth > *:last-child {
+  margin-right: 0;
+}
+
+hr {
+  width: 100vw;
+  margin: 30px 0 30px -30px;
+  height: 1px;
+  background: #e6e6e6;
+  border: 0;
+}

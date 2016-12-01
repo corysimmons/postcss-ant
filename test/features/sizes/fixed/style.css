@@ -1,0 +1,11 @@
+.g div:nth-child(1) {
+  width: sizes(100px 50% 4rem) pluck(1);
+}
+
+.g div:nth-child(2) {
+  width: sizes(100px 50% 4rem) pluck(2);
+}
+
+.g div:nth-child(3) {
+  width: sizes(100px 50% 4rem) pluck(3);
+}
