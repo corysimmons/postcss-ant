@@ -22,23 +22,22 @@
     ]
   },
   "scripts": {
+    "start": "npm-run-all -p babel test",
+    "babel": "babel -w lib -d build",
+    "test": "npm-run-all -p test:*",
+    "test:ava": "ava --verbose -w --source features/**/locked.css",
+    "test:chokidar": "chokidar test/features/**/style.css -c 'postcss -w --local-plugins -u ./build/index.js {path} -o (echo {path} | cut -d \".\" -f 1).posted.css'",
+    "test:browser-sync": "browser-sync start -s --no-open --no-notify --directory --startPath=test/features --files=test/features/**/index.html,test/features/**/style.posted.css,test/features/common.css,build/**/*",
     "playground": "npm-run-all -p playground:*",
     "playground:sass": "node-sass --output-style expanded -w playground/css/style.scss playground/css/style.css",
     "playground:postcss": "postcss -w --local-plugins -u ./build/index.js -o playground/css/style.posted.css playground/css/style.css",
     "playground:browser-sync": "browser-sync start -s --no-notify --startPath=playground --files=playground/index.html,playground/css/style.posted.css",
-    "start": "npm-run-all -p stylus chokidar postcss babel browser-sync",
-    "babel": "babel -w lib -d build",
-    "stylus": "stylus -w demo/css/tests.styl",
-    "chokidar": "chokidar build/*.js build/**/*.js demo/css/tests.css -c 'npm run postcss'",
-    "postcss": "postcss --local-plugins -u ./build/index.js -o demo/css/style.css demo/css/tests.css",
-    "browser-sync": "browser-sync start -s --no-open --no-notify --startPath=demo --files=demo/index.html,demo/css/*.css",
     "markdown-toc": "markdown-toc -i README.md"
   },
   "dependencies": {
     "chalk": "^1.1.3",
     "lodash": "^4.16.4",
     "postcss": "^5.2.5",
-    "postcss-calc": "^5.3.1",
     "postcss-value-parser": "^3.3.0"
   },
   "devDependencies": {
@@ -52,7 +51,6 @@
     "chokidar-cli": "^1.2.0",
     "markdown-toc": "^0.13.0",
     "npm-run-all": "^3.1.1",
-    "postcss-cli": "^2.6.0",
-    "stylus": "^0.54.5"
+    "postcss-cli": "^2.6.0"
   }
 }

@@ -872,6 +872,7 @@ As always, thank you to Maria Keller for her excellent logo design. Hire this am
 - Ping me via Issues or Gitter before you undertake any large changes so we can get on the same page. It's unlikely I'll merge a huge code change unless I'm along for the ride early on.
 - `fork, clone, npm i, npm start`
 - Work on stuff in `lib` (I'm using FlowType in some places but feel free to ignore it -- I'm considering removing it all together or migrating to Typescript).
-- Test demos in `demo/index.html, demo/tests.styl`. AVA tests are in the works, but you'll need to add a visual demo regardless.
+- Append test features in `test/index.js`. When you're content with how something looks, copy its `style.posted.css` to `locked.css`. Tests should pass.
+- PR with details on what you changed. New features require new tests.
 
 [Back to top ↑](#table-of-contents)

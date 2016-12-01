@@ -1,0 +1,7 @@
+.g.x1 {
+  gg: columns(auto auto auto);
+}
+
+.g.x2 {
+  gg: columns(auto auto auto, 1/2 1/2) rows(100px 100px 100px, 200px 200px);
+}
