@@ -50,20 +50,6 @@ exports.default = function (node, localOpts, direction, decl, firstColumnSetLeng
     localOpts.gutters = [localOpts.gutters[0], localOpts.gutters[0]];
   }
 
-  // If columns() is set, and the user specifies gutters()
-  if (node.type === 'function' && node.value === 'columns' && locallySpecified.gutters === true && locallySpecified.rows === false) {
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + localOpts.children + '(n)', ['margin-bottom: ' + localOpts.gutters[1]], decl);
-
-    var lastOfNthSelector = '';
-    if (/child/.test(localOpts.children)) {
-      lastOfNthSelector = 'nth-last-child';
-    } else if (/type/.test(localOpts.children)) {
-      lastOfNthSelector = 'nth-last-of-type';
-    }
-
-    (0, _ruleSetter2.default)(decl.parent.selector + ' > *:' + lastOfNthSelector + '(-n + ' + lastColumnSetLength + ')', ['margin-bottom: 0'], decl);
-  }
-
   // Assign grid depending on support()
   if (value !== 'reset') {
     if (firstCall) {
