@@ -1,3 +1,5 @@
+> **HI TUTSPLUS CUSTOMERS!** If you need any hand-holding hop onto https://gitter.im/postcss-ant/Lobby or open an issue! I'll be around to help out. :)
+
 <h3 align="center">postcss-ant</h3>
 
 <p align="center">
