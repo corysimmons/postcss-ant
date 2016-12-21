@@ -46,3 +46,4 @@ lockTest('features/sizes/fixed-autos')
 lockTest('features/sizes/fractions-autos')
 
 lockTest('features/gg/simple')
+lockTest('features/gg/floats')

@@ -217,7 +217,11 @@ exports.default = function (node, localOpts, direction, decl, firstColumnSetLeng
           collectedSetLengths += _postcss2.default.list.space(sizeSet).length;
         });
 
-        (0, _ruleSetter2.default)(selectors.join(',\n' + decl.raws.before.substring(3)), ['margin-left: 0'], decl);
+        if (localOpts.support === 'float') {
+          (0, _ruleSetter2.default)(selectors.join(',\n' + decl.raws.before.substring(3)), ['clear: left', 'margin-left: 0'], decl);
+        } else {
+          (0, _ruleSetter2.default)(selectors.join(',\n' + decl.raws.before.substring(3)), ['margin-left: 0'], decl);
+        }
       })();
     }
   }

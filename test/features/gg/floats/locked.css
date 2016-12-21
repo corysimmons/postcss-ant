@@ -1,0 +1,66 @@
+.g.x1 > * {
+  float: left;
+}
+
+.g.x1::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.g.x1 > *:nth-child(n) {
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  margin-left: 30px;
+}
+
+.g.x1 > *:nth-child(n + 4) {
+  margin-top: 30px;
+}
+
+.g.x1 > *:nth-child(3n + 1),
+.g.x1 > *:nth-child(3n + 2),
+.g.x1 > *:nth-child(3n + 3) {
+  width: calc((99.99% - ((3 - 1) * 30px)) / 3);
+}
+
+.g.x1 > *:nth-child(3n + 1) {
+  clear: left;
+  margin-left: 0;
+}
+
+.g.x2 > * {
+  float: left;
+}
+
+.g.x2::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.g.x2 > *:nth-child(n) {
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  margin-left: 30px;
+}
+
+.g.x2 > *:nth-child(n + 3) {
+  margin-top: 30px;
+}
+
+.g.x2 > *:nth-child(2n + 1),
+.g.x2 > *:nth-child(2n + 2) {
+  width: calc(99.99% * 1/2 - (30px - 30px * 1/2));
+}
+
+.g.x2 > *:nth-child(2n + 1) {
+  clear: left;
+  margin-left: 0;
+}
+
+.g.x2 > *:first-child {
+  height: 200px;
+}

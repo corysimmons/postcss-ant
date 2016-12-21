@@ -1,0 +1,13 @@
+@ant-support float;
+
+.g.x1 {
+  gg: columns(auto auto auto);
+}
+
+.g.x2 {
+  gg: columns(1/2 1/2);
+}
+
+.g.x2 > *:first-child {
+  height: 200px;
+}
