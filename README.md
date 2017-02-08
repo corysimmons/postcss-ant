@@ -1,7 +1,7 @@
 <h3 align="center">postcss-ant</h3>
 
 <p align="center">
-  <sup>Layouts made fun.</sup>
+  <sup>Superpowered size-getter and grid generator.</sup>
 </p>
 
 <p align="center">
@@ -30,12 +30,13 @@
 
 <!-- toc -->
 
-- [Play with postcss-ant Right Now](#play-with-postcss-ant-right-now)
+- [Play with postcss-ant on CodePen](#play-with-postcss-ant-on-codepen)
 - [Installation](#installation)
 - [Usage](#usage)
   * [postcss-cli and CSS](#postcss-cli-and-css)
   * [postcss-cli and Sass](#postcss-cli-and-sass)
   * [postcss-cli and Stylus](#postcss-cli-and-stylus)
+  * [Gulp and Sass](#gulp-and-sass)
 - [FAQ](#faq)
   * [Another grid?!](#another-grid)
   * [But Flexbox?!](#but-flexbox)
@@ -65,39 +66,9 @@
 
 <!-- tocstop -->
 
----
+## Play with postcss-ant on CodePen
 
-<h2 align="center">Author's Note</h2>
-
-I know a thing or two about grid systems and layouts in CSS. I made [Jeet](http://jeet.gs) and [Lost](http://lostgrid.org). They each took about a week to make.
-
-postcss-ant took me months to code and years of community feedback to learn exactly _what_ to make.
-
-CSS grids are bloaty (markup and CSS) and boring (`1/n` everything). Flexbox was a slight improvement, but it's still bloaty (markup) and unpredictable (bugs and hard to reason about).
-
-Grid Spec is nice but won't be production-ready for a year (even if it does launch in "early 2017") -- unless you exclusively support modern, desktop, browsers (Edge+).
-
-postcss-ant is like Grid Spec (myriad of units/sizes available) but can't do the 2D layout thing.
-
-It's better in some ways: real fractions, ratio sizing, ability to fetch specific sizes to be used anywhere).
-
-Use Grid Spec if you're one of those _"cutting-edge"_ people. Use postcss-ant for at least the next several months if you care about delivering a solid experience to the largest audience possible (aka: you actually make popular/profitable websites).
-
-Actually, postcss-ant's API is tiny; it'll save you a ton of layout work; it will expand your mind to new design paradigms; and you can use it alongside Grid Spec when the time is right. Learn/use it regardless.
-
-Or don't. I'm not your mom. 🐒
-
----
-
-## Play with postcss-ant Right Now
-
-- Clone this repo
-- `npm install node-sass` (Sass isn't included with the playground as it'd make the `npm install` for postcss-ant take forever)
-- `npm install`
-- `npm run playground`
-- Edit `playground/index.html` and `playground/css/style.scss`
-
-[Back to top ↑](#table-of-contents)
+https://codepen.io/corysimmons/pen/BpBXOK?editors=1100#0
 
 ## Installation
 
@@ -148,6 +119,27 @@ Docs are in Sass because Sass is more popular.
 - `node_modules/.bin/postcss -w -u postcss-ant -o style.post.css style.css` (in another new terminal tab)
 
 > Stylus' syntax doesn't mesh well with a lot of PostCSS plugins. postcss-ant's API was specifically developed to be very friendly with preprecessors, but just keep in mind if you break methods onto new lines, Stylus will throw errors. To remedy this, just add a `\` before each line break (at the end of each line).
+
+[Back to top ↑](#table-of-contents)
+
+### Gulp and Sass
+
+- `npm install gulp gulp-sass gulp-postcss postcss-ant`
+- `node_modules/.bin/gulp css`
+
+```js
+const gulp = require('gulp')
+const sass = require('gulp-sass')
+const postcss = require('gulp-postcss')
+const ant = require('postcss-ant')
+
+gulp.task('css', () => {
+  return gulp.src('./src/*.scss')
+    .pipe(sass())
+    .pipe(postcss([ant]))
+    .pipe(gulp.dest('./dist'))
+})
+```
 
 [Back to top ↑](#table-of-contents)
 
