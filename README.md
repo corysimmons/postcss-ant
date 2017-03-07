@@ -838,7 +838,7 @@ postcss-ant's codebase is very flexible, so we can add helpers as needed. Let me
 
 Anywhere [`calc`](http://caniuse.com/#feat=calc) is supported. IE9+ without any help.
 
-IE8+ and Android 4.0.3+ with polyfills (like [ielove](https://github.com/corysimmons/ielove)).
+IE8+ and Android 4.0.3+ with polyfills (like [ie-love](https://github.com/corysimmons/ie-love)).
 
 [Back to top ↑](#table-of-contents)
 
