@@ -225,7 +225,7 @@ If something in this comparison seems unfair, please open an Issue or chat with 
 
 Accurate information > whatever bias might be blinding me.
 
-|| postcss-ant | Grid Spec | Everything else
+&nbsp; | postcss-ant | Grid Spec | Everything else
 :-:|:-:|:-:|:-:
 **Fractions** | ✔ | ❌ | Jeet<br>Lost
 **Fixed units and fractions** | ✔ | ❌ | ❌
